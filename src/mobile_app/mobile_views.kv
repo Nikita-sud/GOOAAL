@@ -13,6 +13,21 @@ BoxLayout:
             size_hint_y: None
             height: self.minimum_height
 
+    Label:
+        text: 'Enter Database Credentials'
+        font_size: 20
+
+    TextInput:
+        id: username_input
+        hint_text: 'Username'
+        multiline: False
+
+    TextInput:
+        id: password_input
+        hint_text: 'Password'
+        password: True  # Поле для ввода пароля (затемнённое)
+        multiline: False
+
     Button:
         text: 'Order'
         size_hint_y: 0.1

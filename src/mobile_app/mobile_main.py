@@ -12,10 +12,16 @@ class PizzaApp(App):
         return Builder.load_file('mobile_views.kv')
 
     def order_pizza(self):
+        username = self.root.ids.username_input.text
+        password = self.root.ids.password_input.text
+        
         customer_id = 1
         pizza_id = 2 
-        add_order(customer_id, pizza_id)
-        print("Заказ добавлен!")
+        if username and password:  # Проверяем, что поля заполнены
+            add_order(customer_id, pizza_id, username, password)
+            print("Заказ добавлен!")
+        else:
+            print("Введите имя пользователя и пароль!")
 
 if __name__ == '__main__':
     PizzaApp().run()

@@ -1,0 +1,19 @@
+#:kivy 2.0.0
+BoxLayout:
+    orientation: 'vertical'
+    
+    Label:
+        text: 'Menu'
+        font_size: 32
+
+    ScrollView:
+        GridLayout:
+            id: pizza_menu
+            cols: 1
+            size_hint_y: None
+            height: self.minimum_height
+
+    Button:
+        text: 'Order'
+        size_hint_y: 0.1
+        on_release: app.order_pizza()

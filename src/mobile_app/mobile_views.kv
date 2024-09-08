@@ -1,34 +1,90 @@
 #:kivy 2.0.0
-BoxLayout:
-    orientation: 'vertical'
-    
-    Label:
-        text: 'Menu'
-        font_size: 32
 
-    ScrollView:
-        GridLayout:
-            id: pizza_menu
-            cols: 1
-            size_hint_y: None
-            height: self.minimum_height
+ScreenManager:
+    id: screen_manager  # Add this ID to reference it in the Python code
 
-    Label:
-        text: 'Enter Database Credentials'
-        font_size: 20
+    # Экран входа
+    Screen:
+        name: 'login_screen'
 
-    TextInput:
-        id: username_input
-        hint_text: 'Username'
-        multiline: False
+        BoxLayout:
+            orientation: 'vertical'
+            padding: 20
+            spacing: 20
+            
+            Label:
+                text: 'Login'
+                font_size: 40
+                color: 0.2, 0.6, 0.8, 1
+                size_hint_y: None
+                height: 60
 
-    TextInput:
-        id: password_input
-        hint_text: 'Password'
-        password: True  # Поле для ввода пароля (затемнённое)
-        multiline: False
+            TextInput:
+                id: username_input
+                hint_text: 'Username'
+                multiline: False
+                font_size: 20
+                size_hint_y: None
+                height: 50
+                background_normal: ''
+                background_color: 1, 1, 1, 1
+                padding: 10
 
-    Button:
-        text: 'Order'
-        size_hint_y: 0.1
-        on_release: app.order_pizza()
+            TextInput:
+                id: password_input
+                hint_text: 'Password'
+                password: True
+                multiline: False
+                font_size: 20
+                size_hint_y: None
+                height: 50
+                background_normal: ''
+                background_color: 1, 1, 1, 1
+                padding: 10
+
+            Button:
+                text: 'Login'
+                size_hint_y: None
+                height: 60
+                font_size: 24
+                background_normal: ''
+                background_color: 0.2, 0.6, 0.8, 1
+                color: 1, 1, 1, 1
+                on_release: app.login()
+
+    # Экран заказа
+    Screen:
+        name: 'order_screen'
+
+        BoxLayout:
+            orientation: 'vertical'
+            padding: 20
+            spacing: 20
+            
+            Label:
+                text: 'Pizza Order Menu'
+                font_size: 40
+                color: 0.2, 0.6, 0.8, 1
+                size_hint_y: None
+                height: 60
+
+            ScrollView:
+                GridLayout:
+                    id: pizza_menu
+                    cols: 1
+                    size_hint_y: None
+                    height: self.minimum_height
+                    row_default_height: 50
+                    row_force_default: True
+                    padding: 10
+                    spacing: 10
+
+            Button:
+                text: 'Order Pizza'
+                size_hint_y: None
+                height: 60
+                font_size: 24
+                background_normal: ''
+                background_color: 0.2, 0.6, 0.8, 1
+                color: 1, 1, 1, 1
+                on_release: app.order_pizza()

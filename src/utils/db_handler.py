@@ -10,7 +10,7 @@ def clean_sql_script(script):
             cleaned_script.append(line)
     return ' '.join(cleaned_script)
 
-def load_db():
+def download_db():
     try:
         connection = mysql.connector.connect(
             host="127.0.0.1",
@@ -70,5 +70,5 @@ def upload_db():
     except Exception as ex:
         print("FAILED ON UPLOADING "+ str(ex))
 
-load_db()
+download_db()
 upload_db()

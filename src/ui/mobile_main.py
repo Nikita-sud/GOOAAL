@@ -1,6 +1,8 @@
 from kivy.app import App
 from kivy.lang import Builder 
 from kivy.uix.screenmanager import ScreenManager 
+from kivy.core.window import Window
+
 import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
@@ -16,11 +18,15 @@ class PizzaApp(App):
     username = ''
     password = ''
 
+
     def build(self):
+       
         return Builder.load_file('structure/mobile_views.kv')
 
     def on_start(self):
         try:
+            Window.size = (400, 800)
+            Window.resizable = False
             self.screen_manager = self.root
         except AttributeError:
             print("Error: Could not find ScreenManager")

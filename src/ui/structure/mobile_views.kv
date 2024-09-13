@@ -1,173 +1,205 @@
 #:kivy 2.0.0
 
-ScreenManager:
-    id: screen_manager  # Add this ID to reference it in the Python code
-
-    # Экран входа
-    Screen:
+PizzaScreenManager:
+    LoginScreen:
         name: 'login_screen'
+    OrderScreen:
+        name: 'order_screen'
+    LoadingScreen:
+        name: 'loading_screen'
 
-        canvas.before:
-            Color:
-                rgba: (0.87, 0.42, 0.16, 1)
-            Rectangle:
-                pos: self.pos
-                size: self.size
+<LoginScreen>:
+
+    canvas.before:
+        Color:
+            rgba: (0.87, 0.42, 0.16, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: 20
+        padding: [20, 20]
+
+        BoxLayout:
+            size_hint_y: 0.9
+            canvas:
+                Color:
+                    rgb: 1, 1, 1
+                Ellipse:
+                    pos: 100, 500
+                    size: dp(200), dp(200)
+                    source: 'la_logo.webp'
+                    angle_start: 0
+                    angle_end: 360
+
+    
+        Widget:
+            size_hint_y: 0.1
+
 
         BoxLayout:
             orientation: 'vertical'
+            size_hint_y: 0.7  
             spacing: 20
-            padding: [20, 20]
+            padding: [10, 10]
 
-            BoxLayout:
-                size_hint_y: 0.9
-                canvas:
-                    Color:
-                        rgb: 1, 1, 1
-                    Ellipse:
-                        pos: 100, 500
-                        size: dp(200), dp(200)
-                        source: 'la_logo.webp'
-                        angle_start: 0
-                        angle_end: 360
 
-            # Виджет для пустого пространства сверху
-            Widget:
-                size_hint_y: 0.1
 
-            BoxLayout:
-                orientation: 'vertical'
-                size_hint_y: 0.7  # Уменьшаем, чтобы элементы были в центре
-                spacing: 20
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1  
+                RoundedRectangle:
+                    pos: 57, 260
+                    size: 290, 150
+                    radius: [23]  
+                Color:
+                    rgba: (0.87, 0.42, 0.16, 1)
+                Line:
+                    points: [58, 335, 346, 335]  
+                    width: 1.5  
+            TextInput:
+                id: username_input
+                hint_text: 'Username *'
+                multiline: False
+                font_size: 14
+                background_normal: ''
+                background_color: 1, 1, 1, 1
                 padding: [10, 10]
+                size_hint_y: None
+                height: dp(45)
+                size_hint_x: 0.8
+                pos_hint: {'center_x': 0.5}
+                cursor_color: 0.87, 0.42, 0.16, 1
+                selection_color: 0.87, 0.42, 0.16, 0.5
+
+
+
+
+            TextInput:
+                id: password_input
+                hint_text: 'Password *'
+                password: True
+                multiline: False
+                font_size: 14
+                background_normal: ''
+                background_color: 1, 1, 1, 1
+                cursor_color: 0.87, 0.42, 0.16, 1
+                selection_color: 0.87, 0.42, 0.16, 0.5
+                padding: [8, 8]
+                size_hint_y: None
+                height: dp(45)
+                size_hint_x: 0.8
+                pos_hint: {'center_x': 0.5}
+
+
+        Widget:
+            size_hint_y: 0.25
+
+
+    
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_y: 0.5  
+            spacing: 20
+            Label:
+                id: error_label
+                text: ""
+                color: 1,1,1,1
+                font_size: 15
+                size_hint_y: None
+                height: dp(30)
+                pos_hint: {'center_x': 0.5}
+            Button:
+                text: 'Sign In'
+                size_hint_x: 0.77
+                size_hint_y: None
+                height: dp(50)
+                font_size: 17
+                background_normal: ''
+                background_color: 0, 0, 0, 0  
+                color: 0.8, 0.4, 0.1, 1
+                pos_hint: {'center_x': 0.5}
+                on_release: root.login()
+                
+
                 canvas.before:
                     Color:
-                        rgba: 1, 1, 1, 1  # Белый цвет для поля ввода
+                        rgba: 1, 1, 1, 1  
                     RoundedRectangle:
-                        pos: 57, 260
-                        size: 290, 150
-                        radius: [23]  # Радиус закругления
+                        pos: self.pos
+                        size: self.size
+                        radius: [23]  
+            Button:
+                text: 'Create account here!'
+                size_hint_x: 0.77
+                size_hint_y: None
+                height: dp(50)  
+                font_size: 17
+                background_normal: ''
+                background_color: 0, 0, 0, 0  
+                color: 1, 1, 1, 1  # Белый цвет текста
+                pos_hint: {'center_x': 0.5}
+                on_release: app.root.get_screen('login_screen').create_account()
+
+
+                canvas.before:
                     Color:
-                        rgba: (0.87, 0.42, 0.16, 1)
+                        rgba: 1, 1, 1, 1  
                     Line:
-                        points: [58, 335, 346, 335]  # Начальная и конечная точка линии (по горизонтали посередине RoundedRectangle)
-                        width: 1.5  # Толщина линии
-                TextInput:
-                    id: username_input
-                    hint_text: 'Username *'
-                    multiline: False
-                    font_size: 14
-                    background_normal: ''
-                    background_color: 1, 1, 1, 1
-                    padding: [10, 10]
-                    size_hint_y: None
-                    height: dp(45)
-                    size_hint_x: 0.8
-                    pos_hint: {'center_x': 0.5}
-
-                TextInput:
-                    id: password_input
-                    hint_text: 'Password *'
-                    password: True
-                    multiline: False
-                    font_size: 14
-                    background_normal: ''
-                    background_color: 1, 1, 1, 1
-                    padding: [8, 8]
-                    size_hint_y: None
-                    height: dp(45)
-                    size_hint_x: 0.8
-                    pos_hint: {'center_x': 0.5}
-
+                        width: 1.2  
+                        rounded_rectangle: (self.x, self.y, self.width, self.height, dp(23)) 
 
 
             Widget:
-                size_hint_y: 0.25
-        
-            BoxLayout:
-                orientation: 'vertical'
-                size_hint_y: 0.5  # Уменьшаем, чтобы элементы были в центре
-                spacing: 20
-
-                Button:
-                    text: 'Sign In'
-                    size_hint_x: 0.77
-                    size_hint_y: None
-                    height: dp(50)
-                    font_size: 17
-                    background_normal: ''
-                    background_color: 0, 0, 0, 0  # Прозрачный фон, чтобы не перекрывать canvas
-                    color: 0.8, 0.4, 0.1, 1
-                    pos_hint: {'center_x': 0.5}
-                    on_release: app.login()
-
-                    canvas.before:
-                        Color:
-                            rgba: 1, 1, 1, 1  # Цвет кнопки
-                        RoundedRectangle:
-                            pos: self.pos
-                            size: self.size
-                            radius: [23]  # Радиус закругления
-                Button:
-                    text: 'Create account here!'
-                    size_hint_x: 0.77
-                    size_hint_y: None
-                    height: dp(50)  # Немного увеличиваем высоту для более четкой границы
-                    font_size: 17
-                    background_normal: ''
-                    background_color: 0, 0, 0, 0  # Прозрачная кнопка
-                    color: 1, 1, 1, 1  # Белый цвет текста
-                    pos_hint: {'center_x': 0.5}
-                    on_release: app.create_account()
-
-                    canvas.before:
-                        Color:
-                            rgba: 1, 1, 1, 1  # Белый цвет для границы
-                        Line:
-                            width: 1.2  # Толщина линии (границы)
-                            rounded_rectangle: (self.x, self.y, self.width, self.height, dp(23))  # Закругленные углы
-
-
-                Widget:
-                    size_hint_y: 0.1
+                size_hint_y: 0.1
 
 
 
 
 
     # Экран заказа
-    Screen:
-        name: 'order_screen'
+<OrderScreen>:
 
-        BoxLayout:
-            orientation: 'vertical'
-            padding: 20
-            spacing: 20
-            
-            Label:
-                text: 'Pizza Order Menu'
-                font_size: 40
-                color: 0.2, 0.6, 0.8, 1
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 20
+        
+        Label:
+            text: 'Pizza Order Menu'
+            font_size: 40
+            color: 0.2, 0.6, 0.8, 1
+            size_hint_y: None
+            height: 60
+
+        ScrollView:
+            GridLayout:
+                id: pizza_menu
+                cols: 1
                 size_hint_y: None
-                height: 60
+                height: self.minimum_height
+                row_default_height: 50
+                row_force_default: True
+                padding: 10
+                spacing: 10
 
-            ScrollView:
-                GridLayout:
-                    id: pizza_menu
-                    cols: 1
-                    size_hint_y: None
-                    height: self.minimum_height
-                    row_default_height: 50
-                    row_force_default: True
-                    padding: 10
-                    spacing: 10
+        Button:
+            text: 'Order Pizza'
+            size_hint_y: None
+            height: 60
+            font_size: 24
+            background_normal: ''
+            background_color: 0.2, 0.6, 0.8, 1
+            color: 1, 1, 1, 1
+            on_release: app.order_pizza()
 
-            Button:
-                text: 'Order Pizza'
-                size_hint_y: None
-                height: 60
-                font_size: 24
-                background_normal: ''
-                background_color: 0.2, 0.6, 0.8, 1
-                color: 1, 1, 1, 1
-                on_release: app.order_pizza()
+<LoadingScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: 20
+        padding: [20, 20]
+        Image:
+            source: 'giphy.webp'  
+            anim_delay: 0.05  

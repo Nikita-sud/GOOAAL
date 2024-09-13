@@ -66,7 +66,6 @@ def upload_db():
         command = fr"mysqldump -u {username} -p{password} {database} > {sql_file}"
         subprocess.run(command, shell=True, check=True)
 
-
     except Exception as ex:
         print("FAILED ON UPLOADING "+ str(ex))
 

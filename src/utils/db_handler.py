@@ -29,7 +29,7 @@ def download_db():
 
         cursor.execute("USE test_pizza_shop")
 
-        with open(fr"database\test_pizza_shop.sql", "r") as sql_file:
+        with open(fr"database\test_pizza_shop.sql", "r",encoding="utf-8") as sql_file:
             sql_script = sql_file.read()
 
         cleaned_sql = clean_sql_script(sql_script)
@@ -46,7 +46,7 @@ def download_db():
 
         cursor.close()
         connection.close()
-        print("DB was LOADED")
+        print("DB was DOWNLOADED. You are using the latest version")
 
     except Exception as ex:
         print("CONNECTION FAILED: "+str(ex))
@@ -65,9 +65,10 @@ def upload_db():
 
         command = fr"mysqldump -u {username} -p{password} {database} > {sql_file}"
         subprocess.run(command, shell=True, check=True)
+        print("DB was uploaded")
 
     except Exception as ex:
         print("FAILED ON UPLOADING "+ str(ex))
 
-download_db()
 upload_db()
+# download_db()

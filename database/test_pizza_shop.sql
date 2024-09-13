@@ -65,6 +65,36 @@ INSERT INTO `cities` VALUES (1,'city'),(2,'Appingedam'),(3,'Bierum'),(4,'Borgswe
 UNLOCK TABLES;
 
 --
+-- Table structure for table `customer`
+--
+
+DROP TABLE IF EXISTS `customer`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `customer` (
+  `ID` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) NOT NULL,
+  `last_name` varchar(20) NOT NULL,
+  `gender` int NOT NULL,
+  `birthdate` date DEFAULT NULL,
+  `phone` tinyint DEFAULT NULL,
+  `address` int NOT NULL,
+  `number_orders` int DEFAULT '0',
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `customer`
+--
+
+LOCK TABLES `customer` WRITE;
+/*!40000 ALTER TABLE `customer` DISABLE KEYS */;
+INSERT INTO `customer` VALUES (1,'hello	','',1,'2004-12-08',2,1,0);
+/*!40000 ALTER TABLE `customer` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `delivery_status`
 --
 
@@ -450,4 +480,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-10 23:08:52
+-- Dump completed on 2024-09-13 14:09:06

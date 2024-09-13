@@ -29,7 +29,7 @@ def download_db():
 
         cursor.execute("USE test_pizza_shop")
 
-        with open(fr"database\test_pizza_shop.sql", "r") as sql_file:
+        with open(fr"database\test_pizza_shop.sql", "r",encoding="utf-8") as sql_file:
             sql_script = sql_file.read()
 
         cleaned_sql = clean_sql_script(sql_script)
@@ -70,5 +70,5 @@ def upload_db():
     except Exception as ex:
         print("FAILED ON UPLOADING "+ str(ex))
 
+# upload_db()
 download_db()
-upload_db()

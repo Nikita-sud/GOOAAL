@@ -1,23 +1,31 @@
 #:kivy 2.0.0
 
-ScreenManager:
-    id: screen_manager  # Add this ID to reference it in the Python code
+<ColoredScreen>:
+    canvas.before:
+        Color:
+            rgba: self.background_color  # Используем 'self', так как это свойство виджета
+        Rectangle:
+            pos: self.pos
+            size: self.size
 
-    # Экран входа
-    Screen:
+ScreenManager:
+    id: screen_manager
+
+    # Login Screen
+    ColoredScreen:
         name: 'login_screen'
+        id: login_screen
 
         BoxLayout:
             orientation: 'vertical'
             padding: 20
             spacing: 20
-            
-            Label:
-                text: 'Login'
-                font_size: 40
-                color: 0.2, 0.6, 0.8, 1
-                size_hint_y: None
-                height: 60
+
+            Image:
+                source: 'logo.png'  # Убедитесь, что файл логотипа доступен
+                size_hint: None, None
+                size: 150, 150
+                pos_hint: {'center_x': 0.5}
 
             TextInput:
                 id: username_input
@@ -27,6 +35,8 @@ ScreenManager:
                 size_hint_y: None
                 height: 50
                 background_normal: ''
+                background_active: ''
+                foreground_color: 0, 0, 0, 1
                 background_color: 1, 1, 1, 1
                 padding: 10
 
@@ -39,52 +49,255 @@ ScreenManager:
                 size_hint_y: None
                 height: 50
                 background_normal: ''
+                background_active: ''
+                foreground_color: 0, 0, 0, 1
                 background_color: 1, 1, 1, 1
                 padding: 10
 
             Button:
-                text: 'Login'
+                text: 'Sign In'
                 size_hint_y: None
                 height: 60
                 font_size: 24
                 background_normal: ''
-                background_color: 0.2, 0.6, 0.8, 1
+                background_color: 0.8157, 0.4510, 0.2549, 1  # Цвет кнопки
                 color: 1, 1, 1, 1
                 on_release: app.login()
 
-    # Экран заказа
-    Screen:
-        name: 'order_screen'
+            Button:
+                text: 'Create account here!'
+                size_hint_y: None
+                height: 40
+                font_size: 18
+                background_normal: ''
+                background_color: 0, 0, 0, 0  # Прозрачный фон
+                color: 1, 1, 1, 1  # Цвет текста
+                on_release: app.root.current = 'register_screen'
+
+    # Registration Screen
+    ColoredScreen:
+        name: 'register_screen'
+        id: register_screen
+
+        ScrollView:
+            do_scroll_x: False
+            do_scroll_y: True
+
+            BoxLayout:
+                orientation: 'vertical'
+                padding: 20
+                spacing: 20
+                size_hint_y: None
+                height: self.minimum_height
+
+                Image:
+                    source: 'logo.png'
+                    size_hint: None, None
+                    size: 150, 150
+                    pos_hint: {'center_x': 0.5}
+
+                TextInput:
+                    id: name_input
+                    hint_text: 'Name'
+                    multiline: False
+                    font_size: 20
+                    size_hint_y: None
+                    height: 50
+                    background_normal: ''
+                    background_active: ''
+                    background_color: 1, 1, 1, 1
+                    padding: 10
+
+                TextInput:
+                    id: lastname_input
+                    hint_text: 'Last Name'
+                    multiline: False
+                    font_size: 20
+                    size_hint_y: None
+                    height: 50
+                    background_normal: ''
+                    background_active: ''
+                    background_color: 1, 1, 1, 1
+                    padding: 10
+
+                TextInput:
+                    id: birthdate_input
+                    hint_text: 'Select Birthdate'
+                    multiline: False
+                    font_size: 20
+                    size_hint_y: None
+                    height: 50
+                    background_normal: ''
+                    background_active: ''
+                    background_color: 1, 1, 1, 1
+                    padding: 10
+
+                BoxLayout:
+                    orientation: 'horizontal'
+                    size_hint_y: None
+                    height: 50
+                    Label:
+                        text: 'Gender'
+                        size_hint_x: 0.2
+                        font_size: 20
+                        color: 1, 1, 1, 1
+                    ToggleButton:
+                        id: gender_m
+                        text: 'M'
+                        group: 'gender'
+                        size_hint_x: 0.4
+                        background_normal: ''
+                        background_down: ''
+                        background_color: 1, 1, 1, 1
+                        color: 0, 0, 0, 1
+                    ToggleButton:
+                        id: gender_f
+                        text: 'F'
+                        group: 'gender'
+                        size_hint_x: 0.4
+                        background_normal: ''
+                        background_down: ''
+                        background_color: 1, 1, 1, 1
+                        color: 0, 0, 0, 1
+
+                BoxLayout:
+                    orientation: 'horizontal'
+                    spacing: 10
+                    size_hint_y: None
+                    height: 50
+
+                    TextInput:
+                        id: city_input
+                        hint_text: 'City'
+                        multiline: False
+                        font_size: 20
+                        size_hint_x: 0.5
+                        background_normal: ''
+                        background_active: ''
+                        background_color: 1, 1, 1, 1
+                        padding: 10
+
+                    TextInput:
+                        id: street_input
+                        hint_text: 'Street'
+                        multiline: False
+                        font_size: 20
+                        size_hint_x: 0.5
+                        background_normal: ''
+                        background_active: ''
+                        background_color: 1, 1, 1, 1
+                        padding: 10
+
+                BoxLayout:
+                    orientation: 'horizontal'
+                    spacing: 10
+                    size_hint_y: None
+                    height: 50
+
+                    TextInput:
+                        id: house_number_input
+                        hint_text: 'House Number'
+                        multiline: False
+                        font_size: 20
+                        size_hint_x: 0.5
+                        background_normal: ''
+                        background_active: ''
+                        background_color: 1, 1, 1, 1
+                        padding: 10
+
+                    TextInput:
+                        id: postal_code_input
+                        hint_text: 'Postal Code'
+                        multiline: False
+                        font_size: 20
+                        size_hint_x: 0.5
+                        background_normal: ''
+                        background_active: ''
+                        background_color: 1, 1, 1, 1
+                        padding: 10
+
+                TextInput:
+                    id: phone_number_input
+                    hint_text: 'Phone Number'
+                    multiline: False
+                    font_size: 20
+                    size_hint_y: None
+                    height: 50
+                    background_normal: ''
+                    background_active: ''
+                    background_color: 1, 1, 1, 1
+                    padding: 10
+
+                Button:
+                    text: 'Continue'
+                    size_hint_y: None
+                    height: 60
+                    font_size: 24
+                    background_normal: ''
+                    background_color: 0.8157, 0.4510, 0.2549, 1
+                    color: 1, 1, 1, 1
+                    on_release: app.root.current = 'account_creation_screen'
+
+    # Account Creation Screen
+    ColoredScreen:
+        name: 'account_creation_screen'
+        id: account_creation_screen
 
         BoxLayout:
             orientation: 'vertical'
             padding: 20
             spacing: 20
-            
-            Label:
-                text: 'Pizza Order Menu'
-                font_size: 40
-                color: 0.2, 0.6, 0.8, 1
-                size_hint_y: None
-                height: 60
 
-            ScrollView:
-                GridLayout:
-                    id: pizza_menu
-                    cols: 1
-                    size_hint_y: None
-                    height: self.minimum_height
-                    row_default_height: 50
-                    row_force_default: True
-                    padding: 10
-                    spacing: 10
+            Image:
+                source: 'logo.png'
+                size_hint: None, None
+                size: 150, 150
+                pos_hint: {'center_x': 0.5}
+
+            TextInput:
+                id: new_username_input
+                hint_text: 'Username'
+                multiline: False
+                font_size: 20
+                size_hint_y: None
+                height: 50
+                background_normal: ''
+                background_active: ''
+                background_color: 1, 1, 1, 1
+                padding: 10
+
+            TextInput:
+                id: new_password_input
+                hint_text: 'Password'
+                password: True
+                multiline: False
+                font_size: 20
+                size_hint_y: None
+                height: 50
+                background_normal: ''
+                background_active: ''
+                background_color: 1, 1, 1, 1
+                padding: 10
+
+            TextInput:
+                id: confirm_password_input
+                hint_text: 'Confirm Password'
+                password: True
+                multiline: False
+                font_size: 20
+                size_hint_y: None
+                height: 50
+                background_normal: ''
+                background_active: ''
+                background_color: 1, 1, 1, 1
+                padding: 10
 
             Button:
-                text: 'Order Pizza'
+                text: 'Register'
                 size_hint_y: None
                 height: 60
                 font_size: 24
                 background_normal: ''
-                background_color: 0.2, 0.6, 0.8, 1
+                background_color: 0.8157, 0.4510, 0.2549, 1
                 color: 1, 1, 1, 1
-                on_release: app.order_pizza()
+                on_release: app.register()

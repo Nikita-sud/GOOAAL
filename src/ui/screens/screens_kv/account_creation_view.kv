@@ -1,0 +1,72 @@
+#:kivy 2.0.0
+# register_view.kv
+
+<AccountCreationScreen>:
+    name: 'account_creation_screen'
+    id: account_creation_screen
+    
+    canvas.before:
+        Color:
+            rgba: self.background_color
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            
+    BoxLayout:
+        orientation: 'vertical'
+        padding: dp(20)
+        spacing: dp(20)
+
+        Image:
+            source: 'logo.png'
+            size_hint: None, None
+            size: dp(150), dp(150)
+            pos_hint: {'center_x': 0.5}
+
+        TextInput:
+            id: new_username_input
+            hint_text: 'Username'
+            multiline: False
+            font_size: sp(20)
+            size_hint_y: None
+            height: dp(50)
+            background_normal: ''
+            background_active: ''
+            background_color: 1, 1, 1, 1
+            padding: dp(10)
+
+        TextInput:
+            id: new_password_input
+            hint_text: 'Password'
+            password: True
+            multiline: False
+            font_size: sp(20)
+            size_hint_y: None
+            height: dp(50)
+            background_normal: ''
+            background_active: ''
+            background_color: 1, 1, 1, 1
+            padding: dp(10)
+
+        TextInput:
+            id: confirm_password_input
+            hint_text: 'Confirm Password'
+            password: True
+            multiline: False
+            font_size: sp(20)
+            size_hint_y: None
+            height: dp(50)
+            background_normal: ''
+            background_active: ''
+            background_color: 1, 1, 1, 1
+            padding: dp(10)
+
+        Button:
+            text: 'Register'
+            size_hint_y: None
+            height: dp(60)
+            font_size: sp(24)
+            background_normal: ''
+            background_color: 0.8157, 0.4510, 0.2549, 1
+            color: 1, 1, 1, 1
+            on_release: app.register()

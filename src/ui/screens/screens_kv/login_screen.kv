@@ -1,0 +1,166 @@
+#:kivy 2.0.0
+# login_screen.kv
+
+<LoginScreen>:
+    name: 'login_screen'
+    id: login_screen
+
+    canvas.before:
+        Color:
+            rgba: self.background_color
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: dp(20)
+            padding: [dp(20), dp(20)]
+
+            BoxLayout:
+                size_hint_y: 0.9
+                canvas:
+                    Color:
+                        rgb: 1, 1, 1
+                    Ellipse:
+                        pos: (self.center_x - dp(100), self.top - dp(250))
+                        size: dp(200), dp(200)
+                        source: 'la_logo.webp'
+                        angle_start: 0
+                        angle_end: 360
+
+            
+            Widget:
+                size_hint_y: 0.1
+
+
+            BoxLayout:
+                orientation: 'vertical'
+                size_hint_y: 0.7
+                padding: [dp(10), dp(10)]
+                spacing: dp(20)
+
+                # Обертка для первого TextInput
+                BoxLayout:
+                    orientation: 'vertical'
+                    size_hint_x: 0.8
+                    pos_hint: {'center_x': 0.5}
+                    size_hint_y: None
+                    height: dp(50)  # Задаем фиксированную высоту
+                    spacing: dp(10)
+
+                    canvas.before:
+                        Color:
+                            rgba: 1, 1, 1, 1  # Белый цвет для прямоугольника
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [dp(23)]  # Радиус для закругления углов
+
+                    TextInput:
+                        id: username_input
+                        hint_text: 'Username *'
+                        multiline: False
+                        font_size: sp(20)
+                        background_normal: ''
+                        background_color: (0, 0, 0, 0)  # Прозрачный фон
+                        padding: [dp(20), dp(12)]  # Добавляем отступы для правильного расположения текста
+                        size_hint_y: None
+                        height: dp(45)  # Совпадаем с высотой обертки
+                        cursor_color: 0.87, 0.42, 0.16, 1
+                        selection_color: 0.87, 0.42, 0.16, 0.5
+
+                # Обертка для второго TextInput
+                BoxLayout:
+                    orientation: 'vertical'
+                    size_hint_x: 0.8
+                    pos_hint: {'center_x': 0.5}
+                    size_hint_y: None
+                    height: dp(50)  # Задаем фиксированную высоту
+                    spacing: dp(10)
+
+                    canvas.before:
+                        Color:
+                            rgba: 1, 1, 1, 1  # Белый цвет для прямоугольника
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [dp(23)]  # Радиус для закругления углов
+
+                    TextInput:
+                        id: password_input
+                        hint_text: 'Password *'
+                        password: True
+                        multiline: False
+                        font_size: sp(20)
+                        background_normal: ''
+                        background_color: (0, 0, 0, 0)  # Прозрачный фон
+                        padding: [dp(20), dp(12)]  # Добавляем отступы для правильного расположения текста
+                        size_hint_y: None
+                        height: dp(45)  # Совпадаем с высотой обертки
+                        cursor_color: 0.87, 0.42, 0.16, 1
+                        selection_color: 0.87, 0.42, 0.16, 0.5
+
+
+            Widget:
+                size_hint_y: 0.25
+
+
+            
+            BoxLayout:
+                orientation: 'vertical'
+                size_hint_y: 0.5  
+                spacing: dp(20)
+                Label:
+                    id: error_label
+                    text: ""
+                    color: 1, 1, 1, 1
+                    font_size: sp(15)
+                    size_hint_y: None
+                    height: dp(30)
+                    pos_hint: {'center_x': 0.5}
+                Button:
+                    text: 'Sign In'
+                    size_hint_x: 0.77
+                    size_hint_y: None
+                    height: dp(50)
+                    font_size: sp(20)
+                    background_normal: ''
+                    background_color: 0, 0, 0, 0  
+                    color: 0.8, 0.4, 0.1, 1
+                    pos_hint: {'center_x': 0.5}
+                    on_release: root.login()
+                        
+
+                    canvas.before:
+                        Color:
+                            rgba: 1, 1, 1, 1  
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [dp(23)]  
+                Button:
+                    text: 'Create account here!'
+                    size_hint_x: 0.77
+                    size_hint_y: None
+                    height: dp(50)  
+                    font_size: sp(20)
+                    background_normal: ''
+                    background_color: 0, 0, 0, 0  
+                    color: 1, 1, 1, 1  
+                    pos_hint: {'center_x': 0.5}
+                    on_release: app.root.current = 'register_screen'
+
+
+                    canvas.before:
+                        Color:
+                            rgba: 1, 1, 1, 1  
+                        Line:
+                            width: 1.2  
+                            rounded_rectangle: (self.x, self.y, self.width, self.height, dp(23)) 
+
+
+                Widget:
+                    size_hint_y: 0.1

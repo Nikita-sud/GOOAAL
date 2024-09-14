@@ -1,0 +1,172 @@
+#:kivy 2.0.0
+# account_creation_view.kv
+
+<RegisterScreen>:
+    name: 'register_screen'
+    id: register_screen
+
+    canvas.before:
+        Color:
+            rgba: self.background_color
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            
+    ScrollView:
+        do_scroll_x: False
+        do_scroll_y: False
+
+        BoxLayout:
+            orientation: 'vertical'
+            padding: dp(20)
+            spacing: dp(20)
+            size_hint_y: None
+            height: self.minimum_height
+
+            Image:
+                source: 'logo.png'
+                size_hint: None, None
+                size: dp(150), dp(150)
+                pos_hint: {'center_x': 0.5}
+
+            TextInput:
+                id: name_input
+                hint_text: 'Name'
+                multiline: False
+                font_size: sp(20)
+                size_hint_y: None
+                height: dp(50)
+                background_normal: ''
+                background_active: ''
+                background_color: 1, 1, 1, 1
+                padding: dp(10)
+
+            TextInput:
+                id: lastname_input
+                hint_text: 'Last Name'
+                multiline: False
+                font_size: sp(20)
+                size_hint_y: None
+                height: dp(50)
+                background_normal: ''
+                background_active: ''
+                background_color: 1, 1, 1, 1
+                padding: dp(10)
+
+            TextInput:
+                id: birthdate_input
+                hint_text: 'Select Birthdate'
+                multiline: False
+                font_size: sp(20)
+                size_hint_y: None
+                height: dp(50)
+                background_normal: ''
+                background_active: ''
+                background_color: 1, 1, 1, 1
+                padding: dp(10)
+
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint_y: None
+                height: dp(50)
+                Label:
+                    text: 'Gender'
+                    size_hint_x: 0.2
+                    font_size: sp(20)
+                    color: 1, 1, 1, 1
+                ToggleButton:
+                    id: gender_m
+                    text: 'M'
+                    group: 'gender'
+                    size_hint_x: 0.4
+                    background_normal: ''
+                    background_down: ''
+                    background_color: 1, 1, 1, 1
+                    color: 0, 0, 0, 1
+                ToggleButton:
+                    id: gender_f
+                    text: 'F'
+                    group: 'gender'
+                    size_hint_x: 0.4
+                    background_normal: ''
+                    background_down: ''
+                    background_color: 1, 1, 1, 1
+                    color: 0, 0, 0, 1
+
+            BoxLayout:
+                orientation: 'horizontal'
+                spacing: dp(10)
+                size_hint_y: None
+                height: dp(50)
+
+                TextInput:
+                    id: city_input
+                    hint_text: 'City'
+                    multiline: False
+                    font_size: sp(20)
+                    size_hint_x: 0.5
+                    background_normal: ''
+                    background_active: ''
+                    background_color: 1, 1, 1, 1
+                    padding: dp(10)
+
+                TextInput:
+                    id: street_input
+                    hint_text: 'Street'
+                    multiline: False
+                    font_size: sp(20)
+                    size_hint_x: 0.5
+                    background_normal: ''
+                    background_active: ''
+                    background_color: 1, 1, 1, 1
+                    padding: dp(10)
+
+            BoxLayout:
+                orientation: 'horizontal'
+                spacing: dp(10)
+                size_hint_y: None
+                height: dp(50)
+
+                TextInput:
+                    id: house_number_input
+                    hint_text: 'House Number'
+                    multiline: False
+                    font_size: sp(20)
+                    size_hint_x: 0.5
+                    background_normal: ''
+                    background_active: ''
+                    background_color: 1, 1, 1, 1
+                    padding: dp(10)
+
+                TextInput:
+                    id: postal_code_input
+                    hint_text: 'Postal Code'
+                    multiline: False
+                    font_size: sp(20)
+                    size_hint_x: 0.5
+                    background_normal: ''
+                    background_active: ''
+                    background_color: 1, 1, 1, 1
+                    padding: dp(10)
+
+            TextInput:
+                id: phone_number_input
+                hint_text: 'Phone Number'
+                multiline: False
+                font_size: sp(20)
+                size_hint_y: None
+                height: dp(50)
+                background_normal: ''
+                background_active: ''
+                background_color: 1, 1, 1, 1
+                padding: dp(10)
+
+            Button:
+                text: 'Continue'
+                size_hint_y: None
+                height: dp(60)
+                font_size: sp(24)
+                background_normal: ''
+                background_color: 0.8157, 0.4510, 0.2549, 1
+                color: 1, 1, 1, 1
+                on_release: app.root.current = 'account_creation_screen'

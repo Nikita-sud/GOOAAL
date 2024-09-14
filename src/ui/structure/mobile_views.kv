@@ -27,8 +27,8 @@ ScreenManager:
 
             BoxLayout:
                 orientation: 'vertical'
-                spacing: 20
-                padding: [20, 20]
+                spacing: dp(20)
+                padding: [dp(20), dp(20)]
 
                 BoxLayout:
                     size_hint_y: 0.9
@@ -50,8 +50,8 @@ ScreenManager:
                 BoxLayout:
                     orientation: 'vertical'
                     size_hint_y: 0.7
-                    padding: [10, 10]
-                    spacing: 20
+                    padding: [dp(10), dp(10)]
+                    spacing: dp(20)
 
                     # Обертка для первого TextInput
                     BoxLayout:
@@ -68,13 +68,13 @@ ScreenManager:
                             RoundedRectangle:
                                 pos: self.pos
                                 size: self.size
-                                radius: [23]  # Радиус для закругления углов
+                                radius: [dp(23)]  # Радиус для закругления углов
 
                         TextInput:
                             id: username_input
                             hint_text: 'Username *'
                             multiline: False
-                            font_size: 30
+                            font_size: sp(20)
                             background_normal: ''
                             background_color: (0, 0, 0, 0)  # Прозрачный фон
                             padding: [dp(20), dp(12)]  # Добавляем отступы для правильного расположения текста
@@ -98,14 +98,14 @@ ScreenManager:
                             RoundedRectangle:
                                 pos: self.pos
                                 size: self.size
-                                radius: [23]  # Радиус для закругления углов
+                                radius: [dp(23)]  # Радиус для закругления углов
 
                         TextInput:
                             id: password_input
                             hint_text: 'Password *'
                             password: True
                             multiline: False
-                            font_size: 30
+                            font_size: sp(20)
                             background_normal: ''
                             background_color: (0, 0, 0, 0)  # Прозрачный фон
                             padding: [dp(20), dp(12)]  # Добавляем отступы для правильного расположения текста
@@ -123,12 +123,12 @@ ScreenManager:
                 BoxLayout:
                     orientation: 'vertical'
                     size_hint_y: 0.5  
-                    spacing: 20
+                    spacing: dp(20)
                     Label:
                         id: error_label
                         text: ""
-                        color: 1,1,1,1
-                        font_size: 15
+                        color: 1, 1, 1, 1
+                        font_size: sp(15)
                         size_hint_y: None
                         height: dp(30)
                         pos_hint: {'center_x': 0.5}
@@ -137,7 +137,7 @@ ScreenManager:
                         size_hint_x: 0.77
                         size_hint_y: None
                         height: dp(50)
-                        font_size: 34
+                        font_size: sp(20)
                         background_normal: ''
                         background_color: 0, 0, 0, 0  
                         color: 0.8, 0.4, 0.1, 1
@@ -151,18 +151,18 @@ ScreenManager:
                             RoundedRectangle:
                                 pos: self.pos
                                 size: self.size
-                                radius: [23]  
+                                radius: [dp(23)]  
                     Button:
                         text: 'Create account here!'
                         size_hint_x: 0.77
                         size_hint_y: None
                         height: dp(50)  
-                        font_size: 35
+                        font_size: sp(20)
                         background_normal: ''
                         background_color: 0, 0, 0, 0  
                         color: 1, 1, 1, 1  
                         pos_hint: {'center_x': 0.5}
-                        on_release:   app.root.current = 'register_screen'
+                        on_release: app.root.current = 'register_screen'
 
 
                         canvas.before:
@@ -187,61 +187,61 @@ ScreenManager:
 
             BoxLayout:
                 orientation: 'vertical'
-                padding: 20
-                spacing: 20
+                padding: dp(20)
+                spacing: dp(20)
                 size_hint_y: None
                 height: self.minimum_height
 
                 Image:
                     source: 'logo.png'
                     size_hint: None, None
-                    size: 150, 150
+                    size: dp(150), dp(150)
                     pos_hint: {'center_x': 0.5}
 
                 TextInput:
                     id: name_input
                     hint_text: 'Name'
                     multiline: False
-                    font_size: 20
+                    font_size: sp(20)
                     size_hint_y: None
-                    height: 50
+                    height: dp(50)
                     background_normal: ''
                     background_active: ''
                     background_color: 1, 1, 1, 1
-                    padding: 10
+                    padding: dp(10)
 
                 TextInput:
                     id: lastname_input
                     hint_text: 'Last Name'
                     multiline: False
-                    font_size: 20
+                    font_size: sp(20)
                     size_hint_y: None
-                    height: 50
+                    height: dp(50)
                     background_normal: ''
                     background_active: ''
                     background_color: 1, 1, 1, 1
-                    padding: 10
+                    padding: dp(10)
 
                 TextInput:
                     id: birthdate_input
                     hint_text: 'Select Birthdate'
                     multiline: False
-                    font_size: 20
+                    font_size: sp(20)
                     size_hint_y: None
-                    height: 50
+                    height: dp(50)
                     background_normal: ''
                     background_active: ''
                     background_color: 1, 1, 1, 1
-                    padding: 10
+                    padding: dp(10)
 
                 BoxLayout:
                     orientation: 'horizontal'
                     size_hint_y: None
-                    height: 50
+                    height: dp(50)
                     Label:
                         text: 'Gender'
                         size_hint_x: 0.2
-                        font_size: 20
+                        font_size: sp(20)
                         color: 1, 1, 1, 1
                     ToggleButton:
                         id: gender_m
@@ -264,77 +264,77 @@ ScreenManager:
 
                 BoxLayout:
                     orientation: 'horizontal'
-                    spacing: 10
+                    spacing: dp(10)
                     size_hint_y: None
-                    height: 50
+                    height: dp(50)
 
                     TextInput:
                         id: city_input
                         hint_text: 'City'
                         multiline: False
-                        font_size: 20
+                        font_size: sp(20)
                         size_hint_x: 0.5
                         background_normal: ''
                         background_active: ''
                         background_color: 1, 1, 1, 1
-                        padding: 10
+                        padding: dp(10)
 
                     TextInput:
                         id: street_input
                         hint_text: 'Street'
                         multiline: False
-                        font_size: 20
+                        font_size: sp(20)
                         size_hint_x: 0.5
                         background_normal: ''
                         background_active: ''
                         background_color: 1, 1, 1, 1
-                        padding: 10
+                        padding: dp(10)
 
                 BoxLayout:
                     orientation: 'horizontal'
-                    spacing: 10
+                    spacing: dp(10)
                     size_hint_y: None
-                    height: 50
+                    height: dp(50)
 
                     TextInput:
                         id: house_number_input
                         hint_text: 'House Number'
                         multiline: False
-                        font_size: 20
+                        font_size: sp(20)
                         size_hint_x: 0.5
                         background_normal: ''
                         background_active: ''
                         background_color: 1, 1, 1, 1
-                        padding: 10
+                        padding: dp(10)
 
                     TextInput:
                         id: postal_code_input
                         hint_text: 'Postal Code'
                         multiline: False
-                        font_size: 20
+                        font_size: sp(20)
                         size_hint_x: 0.5
                         background_normal: ''
                         background_active: ''
                         background_color: 1, 1, 1, 1
-                        padding: 10
+                        padding: dp(10)
 
                 TextInput:
                     id: phone_number_input
                     hint_text: 'Phone Number'
                     multiline: False
-                    font_size: 20
+                    font_size: sp(20)
                     size_hint_y: None
-                    height: 50
+                    height: dp(50)
                     background_normal: ''
                     background_active: ''
                     background_color: 1, 1, 1, 1
-                    padding: 10
+                    padding: dp(10)
 
                 Button:
                     text: 'Continue'
                     size_hint_y: None
-                    height: 60
-                    font_size: 24
+                    height: dp(60)
+                    font_size: sp(24)
                     background_normal: ''
                     background_color: 0.8157, 0.4510, 0.2549, 1
                     color: 1, 1, 1, 1
@@ -347,58 +347,58 @@ ScreenManager:
 
         BoxLayout:
             orientation: 'vertical'
-            padding: 20
-            spacing: 20
+            padding: dp(20)
+            spacing: dp(20)
 
             Image:
                 source: 'logo.png'
                 size_hint: None, None
-                size: 150, 150
+                size: dp(150), dp(150)
                 pos_hint: {'center_x': 0.5}
 
             TextInput:
                 id: new_username_input
                 hint_text: 'Username'
                 multiline: False
-                font_size: 20
+                font_size: sp(20)
                 size_hint_y: None
-                height: 50
+                height: dp(50)
                 background_normal: ''
                 background_active: ''
                 background_color: 1, 1, 1, 1
-                padding: 10
+                padding: dp(10)
 
             TextInput:
                 id: new_password_input
                 hint_text: 'Password'
                 password: True
                 multiline: False
-                font_size: 20
+                font_size: sp(20)
                 size_hint_y: None
-                height: 50
+                height: dp(50)
                 background_normal: ''
                 background_active: ''
                 background_color: 1, 1, 1, 1
-                padding: 10
+                padding: dp(10)
 
             TextInput:
                 id: confirm_password_input
                 hint_text: 'Confirm Password'
                 password: True
                 multiline: False
-                font_size: 20
+                font_size: sp(20)
                 size_hint_y: None
-                height: 50
+                height: dp(50)
                 background_normal: ''
                 background_active: ''
                 background_color: 1, 1, 1, 1
-                padding: 10
+                padding: dp(10)
 
             Button:
                 text: 'Register'
                 size_hint_y: None
-                height: 60
-                font_size: 24
+                height: dp(60)
+                font_size: sp(24)
                 background_normal: ''
                 background_color: 0.8157, 0.4510, 0.2549, 1
                 color: 1, 1, 1, 1

@@ -1,10 +1,15 @@
 from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.core.window import Window
+
 from kivy.properties import ListProperty
 
+
+
+
 class ColoredScreen(Screen):
-    background_color = ListProperty([0.8157, 0.4510, 0.2549, 1])  # Цвет фона #D07341
+    background_color = ListProperty([0.87, 0.42, 0.16, 1])  # Цвет фона #D07341
 
 class PizzaApp(App):
     username = ''
@@ -12,6 +17,8 @@ class PizzaApp(App):
 
     def build(self):
         self.screen_manager = ScreenManager()
+        Window.size = (400, 800)
+        Window.resizable = False
         self.root = Builder.load_file('src/ui/structure/mobile_views.kv')
         return self.root
 

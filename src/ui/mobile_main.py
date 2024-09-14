@@ -59,16 +59,5 @@ class PizzaApp(App):
             # После успешной регистрации вы можете перенаправить пользователя на экран входа
             self.root.current = 'login_screen'
 
-    def order_pizza(self):
-        customer_id = 1
-        pizza_id = 2
-
-        # Используем сохранённые имя пользователя и пароль для добавления заказа
-        if self.username and self.password:
-            # add_order(customer_id, pizza_id, self.username, self.password)
-            print("Order added!")
-        else:
-            print("Please log in!")
-
 if __name__ == '__main__':
     PizzaApp().run()

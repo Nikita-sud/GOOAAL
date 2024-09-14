@@ -36,7 +36,7 @@ ScreenManager:
                         Color:
                             rgb: 1, 1, 1
                         Ellipse:
-                            pos: 100, 500
+                            pos: (self.center_x - dp(100), self.top - dp(250))
                             size: dp(200), dp(200)
                             source: 'la_logo.webp'
                             angle_start: 0
@@ -49,57 +49,70 @@ ScreenManager:
 
                 BoxLayout:
                     orientation: 'vertical'
-                    size_hint_y: 0.7  
-                    spacing: 20
+                    size_hint_y: 0.7
                     padding: [10, 10]
+                    spacing: 20
 
-
-
-                    canvas.before:
-                        Color:
-                            rgba: 1, 1, 1, 1  
-                        RoundedRectangle:
-                            pos: 57, 260
-                            size: 290, 150
-                            radius: [23]  
-                        Color:
-                            rgba: (0.87, 0.42, 0.16, 1)
-                        Line:
-                            points: [58, 335, 346, 335]  
-                            width: 1.5  
-                    TextInput:
-                        id: username_input
-                        hint_text: 'Username *'
-                        multiline: False
-                        font_size: 14
-                        background_normal: ''
-                        background_color: 1, 1, 1, 1
-                        padding: [10, 10]
-                        size_hint_y: None
-                        height: dp(45)
+                    # Обертка для первого TextInput
+                    BoxLayout:
+                        orientation: 'vertical'
                         size_hint_x: 0.8
                         pos_hint: {'center_x': 0.5}
-                        cursor_color: 0.87, 0.42, 0.16, 1
-                        selection_color: 0.87, 0.42, 0.16, 0.5
-
-
-
-
-                    TextInput:
-                        id: password_input
-                        hint_text: 'Password *'
-                        password: True
-                        multiline: False
-                        font_size: 14
-                        background_normal: ''
-                        background_color: 1, 1, 1, 1
-                        cursor_color: 0.87, 0.42, 0.16, 1
-                        selection_color: 0.87, 0.42, 0.16, 0.5
-                        padding: [8, 8]
                         size_hint_y: None
-                        height: dp(45)
+                        height: dp(50)  # Задаем фиксированную высоту
+                        spacing: dp(10)
+
+                        canvas.before:
+                            Color:
+                                rgba: 1, 1, 1, 1  # Белый цвет для прямоугольника
+                            RoundedRectangle:
+                                pos: self.pos
+                                size: self.size
+                                radius: [23]  # Радиус для закругления углов
+
+                        TextInput:
+                            id: username_input
+                            hint_text: 'Username *'
+                            multiline: False
+                            font_size: 30
+                            background_normal: ''
+                            background_color: (0, 0, 0, 0)  # Прозрачный фон
+                            padding: [dp(20), dp(12)]  # Добавляем отступы для правильного расположения текста
+                            size_hint_y: None
+                            height: dp(45)  # Совпадаем с высотой обертки
+                            cursor_color: 0.87, 0.42, 0.16, 1
+                            selection_color: 0.87, 0.42, 0.16, 0.5
+
+                    # Обертка для второго TextInput
+                    BoxLayout:
+                        orientation: 'vertical'
                         size_hint_x: 0.8
                         pos_hint: {'center_x': 0.5}
+                        size_hint_y: None
+                        height: dp(50)  # Задаем фиксированную высоту
+                        spacing: dp(10)
+
+                        canvas.before:
+                            Color:
+                                rgba: 1, 1, 1, 1  # Белый цвет для прямоугольника
+                            RoundedRectangle:
+                                pos: self.pos
+                                size: self.size
+                                radius: [23]  # Радиус для закругления углов
+
+                        TextInput:
+                            id: password_input
+                            hint_text: 'Password *'
+                            password: True
+                            multiline: False
+                            font_size: 30
+                            background_normal: ''
+                            background_color: (0, 0, 0, 0)  # Прозрачный фон
+                            padding: [dp(20), dp(12)]  # Добавляем отступы для правильного расположения текста
+                            size_hint_y: None
+                            height: dp(45)  # Совпадаем с высотой обертки
+                            cursor_color: 0.87, 0.42, 0.16, 1
+                            selection_color: 0.87, 0.42, 0.16, 0.5
 
 
                 Widget:
@@ -124,7 +137,7 @@ ScreenManager:
                         size_hint_x: 0.77
                         size_hint_y: None
                         height: dp(50)
-                        font_size: 17
+                        font_size: 34
                         background_normal: ''
                         background_color: 0, 0, 0, 0  
                         color: 0.8, 0.4, 0.1, 1
@@ -144,7 +157,7 @@ ScreenManager:
                         size_hint_x: 0.77
                         size_hint_y: None
                         height: dp(50)  
-                        font_size: 17
+                        font_size: 35
                         background_normal: ''
                         background_color: 0, 0, 0, 0  
                         color: 1, 1, 1, 1  

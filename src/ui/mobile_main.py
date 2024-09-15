@@ -26,10 +26,10 @@ class PizzaApp(App):
         Window.size = (400, 800)
         Window.resizable = False
         sm = ScreenManager()
-        sm.add_widget(Menu(name='menu_screen'))
         sm.add_widget(LoginScreen(name='login_screen'))
         sm.add_widget(RegisterScreen(name='register_screen'))
         sm.add_widget(AccountCreationScreen(name='account_creation_screen'))
+        sm.add_widget(Menu(name='menu_screen'))
         return sm
 
 if __name__ == '__main__':

@@ -8,7 +8,4 @@ class LoginScreen(ColoredScreen):
     def login(self):
         username = self.ids.username_input.text
         password = self.ids.password_input.text
-        if username == 'user' and password == 'pass':
-            print("Login successful")
-        else:
-            print("Invalid username or password")
+        self.manager.current = 'menu_screen'

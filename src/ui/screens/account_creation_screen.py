@@ -14,4 +14,4 @@ class AccountCreationScreen(ColoredScreen):
             print("Passwords do not match!")
         else:
             print("Registration successful!")
-            self.manager.current = 'login_screen'
+            self.manager.current = 'menu_screen'

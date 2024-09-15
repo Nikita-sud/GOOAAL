@@ -1,0 +1,56 @@
+#:kivy 2.0.0
+# paginated_grid.kv
+
+<PaginatedGrid>:
+    orientation: 'vertical'
+
+    Carousel:
+        id: product_carousel
+
+        BoxLayout:
+            id: pizza_slide   # Добавьте идентификатор слайду
+            orientation: 'vertical'
+            ScrollView:
+                do_scroll_x: False
+                do_scroll_y: True
+                GridLayout:
+                    id: pizza_grid
+                    cols: 2
+                    row_default_height: dp(200)
+                    row_force_default: True
+                    spacing: dp(10)
+                    padding: [dp(10), dp(10)]
+                    size_hint_y: None
+                    height: self.minimum_height
+
+        BoxLayout:
+            id: drinks_slide   # Добавьте идентификатор слайду
+            orientation: 'vertical'
+            ScrollView:
+                do_scroll_x: False
+                do_scroll_y: True
+                GridLayout:
+                    id: drinks_grid
+                    cols: 2
+                    row_default_height: dp(200)
+                    row_force_default: True
+                    spacing: dp(10)
+                    padding: [dp(10), dp(10)]
+                    size_hint_y: None
+                    height: self.minimum_height
+
+        BoxLayout:
+            id: desserts_slide  # Добавьте идентификатор слайду
+            orientation: 'vertical'
+            ScrollView:
+                do_scroll_x: False
+                do_scroll_y: True
+                GridLayout:
+                    id: desserts_grid
+                    cols: 2
+                    row_default_height: dp(200)
+                    row_force_default: True
+                    spacing: dp(10)
+                    padding: [dp(10), dp(10)]
+                    size_hint_y: None
+                    height: self.minimum_height

@@ -14,10 +14,6 @@ from ui.screens.menu_screen import Menu
 from ui.ui_components.paginated_grid.paginated_grid import PaginatedGrid
 
 
-Builder.load_file('src/ui/screens/screens_kv/login_screen.kv')
-Builder.load_file('src/ui/screens/screens_kv/register_view.kv')
-Builder.load_file('src/ui/screens/screens_kv/account_creation_view.kv')
-Builder.load_file('src/ui/screens/screens_kv/menu_screen.kv')
 Builder.load_file('/Users/nichitabulgaru/Documents/DataBases/GOOAAL/src/ui/ui_components/paginated_grid/paginated_grid.kv')
 Builder.load_file('/Users/nichitabulgaru/Documents/DataBases/GOOAAL/src/ui/ui_components/product_card/product_card.kv')
 

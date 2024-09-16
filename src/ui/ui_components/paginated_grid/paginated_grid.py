@@ -4,6 +4,7 @@ import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from ui.ui_components.product_card.product_card import ProductCard 
+from kivy.lang import Builder
 
 
 class PaginatedGrid(BoxLayout):
@@ -12,6 +13,8 @@ class PaginatedGrid(BoxLayout):
     desserts_items = ListProperty([])
 
     def __init__(self, **kwargs):
+        Builder.load_file('src/ui/ui_components/paginated_grid/paginated_grid.kv')
+        Builder.load_file('src/ui/ui_components/product_card/product_card.kv')
         super().__init__(**kwargs)
 
         # Очищаем и добавляем элементы в списки через extend

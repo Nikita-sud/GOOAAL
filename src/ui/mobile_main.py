@@ -14,9 +14,6 @@ from ui.screens.menu_screen import Menu
 from ui.ui_components.paginated_grid.paginated_grid import PaginatedGrid
 
 
-Builder.load_file('/Users/nichitabulgaru/Documents/DataBases/GOOAAL/src/ui/ui_components/paginated_grid/paginated_grid.kv')
-Builder.load_file('/Users/nichitabulgaru/Documents/DataBases/GOOAAL/src/ui/ui_components/product_card/product_card.kv')
-
 class PizzaApp(App):
     def build(self):
         Window.size = (400, 800)

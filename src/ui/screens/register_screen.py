@@ -12,4 +12,4 @@ class RegisterScreen(ColoredScreen):
         super().__init__(**kwargs)
     
     def continue_to_account_creation(self):
-        self.manager.current = 'account_creation_screen'
+        self.manager.current = 'register_screen'

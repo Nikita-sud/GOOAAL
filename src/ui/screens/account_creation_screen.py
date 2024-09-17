@@ -20,4 +20,7 @@ class AccountCreationScreen(ColoredScreen):
         else:
             print("Registration successful!")
             self.manager.current = 'menu_screen'
+
+    def back_button(self):
+        self.manager.current = 'register_screen'
     

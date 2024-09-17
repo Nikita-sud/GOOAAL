@@ -1,95 +1,137 @@
 #:kivy 2.0.0
 # menu_screen.kv
 
-#:kivy 2.0.0
-# menu_screen.kv
-
 <Menu>:
     name: 'menu_screen'
-    
+    darken_color_instruction: None 
     canvas.before:
         Color:
             rgba: self.background_color
         Rectangle:
             pos: self.pos
             size: self.size
-
-    BoxLayout:
-        id: special_offers_boxlayout
-        
-        orientation: 'vertical'
-
-        # Top navigation bar (hamburger, special offer, and cart)
+    
+    FloatLayout:
         BoxLayout:
-            size_hint_y: None
-            height: dp(60)
-            padding: dp(10)
+            id: special_offers_boxlayout
             
-            Button:
-                size_hint_x: 0.1
-                background_color: 0, 0, 0, 0
-                Image:
-                    source: 'assets/images/burger_menu.png'
-                    allow_stretch: True
-                    keep_ratio: True
-                    size_hint: None, None
-                    size: dp(30), dp(30)
-                    center_x: self.parent.center_x
-                    center_y: self.parent.center_y
+            orientation: 'vertical'
 
-            Widget:
-                size_hint_x: 0.8
+            
+            # Top navigation bar (hamburger, special offer, and cart)
+            BoxLayout:
+                size_hint_y: None
+                height: dp(60)
+                padding: dp(10)
+                
+                Button:
+                    size_hint_x: 0.1
+                    background_color: 0, 0, 0, 0
+                    on_release: root.toggle_menu()
+                    Image:
+                        source: 'assets/images/burger_menu.png'
+                        fit_mode: 'contain'
+                        size_hint: None, None
+                        size: dp(30), dp(30)
+                        center_x: self.parent.center_x
+                        center_y: self.parent.center_y
+        
 
-            Button:
-                size_hint_x: 0.1
-                background_color: 0, 0, 0, 0
-                Image:
-                    source: 'assets/images/cart.png'
-                    allow_stretch: True
-                    keep_ratio: True
-                    size_hint: None, None
-                    size: dp(30), dp(30)
-                    center_x: self.parent.center_x
-                    center_y: self.parent.center_y
+                Widget:
+                    size_hint_x: 0.8
 
-        # Special offer section
-        Carousel:
-            id: special_offers
+                Button:
+                    size_hint_x: 0.1
+                    background_color: 0, 0, 0, 0
+                    Image:
+                        source: 'assets/images/cart.png'
+                        fit_mode: 'contain'
+                        size_hint: None, None
+                        size: dp(30), dp(30)
+                        center_x: self.parent.center_x
+                        center_y: self.parent.center_y
 
-            direction: 'right'
-            size_hint_y: None
-            height: dp(150)
-            padding: dp(10)
+            # Special offer section
+            Carousel:
+                id: special_offers
 
-        # Category buttons (Drinks, Pizza, Desserts)
-        BoxLayout:
+                direction: 'right'
+                size_hint_y: None
+                height: dp(150)
+                padding: dp(10)
+                loop: True
+
+            # Category buttons (Drinks, Pizza, Desserts)
+            BoxLayout:
+                size_hint_y: None
+                height: dp(50)
+                spacing: dp(10)
+                padding: [dp(10), dp(0)]
+
+                Button:
+                    text: 'Drinks'
+                    background_color: 0, 0, 0, 0
+                    color: 1, 1, 1, 1
+                    on_release: 
+                        root.ids.paginated_grid.ids.product_carousel.load_slide(root.ids.paginated_grid.ids.drinks_slide)
+
+                Button:
+                    text: 'Pizza'
+                    background_color: 0, 0, 0, 0
+                    color: 1, 1, 1, 1
+                    bold: True
+                    on_release: 
+                        root.ids.paginated_grid.ids.product_carousel.load_slide(root.ids.paginated_grid.ids.pizza_slide)
+
+                Button:
+                    text: 'Desserts'
+                    background_color: 0, 0, 0, 0
+                    color: 1, 1, 1, 1
+                    on_release: 
+                        root.ids.paginated_grid.ids.product_carousel.load_slide(root.ids.paginated_grid.ids.desserts_slide)
+
+            # PaginatedGrid for products with Carousel
+            PaginatedGrid:
+                id: paginated_grid
+
+    Widget:
+        id: darken_widget
+        size_hint: 1, 1
+        on_touch_down: if root.menu_opened: True
+        canvas.before:
+            Color:
+                rgba: 0, 0, 0, 0  # Initial transparency (no darkening)
+                group: 'darken_group'  # Assign a group name
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                group: 'darken_group'  # Assign the same group name
+    
+    BoxLayout:
+        id: side_menu
+        size_hint_x: 0.6
+        pos_hint: {'x': -1}
+        orientation: 'vertical'
+        padding: [dp(10), dp(10)]
+        spacing: dp(10)
+        canvas.before:
+            Color:
+                rgba: root.background_color
+            Rectangle:
+                pos: self.pos
+                size: self.size
+            
+        Button:
+            text: "Home"
             size_hint_y: None
             height: dp(50)
-            spacing: dp(10)
-            padding: [dp(10), dp(0)]
+            
+        Button:
+            text: "Profile"
+            size_hint_y: None
+            height: dp(50)
 
-            Button:
-                text: 'Drinks'
-                background_color: 0, 0, 0, 0
-                color: 1, 1, 1, 1
-                on_release: 
-                    root.ids.paginated_grid.ids.product_carousel.load_slide(root.ids.paginated_grid.ids.drinks_slide)
-
-            Button:
-                text: 'Pizza'
-                background_color: 0, 0, 0, 0
-                color: 1, 1, 1, 1
-                bold: True
-                on_release: 
-                    root.ids.paginated_grid.ids.product_carousel.load_slide(root.ids.paginated_grid.ids.pizza_slide)
-
-            Button:
-                text: 'Desserts'
-                background_color: 0, 0, 0, 0
-                color: 1, 1, 1, 1
-                on_release: 
-                    root.ids.paginated_grid.ids.product_carousel.load_slide(root.ids.paginated_grid.ids.desserts_slide)
-
-        # PaginatedGrid for products with Carousel
-        PaginatedGrid:
-            id: paginated_grid
+        Button:
+            text: "Settings"
+            size_hint_y: None
+            height: dp(50)

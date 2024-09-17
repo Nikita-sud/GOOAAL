@@ -12,19 +12,6 @@
             "name": "MySQLTest1",
             "database": "pizza_shop",
             "username": "root"
-        },
-        {
-            "mysqlOptions": {
-                "authProtocol": "default",
-                "enableSsl": "Disabled"
-            },
-            "previewLimit": 50,
-            "server": "localhost",
-            "port": 3306,
-            "driver": "MySQL",
-            "name": "test_pizza_shop",
-            "database": "test_pizza_shop",
-            "username": "root"
         }
     ]
 }

@@ -27,7 +27,7 @@ class PizzaApp(App):
         return
 
     def build(self):
-        self.on_request_open()
+        # self.on_request_open()
         Window.size = (400, 800)
         Window.resizable = False
         sm = ScreenManager()
@@ -35,7 +35,7 @@ class PizzaApp(App):
         sm.add_widget(RegisterScreen(name='register_screen'))
         sm.add_widget(AccountCreationScreen(name='account_creation_screen'))
         sm.add_widget(Menu(name='menu_screen'))
-        Window.bind(on_request_close=self.on_request_close)
+        # Window.bind(on_request_close=self.on_request_close)
         return sm
     
 

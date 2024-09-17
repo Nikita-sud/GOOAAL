@@ -18,7 +18,7 @@ from ui.ui_components.paginated_grid.paginated_grid import PaginatedGrid
 
 class PizzaApp(App):
 
-    # we download the latest version of the sql file
+    # we download the latest version of the sql file on openning
     def on_request_open(self):
         try:
             download_db()

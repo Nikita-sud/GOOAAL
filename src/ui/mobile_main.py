@@ -12,6 +12,7 @@ from kivy.lang import Builder
 from ui.screens.login_screen import LoginScreen
 from ui.screens.register_screen import RegisterScreen
 from ui.screens.account_creation_screen import AccountCreationScreen
+from ui.screens.basket_screen import BasketScreen
 from ui.screens.menu_screen import Menu
 from ui.ui_components.paginated_grid.paginated_grid import PaginatedGrid
 
@@ -31,11 +32,21 @@ class PizzaApp(App):
         Window.size = (400, 800)
         Window.resizable = False
         sm = ScreenManager()
+
         sm.add_widget(LoginScreen(name='login_screen'))
         sm.add_widget(RegisterScreen(name='register_screen'))
         sm.add_widget(AccountCreationScreen(name='account_creation_screen'))
-        sm.add_widget(Menu(name='menu_screen'))
-        # Window.bind(on_request_close=self.on_request_close)
+
+        # Создаем экран корзины
+        basket_screen = BasketScreen(name="basket_screen")
+        sm.add_widget(basket_screen)
+
+        # Создаем меню и передаем туда basket_screen
+        menu_screen = Menu(name='menu_screen')
+        menu_screen.basket_screen = basket_screen  # Передаем ссылку на экран корзины
+        sm.add_widget(menu_screen)
+
+
         return sm
     
 

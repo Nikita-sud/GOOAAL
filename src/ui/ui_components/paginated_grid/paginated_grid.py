@@ -5,12 +5,13 @@ import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from ui.ui_components.product_card.product_card import ProductCard 
 from kivy.lang import Builder
-
+from kivy.properties import ObjectProperty
 
 class PaginatedGrid(BoxLayout):
     pizza_items = ListProperty([])
     drinks_items = ListProperty([])
     desserts_items = ListProperty([])
+    basket_screen = ObjectProperty(None)
 
     def __init__(self, **kwargs):
         Builder.load_file('src/ui/ui_components/paginated_grid/paginated_grid.kv')
@@ -40,11 +41,13 @@ class PaginatedGrid(BoxLayout):
 
     def on_kv_post(self, base_widget):
         self.update_pages()
+        self.ids.product_carousel.load_slide(self.ids.pizza_slide)
 
     def update_grid(self, grid, items):
         grid.clear_widgets()
         for item_data in items:
-            item = ProductCard(**item_data)  # Здесь мы передаем словарь, и **item_data распаковывает его
+            item = ProductCard(**item_data)  # Создаем карточку продукта
+            item.basket_screen = self.basket_screen  # Передаем ссылку на корзину
             grid.add_widget(item)
 
     def update_pages(self):

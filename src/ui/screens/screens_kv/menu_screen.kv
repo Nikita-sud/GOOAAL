@@ -43,6 +43,7 @@
                 Button:
                     size_hint_x: 0.1
                     background_color: 0, 0, 0, 0
+                    on_release: root.to_basket()
                     Image:
                         source: 'assets/images/cart.png'
                         fit_mode: 'contain'
@@ -110,7 +111,7 @@
     BoxLayout:
         id: side_menu
         size_hint_x: 0.6
-        pos_hint: {'x': -1}
+        pos_hint: {'x': -1}  # По умолчанию меню скрыто
         orientation: 'vertical'
         padding: [dp(10), dp(10)]
         spacing: dp(10)
@@ -120,18 +121,46 @@
             Rectangle:
                 pos: self.pos
                 size: self.size
-            
-        Button:
-            text: "Home"
-            size_hint_y: None
-            height: dp(50)
-            
-        Button:
-            text: "Profile"
-            size_hint_y: None
-            height: dp(50)
 
-        Button:
-            text: "Settings"
+        # Бургер-меню для закрытия
+        BoxLayout:
             size_hint_y: None
-            height: dp(50)
+            orientation: 'vertical'
+            height: dp(30)
+            Button:
+                size_hint: None, None
+                size: dp(30), dp(30)
+                background_color: 0, 0, 0, 0
+                on_release: root.toggle_menu()  # Закрываем меню при нажатии
+                Image:
+                    source: 'assets/images/burger_menu.png'
+                    fit_mode: 'contain'
+                    size_hint: None, None
+                    size: dp(30), dp(30)
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+
+        # Основные кнопки ("Home", "Profile", "Settings") по центру по вертикали
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_y: 1
+            pos_hint: {'top': 1}
+            spacing: dp(30)  # Расстояние между кнопками
+
+            Button:
+                text: "Home"
+                size_hint_x: 0.8
+                height: dp(30)
+                pos_hint: {'center_x': 0.5}  # Центрируем кнопку по горизонтали
+
+            Button:
+                text: "Profile"
+                size_hint_x: 0.8
+                height: dp(30)
+                pos_hint: {'center_x': 0.5}
+
+            Button:
+                text: "Settings"
+                size_hint_x: 0.8
+                height: dp(30)
+                pos_hint: {'center_x': 0.5}

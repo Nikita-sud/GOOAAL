@@ -1,0 +1,31 @@
+#:kivy 2.0.0
+# product_card_mini.kv
+
+<ProductCardMini>:
+    orientation: 'horizontal'
+    padding: dp(10)
+    height: dp(50)
+
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [dp(10)]
+
+    Button:
+        text: "-"
+        size_hint: None, None
+        size: dp(30), dp(30)
+        on_release: root.remove_from_basket()
+    
+    Label:
+        text: root.product_name
+        size_hint_x: 0.6
+        color: 0, 0, 0, 1
+
+    Label:
+        text: root.price
+        size_hint_x: 0.2
+        color: 0, 0, 0, 1

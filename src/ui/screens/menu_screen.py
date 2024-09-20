@@ -15,6 +15,7 @@ class Menu(ColoredScreen):
     offers_items = ListProperty([]) 
     menu_opened = False
     darken_color_instruction = ObjectProperty(None)
+    basket_screen = ObjectProperty(None)
 
     def __init__(self, **kwargs):
         self.offers_items.extend([
@@ -30,8 +31,19 @@ class Menu(ColoredScreen):
         for item_data in self.offers_items:
             item = ProductCard(**item_data)
             box = BoxLayout(orientation='vertical')
+            item.basket_screen = self.basket_screen
             box.add_widget(item)
             special_offer_window.add_widget(box)
+
+    def on_enter(self, *args):
+        # Get basket_screen from ScreenManager
+        self.basket_screen = self.manager.get_screen('basket_screen')
+        self.ids.paginated_grid.basket_screen = self.basket_screen
+
+        
+        # Recreate ProductCards with the correct basket_screen
+        self.ids.paginated_grid.update_pages()
+        self.update_offers(self.ids.special_offers)
 
     def on_kv_post(self, base_widget):
         self.update_offers(self.ids.special_offers)
@@ -53,12 +65,12 @@ class Menu(ColoredScreen):
             # Закрытие меню: скрываем боковое меню и убираем затемнение
             anim_menu = Animation(pos_hint={'x': -1}, duration=0.3)
             anim_darken = Animation(rgba=(0, 0, 0, 0), duration=0.3)  # Убираем затемнение
-            self.ids.darken_widget.disabled = True  # Разрешаем клики под меню
+            self.ids.darken_widget.disabled = False  # Разрешаем клики под меню
         else:
             # Открытие меню: показываем боковое меню и затемняем экран
             anim_menu = Animation(pos_hint={'x': 0}, duration=0.3)
             anim_darken = Animation(rgba=(0, 0, 0, 0.5), duration=0.3)  # Затемняем экран
-            self.ids.darken_widget.disabled = False  # Блокируем клики под меню
+            self.ids.darken_widget.disabled = True  # Блокируем клики под меню
 
         # Запуск анимации
         anim_menu.start(self.ids.side_menu)
@@ -66,3 +78,6 @@ class Menu(ColoredScreen):
 
         # Переключение состояния меню
         self.menu_opened = not self.menu_opened
+
+    def to_basket(self):
+        self.manager.current = 'basket_screen'

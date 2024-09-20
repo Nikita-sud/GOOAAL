@@ -10,11 +10,20 @@
         Rectangle:
             pos: self.pos
             size: self.size
+            
     
     BoxLayout:
         orientation: 'vertical'
         padding: dp(10)
         spacing: dp(10)
+
+        BoxLayout:
+            size_hint_y: None
+            height: dp(50)
+            Button:
+                text: "Back"
+                size_hint_x: 0.2
+                on_release: app.root.current = 'menu_screen'
 
         ScrollView:
             do_scroll_x: False

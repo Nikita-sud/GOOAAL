@@ -7,7 +7,7 @@ from utils.db_handler import download_db, upload_db
 
 from kivy.app import App
 from kivy.core.window import Window
-from kivy.uix.screenmanager import ScreenManager
+from kivy.uix.screenmanager import ScreenManager, FadeTransition
 from kivy.lang import Builder
 from ui.screens.login_screen import LoginScreen
 from ui.screens.register_screen import RegisterScreen
@@ -31,8 +31,7 @@ class PizzaApp(App):
         # self.on_request_open()
         Window.size = (400, 800)
         Window.resizable = False
-        sm = ScreenManager()
-
+        sm = ScreenManager(transition=FadeTransition(duration=0.1))  # Переход с затемнением
         sm.add_widget(LoginScreen(name='login_screen'))
         sm.add_widget(RegisterScreen(name='register_screen'))
         sm.add_widget(AccountCreationScreen(name='account_creation_screen'))

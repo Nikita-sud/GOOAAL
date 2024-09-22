@@ -9,6 +9,7 @@
 -- VALUES ('Timur', 'Jercak', 1, '2012-12-12', '+12345', 1, 0);
 
 SELECT * FROM customer;
+-- DESCRIBE customer;
 
 -- UPDATE customer
 -- SET address = 2

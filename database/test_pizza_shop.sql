@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.39, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 9.0.1, for macos14.4 (arm64)
 --
 -- Host: localhost    Database: test_pizza_shop
 -- ------------------------------------------------------
--- Server version	8.0.39
+-- Server version	9.0.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -87,7 +87,7 @@ CREATE TABLE `credentials` (
 
 LOCK TABLES `credentials` WRITE;
 /*!40000 ALTER TABLE `credentials` DISABLE KEYS */;
-INSERT INTO `credentials` VALUES (11,'test',_binary '2l{;Cï¿½%ï¿½ï¿½~\ï¿½Ï¬\ï¿½s;Ù„\ï¿½ï¿½ï¿½S\ZUÜ½<ï¿½',_binary 'a\ï¿½ï¿½Z'),(13,'mj',_binary '9Þ‚ï¿½vcï¿½ï¿½\ï¿½\ï¿½~_*\ï¿½\ï¿½rP1ï¿½ï¿½ï¿½m\ï¿½2gyÊ¨ï¿½',_binary '\ï¿½4zï¿½');
+INSERT INTO `credentials` VALUES (11,'test',_binary '2l{;Cï¿½%ï¿½ï¿½~ï¿½Ï¬ï¿½s;Ù„ï¿½ï¿½ï¿½S\ZUÜ½<ï¿½',_binary 'aï¿½ï¿½Z'),(13,'mj',_binary '9Þ‚ï¿½vcï¿½ï¿½ï¿½ï¿½~_*ï¿½ï¿½rP1ï¿½ï¿½ï¿½mï¿½2gyÊ¨ï¿½',_binary 'ï¿½4zï¿½'),(14,'nichita',_binary ')©Sƒ^\ð™^t;Ð™\ë,ø™·[E‰Xj z\Í(\æXG-',_binary ';7');
 /*!40000 ALTER TABLE `credentials` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -110,7 +110,7 @@ CREATE TABLE `customer` (
   PRIMARY KEY (`customer_id`),
   KEY `fk_gender` (`gender_id`),
   CONSTRAINT `fk_gender` FOREIGN KEY (`gender_id`) REFERENCES `gender` (`gender_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -119,7 +119,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES (11,'Timur','Jercak',1,'2012-12-12','+12345',1,0),(13,'Michael','Jordan',1,'1998-06-13','12345',2,0);
+INSERT INTO `customer` VALUES (11,'Timur','Jercak',1,'2012-12-12','+12345',1,0),(13,'Michael','Jordan',1,'1998-06-13','12345',2,0),(14,'Nichita','Bulgaru',1,'2004-08-28','+12345',2,0);
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -558,4 +558,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-22 21:52:58
+-- Dump completed on 2024-09-22 22:14:49

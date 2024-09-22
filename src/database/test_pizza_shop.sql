@@ -87,7 +87,7 @@ CREATE TABLE `credentials` (
 
 LOCK TABLES `credentials` WRITE;
 /*!40000 ALTER TABLE `credentials` DISABLE KEYS */;
-INSERT INTO `credentials` VALUES (11,'test',_binary '2l{;Cï¿½%ï¿½ï¿½~ï¿½Ï¬ï¿½s;Ù„ï¿½ï¿½ï¿½S\ZUÜ½<ï¿½',_binary 'aï¿½ï¿½Z');
+INSERT INTO `credentials` VALUES (11,'test',_binary '2l{;Cï¿½%ï¿½ï¿½~ï¿½Ï¬ï¿½s;Ù„ï¿½ï¿½ï¿½S\ZUÜ½<ï¿½',_binary 'aï¿½ï¿½Z'),(13,'mj',_binary '9Þ‚ï¿½vcï¿½ï¿½ï¿½ï¿½~_*ï¿½ï¿½rP1ï¿½ï¿½ï¿½mï¿½2gyÊ¨ï¿½',_binary 'ï¿½4zï¿½'),(14,'nichita',_binary ')©Sƒ^\ð™^t;Ð™\ë,ø™·[E‰Xj z\Í(\æXG-',_binary ';7');
 /*!40000 ALTER TABLE `credentials` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -102,13 +102,15 @@ CREATE TABLE `customer` (
   `customer_id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(20) NOT NULL,
   `last_name` varchar(20) NOT NULL,
-  `gender` int NOT NULL,
+  `gender_id` int NOT NULL,
   `birthdate` date DEFAULT NULL,
   `phone` varchar(8) DEFAULT NULL,
   `address` int NOT NULL,
   `number_orders` int DEFAULT '0',
-  PRIMARY KEY (`customer_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`customer_id`),
+  KEY `fk_gender` (`gender_id`),
+  CONSTRAINT `fk_gender` FOREIGN KEY (`gender_id`) REFERENCES `gender` (`gender_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -117,7 +119,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES (11,'Timur','Jercak',1,'2012-12-12','+12345',1,0);
+INSERT INTO `customer` VALUES (11,'Timur','Jercak',1,'2012-12-12','+12345',1,0),(13,'Michael','Jordan',1,'1998-06-13','12345',2,0),(14,'Nichita','Bulgaru',1,'2004-08-28','+12345',2,0);
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -245,6 +247,30 @@ CREATE TABLE `employee_address` (
 LOCK TABLES `employee_address` WRITE;
 /*!40000 ALTER TABLE `employee_address` DISABLE KEYS */;
 /*!40000 ALTER TABLE `employee_address` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `gender`
+--
+
+DROP TABLE IF EXISTS `gender`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `gender` (
+  `gender_id` int NOT NULL AUTO_INCREMENT,
+  `gender` varchar(1) NOT NULL,
+  PRIMARY KEY (`gender_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `gender`
+--
+
+LOCK TABLES `gender` WRITE;
+/*!40000 ALTER TABLE `gender` DISABLE KEYS */;
+INSERT INTO `gender` VALUES (1,'M'),(2,'F');
+/*!40000 ALTER TABLE `gender` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -446,6 +472,31 @@ LOCK TABLES `positions` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `postal_code`
+--
+
+DROP TABLE IF EXISTS `postal_code`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `postal_code` (
+  `postal_code_id` int NOT NULL AUTO_INCREMENT,
+  `postal_code` varchar(6) NOT NULL,
+  `street` varchar(50) NOT NULL,
+  PRIMARY KEY (`postal_code_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `postal_code`
+--
+
+LOCK TABLES `postal_code` WRITE;
+/*!40000 ALTER TABLE `postal_code` DISABLE KEYS */;
+INSERT INTO `postal_code` VALUES (1,'6211AA','Brusselsestraat'),(2,'6211AB','Boschstraat'),(3,'6211AC','Bredestraat'),(4,'6211AD','Hoge Barakken'),(5,'6211AE','Kesselskade'),(6,'6211AG','Maastrichter Brugstraat'),(7,'6211AH','Sint Servaasklooster'),(8,'6211AJ','Mariastraat'),(9,'6211AL','Jodenstraat'),(10,'6211AM','Stokstraat'),(11,'6211AN','Helmstraat'),(12,'6211AP','Kleine Gracht'),(13,'6211AR','Sint Amorsplein'),(14,'6211AS','Onze Lieve Vrouweplein'),(15,'6211AT','Ezelmarkt'),(16,'6211AW','Maastrichter Smedenstraat'),(17,'6211AX','Oeverwal'),(18,'6211AZ','Heidenstraat'),(19,'6211BA','Papengang'),(20,'6211BB','Kapoenstraat'),(21,'6211BC','Vijfkoppenstraat'),(22,'6211BD','Sint Bernardusstraat'),(23,'6211BE','Muntstraat'),(24,'6211BG','Achter de Molens'),(25,'6211BH','Hof van Tilly'),(26,'6211BJ','Heggenstraat'),(27,'6211BK','Bourgognestraat'),(28,'6211BL','Bergstraat'),(29,'6211BM','Raadhuisstraat'),(30,'6211BN','Graanmarkt'),(31,'6211BP','Kommel'),(32,'6211BR','Scharnerweg'),(33,'6211BS','Statensingel'),(34,'6211BT','Batterijstraat'),(35,'6211BV','Van Hasseltkade'),(36,'6211BW','Hof van Lorreinen'),(37,'6211BX','Achter het Vleeshuis'),(38,'6211BY','Hoogbrugstraat'),(39,'6211BZ','Lage Barakken'),(40,'6211CA','Zwingelput'),(41,'6211CB','Bouillonstraat'),(42,'6211CC','Kleine Looiersstraat'),(43,'6211CD','Lenculenstraat'),(44,'6211CE','Oude Tweebergenpoort'),(45,'6211CF','Tongersestraat'),(46,'6211CG','Bieslanderweg'),(47,'6211CH','Bouillonstraat'),(48,'6211CJ','Helstraat'),(49,'6211CK','Binnenstad'),(50,'6211CL','Heggenstraat'),(51,'6211CM','Hoogfrankrijk'),(52,'6211CN','Kapoenstraat'),(53,'6211CP','Minckelersstraat'),(54,'6211CQ','Kleine Looiersstraat'),(55,'6211CR','Onze Lieve Vrouweplein'),(56,'6211CS','Stokstraat'),(57,'6211CT','Scharnerweg'),(58,'6211CV','Wilhelminasingel'),(59,'6211CW','Zwingelput'),(60,'6211CX','Brusselsestraat'),(61,'6211CY','Kesselskade'),(62,'6211CZ','Hoge Barakken'),(63,'6211DA','Statensingel'),(64,'6211DB','Maastrichter Brugstraat'),(65,'6211DC','Raadhuisstraat'),(66,'6211DD','Stokstraat'),(67,'6211DE','Kapoenstraat'),(68,'6211DF','Heggenstraat'),(69,'6211DG','Vijfkoppenstraat'),(70,'6211DH','Sint Bernardusstraat'),(71,'6211DJ','Muntstraat'),(72,'6211DK','Achter de Molens'),(73,'6211DL','Hof van Tilly'),(74,'6211DM','Heggenstraat'),(75,'6211DN','Bourgognestraat'),(76,'6211DP','Bergstraat'),(77,'6211DR','Raadhuisstraat'),(78,'6211DS','Graanmarkt'),(79,'6211DT','Kommel'),(80,'6211DV','Scharnerweg'),(81,'6211DW','Statensingel'),(82,'6211DX','Batterijstraat'),(83,'6211DY','Van Hasseltkade'),(84,'6211DZ','Hof van Lorreinen'),(85,'6211EA','Achter het Vleeshuis'),(86,'6211EB','Hoogbrugstraat'),(87,'6211EC','Lage Barakken'),(88,'6211ED','Zwingelput'),(89,'6211EE','Bouillonstraat'),(90,'6211EF','Kleine Looiersstraat'),(91,'6211EG','Lenculenstraat'),(92,'6211EH','Oude Tweebergenpoort'),(93,'6211EJ','Tongersestraat'),(94,'6211EK','Bieslanderweg'),(95,'6211EL','Bouillonstraat'),(96,'6211EM','Helstraat'),(97,'6221EL','Rechtstraat');
+/*!40000 ALTER TABLE `postal_code` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `postal_codes`
 --
 
@@ -507,4 +558,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-22 20:35:56
+-- Dump completed on 2024-09-22 22:06:06

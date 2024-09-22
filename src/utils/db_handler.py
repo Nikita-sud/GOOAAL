@@ -81,4 +81,4 @@ def upload_db():
         print(f"FAILED ON UPLOADING: {str(ex)}")
 
 # upload_db()
-download_db()
+# download_db()

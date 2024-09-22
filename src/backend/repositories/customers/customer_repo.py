@@ -13,7 +13,7 @@ class CustomerRepo(CustomerInterface):
     def create_user(self, name: str, last_name: str, gender: int, birthdate: str, phone:str, address:int):
         cursor = self.db_connection.cursor()
         query = """
-        INSERT INTO customer (name, last_name, gender, birthdate, phone, address) 
+        INSERT INTO customer (name, last_name, gender_id, birthdate, phone, address) 
         VALUES (%s, %s, %s, %s, %s, %s)
         """
         cursor.execute(query, (name, last_name, gender, datetime.strptime(birthdate, '%d.%m.%Y').date(), phone, address))

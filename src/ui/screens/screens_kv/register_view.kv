@@ -174,7 +174,7 @@
                             on_state: 
                                 self.background_color = (0.8, 0.4, 0.1, 1) if self.state == 'down' else (1, 1, 1, 1)
                                 self.color = (1, 1, 1, 1) if self.state == 'down' else (0.8, 0.4, 0.1, 1)   
-
+                                root.set_gender('M')
                     BoxLayout:
                         orientation: 'horizontal'
                         size_hint_x: 0.8
@@ -205,7 +205,7 @@
                             on_state: 
                                 self.background_color = (0.8, 0.4, 0.1, 1) if self.state == 'down' else (1, 1, 1, 1)
                                 self.color = (1, 1, 1, 1) if self.state == 'down' else (0.8, 0.4, 0.1, 1)  
-
+                                root.set_gender('F')
                     
                 BoxLayout:
                     orientation: 'horizontal'
@@ -316,6 +316,7 @@
                             cursor_color: 0.87, 0.42, 0.16, 1
                             selection_color: 0.87, 0.42, 0.16, 0.5
                             size_hint_x: 0.5
+                            on_text: root.check_postal_code(self.text)
 
                     BoxLayout:
                         orientation: 'horizontal'
@@ -329,7 +330,7 @@
                             id: street_label
                             text: "Your street name will be here"
                             color: 1, 1, 1, 1  
-                            font_size: sp(15)
+                            font_size: sp(16)
                             size_hint_y: None
                             height: dp(40)
                             valign: 'middle'
@@ -367,7 +368,7 @@
                         selection_color: 0.87, 0.42, 0.16, 0.5
             BoxLayout:
                 orientation: 'vertical'
-                size_hint_y: 0.3
+                size_hint_y: 0.35
                 spacing: dp(15)
                 Label:
                     id: error_label
@@ -375,6 +376,7 @@
                     color: 1, 1, 1, 1
                     font_size: sp(15)
                     size_hint_y: None
+                    height: dp(30)
                     pos_hint: {'center_x': 0.5}
                 Button:
                     text: 'Continue'
@@ -386,7 +388,7 @@
                     background_color: 0, 0, 0, 0  
                     color: 0.8, 0.4, 0.1, 1
                     pos_hint: {'center_x': 0.5}
-                    on_release: app.root.current = 'account_creation_screen'
+                    on_release: root.continue_to_account_creation()
                         
 
                     canvas.before:

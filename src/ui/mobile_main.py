@@ -47,7 +47,7 @@ class PizzaApp(App):
         menu_screen.basket_screen = basket_screen  # Передаем ссылку на экран корзины
         menu_screen.account_creation_screen = account_creation_screen
         sm.add_widget(menu_screen)
-
+        # self.on_request_close()
 
         return sm
     

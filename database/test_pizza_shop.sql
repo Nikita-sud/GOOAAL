@@ -119,7 +119,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES (11,'Timur','Jercak',1,'2012-12-12','+12345',1,0),(12,'Michael','Jordan',1,'1998-06-13','+12345',2,0),(13,'Michael','Jordan',1,'1998-06-13','12345',2,0);
+INSERT INTO `customer` VALUES (11,'Timur','Jercak',1,'2012-12-12','+12345',1,0),(13,'Michael','Jordan',1,'1998-06-13','12345',2,0);
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -558,4 +558,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-22 21:50:02
+-- Dump completed on 2024-09-22 21:52:58

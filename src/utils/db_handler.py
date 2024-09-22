@@ -80,5 +80,5 @@ def upload_db():
     except Exception as ex:
         print(f"FAILED ON UPLOADING: {str(ex)}")
 
-upload_db()
-# download_db()
+# upload_db()
+download_db()

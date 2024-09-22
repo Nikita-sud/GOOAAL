@@ -60,7 +60,7 @@ def upload_db():
         database = "test_pizza_shop"  
         
         current_dir = os.path.dirname(os.path.abspath(__file__))  
-        output_folder = os.path.abspath(os.path.join(current_dir, "..", "..", "database"))
+        output_folder = os.path.abspath(os.path.join(current_dir, "..", "database"))
         
         if not os.path.exists(output_folder):
             os.makedirs(output_folder)

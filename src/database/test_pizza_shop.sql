@@ -87,7 +87,7 @@ CREATE TABLE `credentials` (
 
 LOCK TABLES `credentials` WRITE;
 /*!40000 ALTER TABLE `credentials` DISABLE KEYS */;
-INSERT INTO `credentials` VALUES (11,'test',_binary '2l{;C„%µ«~\ÙÏ¬\ë±s;Ù„\öúS\ZUÜ½<',_binary 'a\ô§Z'),(13,'mj',_binary '9Ş‚‹vc¢£\Ö\à~_*\Ñ\ŞrP1û‹m\È2gyÊ¨¿',_binary '\Ã4z„');
+INSERT INTO `credentials` VALUES (11,'test',_binary '2l{;Cï¿½%ï¿½ï¿½~ï¿½Ï¬ï¿½s;Ù„ï¿½ï¿½ï¿½S\ZUÜ½<ï¿½',_binary 'aï¿½ï¿½Z'),(13,'mj',_binary '9Ş‚ï¿½vcï¿½ï¿½ï¿½ï¿½~_*ï¿½ï¿½rP1ï¿½ï¿½ï¿½mï¿½2gyÊ¨ï¿½',_binary 'ï¿½4zï¿½'),(14,'nichita',_binary ')ï¿½Sï¿½^\ï¿½^t;Ğ™\ï¿½,ï¿½ï¿½ï¿½[Eï¿½Xjï¿½z\ï¿½(\ï¿½XG-',_binary ';7');
 /*!40000 ALTER TABLE `credentials` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -110,7 +110,7 @@ CREATE TABLE `customer` (
   PRIMARY KEY (`customer_id`),
   KEY `fk_gender` (`gender_id`),
   CONSTRAINT `fk_gender` FOREIGN KEY (`gender_id`) REFERENCES `gender` (`gender_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -119,7 +119,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES (11,'Timur','Jercak',1,'2012-12-12','+12345',1,0),(13,'Michael','Jordan',1,'1998-06-13','12345',2,0);
+INSERT INTO `customer` VALUES (11,'Timur','Jercak',1,'2012-12-12','+12345',1,0),(13,'Michael','Jordan',1,'1998-06-13','12345',2,0),(14,'Nichita','Bulgaru',1,'2004-08-28','+12345',2,0);
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -558,4 +558,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-22 21:58:09
+-- Dump completed on 2024-09-22 22:06:06

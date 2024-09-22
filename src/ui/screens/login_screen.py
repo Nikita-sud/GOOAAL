@@ -21,8 +21,6 @@ class LoginScreen(ColoredScreen):
             try:
                 connection = connect_to_db()
                 customer_repo: CustomerInterface = CustomerRepo(connection)
-                # customer_repo.create_user("Timur", "Jercak", 1, "12.12.2012", "+12345", 1)
-                # customer_repo.create_credentials("test", "12345")
                 if(customer_repo.check_user(username, password)):
                     self.manager.current = 'menu_screen' 
                 else:

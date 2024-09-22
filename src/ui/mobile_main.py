@@ -34,17 +34,20 @@ class PizzaApp(App):
         sm = ScreenManager(transition=FadeTransition(duration=0.1))  # Переход с затемнением
         sm.add_widget(LoginScreen(name='login_screen'))
         sm.add_widget(RegisterScreen(name='register_screen'))
-        sm.add_widget(AccountCreationScreen(name='account_creation_screen'))
 
         # Создаем экран корзины
         basket_screen = BasketScreen(name="basket_screen")
+        account_creation_screen = AccountCreationScreen(name='account_creation_screen')
         sm.add_widget(basket_screen)
+        sm.add_widget(account_creation_screen)
+
 
         # Создаем меню и передаем туда basket_screen
         menu_screen = Menu(name='menu_screen')
         menu_screen.basket_screen = basket_screen  # Передаем ссылку на экран корзины
+        menu_screen.account_creation_screen = account_creation_screen
         sm.add_widget(menu_screen)
-
+        # self.on_request_close()
 
         return sm
     

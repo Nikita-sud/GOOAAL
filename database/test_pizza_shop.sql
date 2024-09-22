@@ -65,6 +65,33 @@ INSERT INTO `cities` VALUES (1,'city'),(2,'Appingedam'),(3,'Bierum'),(4,'Borgswe
 UNLOCK TABLES;
 
 --
+-- Table structure for table `credentials`
+--
+
+DROP TABLE IF EXISTS `credentials`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `credentials` (
+  `customer_id` int DEFAULT NULL,
+  `username` varchar(10) NOT NULL,
+  `password` blob,
+  `salt` blob,
+  KEY `customer_id` (`customer_id`),
+  CONSTRAINT `credentials_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `credentials`
+--
+
+LOCK TABLES `credentials` WRITE;
+/*!40000 ALTER TABLE `credentials` DISABLE KEYS */;
+INSERT INTO `credentials` VALUES (11,'test',_binary '2l{;CÑ%µ´~\Ÿœ¨\Î±s;ŸÑ\ˆ˙êS\ZU‹Ω<è',_binary 'a\ÙßZ');
+/*!40000 ALTER TABLE `credentials` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `customer`
 --
 
@@ -72,16 +99,16 @@ DROP TABLE IF EXISTS `customer`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `customer` (
-  `ID` int NOT NULL AUTO_INCREMENT,
+  `customer_id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(20) NOT NULL,
   `last_name` varchar(20) NOT NULL,
   `gender` int NOT NULL,
   `birthdate` date DEFAULT NULL,
-  `phone` tinyint DEFAULT NULL,
+  `phone` varchar(8) DEFAULT NULL,
   `address` int NOT NULL,
   `number_orders` int DEFAULT '0',
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`customer_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -90,7 +117,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES (1,'hello	','',1,'2004-12-08',2,1,0);
+INSERT INTO `customer` VALUES (11,'Timur','Jercak',1,'2012-12-12','+12345',1,0);
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -480,4 +507,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-16 13:11:20
+-- Dump completed on 2024-09-22 20:12:25

@@ -15,10 +15,6 @@ class BasketScreen(ColoredScreen):
     def __init__(self, **kwargs):
         Builder.load_file('src/ui/screens/screens_kv/basket_screen.kv')
         Builder.load_file('src/ui/ui_components/product_card_mini/product_card_mini.kv')
-        self.basket_items.extend([
-            {"product_name": "Margherita", "price": "16$"},
-            {"product_name": "Pepperoni", "price": "18$"}
-        ])
         super().__init__(**kwargs)
 
     def update_basket(self):
@@ -30,7 +26,7 @@ class BasketScreen(ColoredScreen):
             box = BoxLayout(orientation='horizontal', size_hint_y=None)  # Создаем контейнер
             box.add_widget(item)  # Добавляем карточку продукта в контейнер
             self.ids.basket_items_grid.add_widget(box)
-            price = int(item_data["price"].replace("$", ""))
+            price = float(item_data["price"].replace("$", ""))
             total += price
         
         self.total_price = f"{total}$"  # Обновляем общую цену

@@ -3,7 +3,7 @@ import os
 
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from utils.db_handler import download_db, upload_db
+from utils.db_handler import download_db, upload_db, sync_db
 
 from kivy.app import App
 from kivy.core.window import Window
@@ -20,12 +20,12 @@ from ui.ui_components.paginated_grid.paginated_grid import PaginatedGrid
 class PizzaApp(App):
 
     # we download the latest version of the sql file on openning
-    # def on_request_open(self):
-    #     try:
-    #         download_db()
-    #     except Exception as e:
-    #         print("DB downloading failed: "+str(e))
-    #     return
+    def on_request_open(self):
+        try:
+            sync_db()  # Вызываем функцию синхронизации
+        except Exception as e:
+            print("DB syncing failed: " + str(e))
+        return
 
     def build(self):
         # self.on_request_open()

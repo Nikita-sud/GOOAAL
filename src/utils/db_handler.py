@@ -10,6 +10,24 @@ def clean_sql_script(script):
             cleaned_script.append(line)
     return ' '.join(cleaned_script)
 
+def sync_db():
+    try:
+        username = "admin"
+        password = "12345"
+        database = "test_pizza_shop"
+        sql_file_path = os.path.join("database", "test_pizza_shop.sql")
+        
+        command = f"mysql -u {username} -p{password} {database} < {sql_file_path}"
+        result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        
+        if result.returncode != 0:
+            print(f"Error syncing DB: {result.stderr.decode()}")
+        else:
+            print("Database synced successfully")
+    
+    except Exception as ex:
+        print(f"Error during DB sync: {str(ex)}")
+
 def download_db():
     try:
         connection = mysql.connector.connect(
@@ -81,4 +99,4 @@ def upload_db():
         print(f"FAILED ON UPLOADING: {str(ex)}")
 
 # upload_db()
-download_db()
+

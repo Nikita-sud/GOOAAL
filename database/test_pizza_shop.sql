@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.39, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 9.0.1, for macos14.4 (arm64)
 --
 -- Host: localhost    Database: test_pizza_shop
 -- ------------------------------------------------------
--- Server version	8.0.39
+-- Server version	9.0.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -300,6 +300,32 @@ LOCK TABLES `ingredient` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `ingredient_backup`
+--
+
+DROP TABLE IF EXISTS `ingredient_backup`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ingredient_backup` (
+  `ID` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) DEFAULT NULL,
+  `price` float DEFAULT NULL,
+  `vegetarian` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ingredient_backup`
+--
+
+LOCK TABLES `ingredient_backup` WRITE;
+/*!40000 ALTER TABLE `ingredient_backup` DISABLE KEYS */;
+INSERT INTO `ingredient_backup` VALUES (1,'Tomato',0.5,1),(2,'Mozzarella',1,1),(3,'Pepperoni',1.5,0),(4,'Mushrooms',0.75,1),(5,'Onions',0.4,1),(6,'Ham',1.2,0),(7,'Bacon',1.3,0),(8,'Olives',0.6,1),(9,'Green Peppers',0.55,1),(10,'Pineapple',0.7,1),(11,'Tomato Sauce',0.5,1),(12,'Cheddar Cheese',1.2,1),(13,'Chicken',1.8,0),(14,'Beef',2,0),(15,'Spinach',0.7,1),(16,'Artichoke',0.9,1),(17,'Sausage',1.6,0),(18,'Parmesan Cheese',1.1,1),(19,'BBQ Sauce',0.8,1),(20,'Garlic',0.3,1);
+/*!40000 ALTER TABLE `ingredient_backup` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `menu_deserts`
 --
 
@@ -375,6 +401,31 @@ LOCK TABLES `menu_pizza` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `menu_pizza_backup`
+--
+
+DROP TABLE IF EXISTS `menu_pizza_backup`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `menu_pizza_backup` (
+  `pizza_id` int NOT NULL,
+  `discount` float DEFAULT NULL,
+  `price` float DEFAULT NULL,
+  PRIMARY KEY (`pizza_id`),
+  CONSTRAINT `menu_pizza_backup_ibfk_1` FOREIGN KEY (`pizza_id`) REFERENCES `pizza_backup` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `menu_pizza_backup`
+--
+
+LOCK TABLES `menu_pizza_backup` WRITE;
+/*!40000 ALTER TABLE `menu_pizza_backup` DISABLE KEYS */;
+/*!40000 ALTER TABLE `menu_pizza_backup` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `offers`
 --
 
@@ -424,6 +475,59 @@ LOCK TABLES `pizza` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `pizza_backup`
+--
+
+DROP TABLE IF EXISTS `pizza_backup`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `pizza_backup` (
+  `ID` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) DEFAULT NULL,
+  `vegetarian` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `pizza_backup`
+--
+
+LOCK TABLES `pizza_backup` WRITE;
+/*!40000 ALTER TABLE `pizza_backup` DISABLE KEYS */;
+INSERT INTO `pizza_backup` VALUES (1,'Margherita',1),(2,'Pepperoni',0),(3,'Hawaiian',0),(4,'Vegetarian',1),(5,'Meat Lovers',0),(6,'BBQ Chicken',0),(7,'Four Cheese',1),(8,'Meat Feast',0),(9,'Spinach Artichoke',1),(10,'Beef Delight',0);
+/*!40000 ALTER TABLE `pizza_backup` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `pizza_ingredient`
+--
+
+DROP TABLE IF EXISTS `pizza_ingredient`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `pizza_ingredient` (
+  `pizza_id` int NOT NULL,
+  `ingredient_id` int NOT NULL,
+  `quantity` decimal(5,2) NOT NULL DEFAULT '1.00',
+  PRIMARY KEY (`pizza_id`,`ingredient_id`),
+  KEY `ingredient_id` (`ingredient_id`),
+  CONSTRAINT `pizza_ingredient_ibfk_1` FOREIGN KEY (`pizza_id`) REFERENCES `pizza` (`ID`) ON DELETE CASCADE,
+  CONSTRAINT `pizza_ingredient_ibfk_2` FOREIGN KEY (`ingredient_id`) REFERENCES `ingredient` (`ID`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `pizza_ingredient`
+--
+
+LOCK TABLES `pizza_ingredient` WRITE;
+/*!40000 ALTER TABLE `pizza_ingredient` DISABLE KEYS */;
+INSERT INTO `pizza_ingredient` VALUES (1,1,1.00),(1,2,1.00),(2,1,1.00),(2,2,1.00),(2,3,1.00),(3,1,1.00),(3,2,1.00),(3,4,1.00),(3,10,1.00),(4,1,1.00),(4,2,1.00),(4,6,1.00),(4,7,1.00),(4,8,1.00),(5,1,1.00),(5,2,1.00),(5,3,1.00),(5,5,1.00),(5,15,1.00),(6,2,1.00),(6,11,1.00),(6,17,1.00),(7,1,1.00),(7,2,1.00),(7,16,1.00),(7,19,1.00),(8,1,1.00),(8,2,1.00),(8,13,1.00),(8,14,1.00),(9,1,1.00),(9,2,1.00),(9,12,1.00),(9,15,1.00),(9,18,1.00);
+/*!40000 ALTER TABLE `pizza_ingredient` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `pizza_ingredients`
 --
 
@@ -448,6 +552,47 @@ LOCK TABLES `pizza_ingredients` WRITE;
 /*!40000 ALTER TABLE `pizza_ingredients` DISABLE KEYS */;
 /*!40000 ALTER TABLE `pizza_ingredients` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `pizza_ingredients_backup`
+--
+
+DROP TABLE IF EXISTS `pizza_ingredients_backup`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `pizza_ingredients_backup` (
+  `pizza_id` int NOT NULL,
+  `ingredient_id` int NOT NULL,
+  PRIMARY KEY (`pizza_id`,`ingredient_id`),
+  KEY `ingredient_id` (`ingredient_id`),
+  CONSTRAINT `pizza_ingredients_backup_ibfk_1` FOREIGN KEY (`pizza_id`) REFERENCES `pizza_backup` (`ID`),
+  CONSTRAINT `pizza_ingredients_backup_ibfk_2` FOREIGN KEY (`ingredient_id`) REFERENCES `ingredient_backup` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `pizza_ingredients_backup`
+--
+
+LOCK TABLES `pizza_ingredients_backup` WRITE;
+/*!40000 ALTER TABLE `pizza_ingredients_backup` DISABLE KEYS */;
+INSERT INTO `pizza_ingredients_backup` VALUES (1,1),(2,1),(3,1),(4,1),(5,1),(6,1),(8,1),(9,1),(10,1),(1,2),(2,2),(3,2),(4,2),(5,2),(6,2),(9,2),(10,2),(2,3),(5,3),(8,3),(4,4),(3,5),(4,5),(5,6),(5,7),(4,8),(3,9),(6,9),(6,11),(8,11),(8,14),(10,14),(8,15),(10,15),(9,16),(9,17),(10,18);
+/*!40000 ALTER TABLE `pizza_ingredients_backup` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Temporary view structure for view `pizza_prices`
+--
+
+DROP TABLE IF EXISTS `pizza_prices`;
+/*!50001 DROP VIEW IF EXISTS `pizza_prices`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `pizza_prices` AS SELECT 
+ 1 AS `pizza_id`,
+ 1 AS `pizza_name`,
+ 1 AS `total_price`*/;
+SET character_set_client = @saved_cs_client;
 
 --
 -- Table structure for table `positions`
@@ -549,6 +694,24 @@ LOCK TABLES `restaurant_address` WRITE;
 /*!40000 ALTER TABLE `restaurant_address` DISABLE KEYS */;
 /*!40000 ALTER TABLE `restaurant_address` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Final view structure for view `pizza_prices`
+--
+
+/*!50001 DROP VIEW IF EXISTS `pizza_prices`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_unicode_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`admin`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `pizza_prices` AS select `p`.`ID` AS `pizza_id`,`p`.`name` AS `pizza_name`,sum((`i`.`price` * `pi`.`quantity`)) AS `total_price` from ((`pizza` `p` join `pizza_ingredient` `pi` on((`p`.`ID` = `pi`.`pizza_id`))) join `ingredient` `i` on((`pi`.`ingredient_id` = `i`.`ID`))) group by `p`.`ID`,`p`.`name` */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -559,4 +722,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-23 10:16:30
+-- Dump completed on 2024-09-23 10:38:05

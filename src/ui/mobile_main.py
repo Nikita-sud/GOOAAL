@@ -19,50 +19,40 @@ from ui.ui_components.paginated_grid.paginated_grid import PaginatedGrid
 
 class PizzaApp(App):
 
-    # we download the latest version of the sql file on openning
-    def on_request_open(self):
+    def on_start(self):
+        # This method is called when the application starts
         try:
-            sync_db()  # Вызываем функцию синхронизации
+            sync_db()  # Import the SQL file into the database
         except Exception as e:
-            print("DB syncing failed: " + str(e))
-        return
+            print("DB syncing failed on start: " + str(e))
+
+    def on_stop(self):
+        # This method is called when the application is about to close
+        try:
+            upload_db()  # Export the database to the SQL file
+        except Exception as e:
+            print("DB uploading failed on stop: " + str(e))
 
     def build(self):
-        # self.on_request_open()
         Window.size = (400, 800)
         Window.resizable = False
-        sm = ScreenManager(transition=FadeTransition(duration=0.1))  # Переход с затемнением
+        sm = ScreenManager(transition=FadeTransition(duration=0.1))
         sm.add_widget(LoginScreen(name='login_screen'))
         sm.add_widget(RegisterScreen(name='register_screen'))
 
-        # Создаем экран корзины
+        # Create the basket screen
         basket_screen = BasketScreen(name="basket_screen")
-        
         account_creation_screen = AccountCreationScreen(name='account_creation_screen')
         sm.add_widget(basket_screen)
         sm.add_widget(account_creation_screen)
 
-
-        # Создаем меню и передаем туда basket_screen
+        # Create the menu and pass the basket_screen
         menu_screen = Menu(name='menu_screen')
-        menu_screen.basket_screen = basket_screen  # Передаем ссылку на экран корзины
+        menu_screen.basket_screen = basket_screen
         menu_screen.account_creation_screen = account_creation_screen
         sm.add_widget(menu_screen)
-        # self.on_request_close()
 
         return sm
-    
-
-    # we update sql file on closing the app
-    def on_request_close(self, *args):
-        try:
-            upload_db()
-        except Exception as e:
-            print("DB uploading failed: "+str(e))
-        self.stop()
-        sys.exit()
-        return
-
 
 if __name__ == '__main__':
     PizzaApp().run()

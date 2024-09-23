@@ -25,10 +25,10 @@ class PizzaRepo(PizzaInterface):
 
     def get_pizza_price(self, pizza_id: int) -> float:
         ingredients = self.get_pizza_ingredients(pizza_id)
-        total_ingredient_price = sum([ingredient[1] * ingredient[2] for ingredient in ingredients])  # Умножаем цену ингредиента на количество
         
-        margin = 0.40
-        tax = 0.09
+        # Приводим цену ингредиентов и количество к типу Decimal
+        total_ingredient_price = sum([Decimal(ingredient[1]) * Decimal(ingredient[2]) for ingredient in ingredients])
+        
         margin = Decimal('0.40')
         tax = Decimal('0.09')
 

@@ -88,7 +88,7 @@ CREATE TABLE `credentials` (
 
 LOCK TABLES `credentials` WRITE;
 /*!40000 ALTER TABLE `credentials` DISABLE KEYS */;
-INSERT INTO `credentials` VALUES (15,'tim','2be01e15bbd8891ec1497521b290bd508511eaec94a60405ab17bbe5dd63a41d','dbb7ccb7');
+INSERT INTO `credentials` VALUES (16,'nikita','8617c96e1825c193a31ec2f8ab56650bfee01721f59759f6965ebb85440ba001','50ff7907'),(15,'tim','2be01e15bbd8891ec1497521b290bd508511eaec94a60405ab17bbe5dd63a41d','dbb7ccb7');
 /*!40000 ALTER TABLE `credentials` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -111,7 +111,7 @@ CREATE TABLE `customer` (
   PRIMARY KEY (`customer_id`),
   KEY `fk_gender` (`gender_id`),
   CONSTRAINT `fk_gender` FOREIGN KEY (`gender_id`) REFERENCES `gender` (`gender_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -120,7 +120,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES (15,'Timur','Jercak',1,'1998-06-13','12345',2,0);
+INSERT INTO `customer` VALUES (15,'Timur','Jercak',1,'1998-06-13','12345',2,0),(16,'Nikita','Bulgaru',1,'2004-08-28','+12345',2,0);
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -287,7 +287,7 @@ CREATE TABLE `ingredient` (
   `price` float DEFAULT NULL,
   `vegetarian` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -296,6 +296,7 @@ CREATE TABLE `ingredient` (
 
 LOCK TABLES `ingredient` WRITE;
 /*!40000 ALTER TABLE `ingredient` DISABLE KEYS */;
+INSERT INTO `ingredient` VALUES (1,'Tomato Sauce',0.5,1),(2,'Mozzarella',1,1),(3,'Pepperoni',1.5,0),(4,'Ham',1.2,0),(5,'Bacon',1.3,0),(6,'Mushrooms',0.75,1),(7,'Onions',0.4,1),(8,'Green Peppers',0.55,1),(9,'Olives',0.6,1),(10,'Pineapple',0.7,1),(11,'Chicken',1.8,0),(12,'Beef',2,0),(13,'Spinach',0.7,1),(14,'Artichoke',0.9,1),(15,'Sausage',1.6,0),(16,'Parmesan Cheese',1.1,1),(17,'BBQ Sauce',0.8,1),(18,'Garlic',0.3,1),(19,'Cheddar Cheese',1.2,1);
 /*!40000 ALTER TABLE `ingredient` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -462,7 +463,7 @@ CREATE TABLE `pizza` (
   `name` varchar(50) DEFAULT NULL,
   `vegetarian` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -471,6 +472,7 @@ CREATE TABLE `pizza` (
 
 LOCK TABLES `pizza` WRITE;
 /*!40000 ALTER TABLE `pizza` DISABLE KEYS */;
+INSERT INTO `pizza` VALUES (1,'Margherita',1),(2,'Pepperoni',0),(3,'Hawaiian',0),(4,'Vegetarian Delight',1),(5,'Meat Feast',0),(6,'BBQ Chicken',0),(7,'Four Cheese',1),(8,'Spinach Artichoke',1),(9,'Beef Delight',0);
 /*!40000 ALTER TABLE `pizza` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -722,4 +724,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-23 10:38:05
+-- Dump completed on 2024-09-23 10:55:56

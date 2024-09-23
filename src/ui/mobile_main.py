@@ -20,12 +20,12 @@ from ui.ui_components.paginated_grid.paginated_grid import PaginatedGrid
 class PizzaApp(App):
 
     # we download the latest version of the sql file on openning
-    def on_request_open(self):
-        try:
-            download_db()
-        except Exception as e:
-            print("DB downloading failed: "+str(e))
-        return
+    # def on_request_open(self):
+    #     try:
+    #         download_db()
+    #     except Exception as e:
+    #         print("DB downloading failed: "+str(e))
+    #     return
 
     def build(self):
         # self.on_request_open()
@@ -37,6 +37,7 @@ class PizzaApp(App):
 
         # Создаем экран корзины
         basket_screen = BasketScreen(name="basket_screen")
+        
         account_creation_screen = AccountCreationScreen(name='account_creation_screen')
         sm.add_widget(basket_screen)
         sm.add_widget(account_creation_screen)

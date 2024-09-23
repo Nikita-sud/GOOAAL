@@ -8,7 +8,8 @@
 -- INSERT INTO customer (name, last_name, gender, birthdate, phone, address, number_orders)
 -- VALUES ('Timur', 'Jercak', 1, '2012-12-12', '+12345', 1, 0);
 
-SELECT * FROM customer;
+SELECT * FROM credentials;
+
 -- DESCRIBE customer;
 
 -- UPDATE customer

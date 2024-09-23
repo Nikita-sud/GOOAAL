@@ -40,7 +40,7 @@ class CustomerRepo(CustomerInterface):
             """
         salt = os.urandom(4)
         hashed_password = hashlib.pbkdf2_hmac('sha256', password.encode('utf-8'), salt, 100000)
-        cursor.execute(query, (customer_id, username, hashed_password, salt,))
+        cursor.execute(query, (customer_id, username, hashed_password.hex(), salt.hex(),))
         self.db_connection.commit()
         cursor.close()
         return
@@ -58,7 +58,10 @@ class CustomerRepo(CustomerInterface):
 
         if(result == None):
             return False
-        stored_password, stored_salt = result
+        stored_password_hex, stored_salt_hex = result
+        stored_password = bytes.fromhex(stored_password_hex)
+        stored_salt = bytes.fromhex(stored_salt_hex)
+        
         hashed_password = hashlib.pbkdf2_hmac('sha256', password.encode('utf-8'), stored_salt, 100000)
         if hashed_password == stored_password:
             return True

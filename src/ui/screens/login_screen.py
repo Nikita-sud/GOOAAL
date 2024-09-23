@@ -23,6 +23,7 @@ class LoginScreen(ColoredScreen):
                 customer_repo: CustomerInterface = CustomerRepo(connection)
                 if(customer_repo.check_user(username, password)):
                     self.manager.current = 'menu_screen' 
+
                 else:
                     self.ids.error_label.text = "Your username/password is wrong"
             except Exception as ex:

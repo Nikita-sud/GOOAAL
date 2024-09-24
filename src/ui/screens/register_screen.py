@@ -31,7 +31,7 @@ class RegisterScreen(ColoredScreen):
         connection = connect_to_db()
         cursor = connection.cursor()
         query = """
-        SELECT street FROM postal_code
+        SELECT street FROM postal_codes
         WHERE postal_code = %s"""
         cursor.execute(query, (input_text,))
         result = cursor.fetchone()

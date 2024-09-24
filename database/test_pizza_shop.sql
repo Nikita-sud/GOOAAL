@@ -287,7 +287,7 @@ CREATE TABLE `ingredient` (
   `price` float DEFAULT NULL,
   `vegetarian` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -296,34 +296,8 @@ CREATE TABLE `ingredient` (
 
 LOCK TABLES `ingredient` WRITE;
 /*!40000 ALTER TABLE `ingredient` DISABLE KEYS */;
-INSERT INTO `ingredient` VALUES (1,'Tomato Sauce',0.5,1),(2,'Mozzarella',1,1),(3,'Pepperoni',1.5,0),(4,'Ham',1.2,0),(5,'Bacon',1.3,0),(6,'Mushrooms',0.75,1),(7,'Onions',0.4,1),(8,'Green Peppers',0.55,1),(9,'Olives',0.6,1),(10,'Pineapple',0.7,1),(11,'Chicken',1.8,0),(12,'Beef',2,0),(13,'Spinach',0.7,1),(14,'Artichoke',0.9,1),(15,'Sausage',1.6,0),(16,'Parmesan Cheese',1.1,1),(17,'BBQ Sauce',0.8,1),(18,'Garlic',0.3,1),(19,'Cheddar Cheese',1.2,1);
+INSERT INTO `ingredient` VALUES (1,'Tomato Sauce',0.5,1),(2,'Mozzarella',1.5,1),(3,'Pepperoni',1.5,0),(4,'Ham',1.5,0),(5,'Bacon',1.5,0),(6,'Mushrooms',0.8,1),(7,'Onions',0.5,1),(8,'Green Peppers',0.7,1),(9,'Olives',0.7,1),(10,'Pineapple',0.8,1),(11,'Chicken',1.8,0),(12,'Beef',2,0),(13,'Spinach',0.7,1),(14,'Artichoke',0.9,1),(15,'Sausage',1.5,0),(16,'Parmesan Cheese',1,1),(17,'BBQ Sauce',0.6,1),(18,'Garlic',0.3,1),(19,'Cheddar Cheese',1,1),(20,'Dough',1,1);
 /*!40000 ALTER TABLE `ingredient` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `ingredient_backup`
---
-
-DROP TABLE IF EXISTS `ingredient_backup`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `ingredient_backup` (
-  `ID` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) DEFAULT NULL,
-  `price` float DEFAULT NULL,
-  `vegetarian` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `ingredient_backup`
---
-
-LOCK TABLES `ingredient_backup` WRITE;
-/*!40000 ALTER TABLE `ingredient_backup` DISABLE KEYS */;
-INSERT INTO `ingredient_backup` VALUES (1,'Tomato',0.5,1),(2,'Mozzarella',1,1),(3,'Pepperoni',1.5,0),(4,'Mushrooms',0.75,1),(5,'Onions',0.4,1),(6,'Ham',1.2,0),(7,'Bacon',1.3,0),(8,'Olives',0.6,1),(9,'Green Peppers',0.55,1),(10,'Pineapple',0.7,1),(11,'Tomato Sauce',0.5,1),(12,'Cheddar Cheese',1.2,1),(13,'Chicken',1.8,0),(14,'Beef',2,0),(15,'Spinach',0.7,1),(16,'Artichoke',0.9,1),(17,'Sausage',1.6,0),(18,'Parmesan Cheese',1.1,1),(19,'BBQ Sauce',0.8,1),(20,'Garlic',0.3,1);
-/*!40000 ALTER TABLE `ingredient_backup` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -398,32 +372,8 @@ CREATE TABLE `menu_pizza` (
 
 LOCK TABLES `menu_pizza` WRITE;
 /*!40000 ALTER TABLE `menu_pizza` DISABLE KEYS */;
+INSERT INTO `menu_pizza` VALUES (1,NULL,4.58),(2,NULL,6.87),(3,NULL,8.09),(4,NULL,7.63),(5,NULL,11.44),(6,NULL,7.48),(7,NULL,7.63),(8,NULL,7.02),(9,NULL,10.38);
 /*!40000 ALTER TABLE `menu_pizza` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `menu_pizza_backup`
---
-
-DROP TABLE IF EXISTS `menu_pizza_backup`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `menu_pizza_backup` (
-  `pizza_id` int NOT NULL,
-  `discount` float DEFAULT NULL,
-  `price` float DEFAULT NULL,
-  PRIMARY KEY (`pizza_id`),
-  CONSTRAINT `menu_pizza_backup_ibfk_1` FOREIGN KEY (`pizza_id`) REFERENCES `pizza_backup` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `menu_pizza_backup`
---
-
-LOCK TABLES `menu_pizza_backup` WRITE;
-/*!40000 ALTER TABLE `menu_pizza_backup` DISABLE KEYS */;
-/*!40000 ALTER TABLE `menu_pizza_backup` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -477,31 +427,6 @@ INSERT INTO `pizza` VALUES (1,'Margherita',1),(2,'Pepperoni',0),(3,'Hawaiian',0)
 UNLOCK TABLES;
 
 --
--- Table structure for table `pizza_backup`
---
-
-DROP TABLE IF EXISTS `pizza_backup`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `pizza_backup` (
-  `ID` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) DEFAULT NULL,
-  `vegetarian` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `pizza_backup`
---
-
-LOCK TABLES `pizza_backup` WRITE;
-/*!40000 ALTER TABLE `pizza_backup` DISABLE KEYS */;
-INSERT INTO `pizza_backup` VALUES (1,'Margherita',1),(2,'Pepperoni',0),(3,'Hawaiian',0),(4,'Vegetarian',1),(5,'Meat Lovers',0),(6,'BBQ Chicken',0),(7,'Four Cheese',1),(8,'Meat Feast',0),(9,'Spinach Artichoke',1),(10,'Beef Delight',0);
-/*!40000 ALTER TABLE `pizza_backup` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `pizza_ingredient`
 --
 
@@ -525,62 +450,60 @@ CREATE TABLE `pizza_ingredient` (
 
 LOCK TABLES `pizza_ingredient` WRITE;
 /*!40000 ALTER TABLE `pizza_ingredient` DISABLE KEYS */;
-INSERT INTO `pizza_ingredient` VALUES (1,1,1.00),(1,2,1.00),(2,1,1.00),(2,2,1.00),(2,3,1.00),(3,1,1.00),(3,2,1.00),(3,4,1.00),(3,10,1.00),(4,1,1.00),(4,2,1.00),(4,6,1.00),(4,7,1.00),(4,8,1.00),(5,1,1.00),(5,2,1.00),(5,3,1.00),(5,5,1.00),(5,15,1.00),(6,2,1.00),(6,11,1.00),(6,17,1.00),(7,1,1.00),(7,2,1.00),(7,16,1.00),(7,19,1.00),(8,1,1.00),(8,2,1.00),(8,13,1.00),(8,14,1.00),(9,1,1.00),(9,2,1.00),(9,12,1.00),(9,15,1.00),(9,18,1.00);
+INSERT INTO `pizza_ingredient` VALUES (1,1,1.00),(1,2,1.00),(1,20,1.00),(2,1,1.00),(2,2,1.00),(2,3,1.00),(2,20,1.00),(3,1,1.00),(3,2,1.00),(3,4,1.00),(3,10,1.00),(3,20,1.00),(4,1,1.00),(4,2,1.00),(4,6,1.00),(4,7,1.00),(4,8,1.00),(4,20,1.00),(5,1,1.00),(5,2,1.00),(5,3,1.00),(5,5,1.00),(5,15,1.00),(5,20,1.00),(6,2,1.00),(6,11,1.00),(6,17,1.00),(6,20,1.00),(7,1,1.00),(7,2,1.00),(7,16,1.00),(7,19,1.00),(7,20,1.00),(8,1,1.00),(8,2,1.00),(8,13,1.00),(8,14,1.00),(8,20,1.00),(9,1,1.00),(9,2,1.00),(9,12,1.00),(9,15,1.00),(9,18,1.00),(9,20,1.00);
 /*!40000 ALTER TABLE `pizza_ingredient` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `pizza_ingredients`
---
-
-DROP TABLE IF EXISTS `pizza_ingredients`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `pizza_ingredients` (
-  `pizza_id` int NOT NULL,
-  `ingredient_id` int NOT NULL,
-  PRIMARY KEY (`pizza_id`,`ingredient_id`),
-  KEY `ingredient_id` (`ingredient_id`),
-  CONSTRAINT `pizza_ingredients_ibfk_1` FOREIGN KEY (`pizza_id`) REFERENCES `pizza` (`ID`),
-  CONSTRAINT `pizza_ingredients_ibfk_2` FOREIGN KEY (`ingredient_id`) REFERENCES `ingredient` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `pizza_ingredients`
---
-
-LOCK TABLES `pizza_ingredients` WRITE;
-/*!40000 ALTER TABLE `pizza_ingredients` DISABLE KEYS */;
-/*!40000 ALTER TABLE `pizza_ingredients` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `pizza_ingredients_backup`
---
-
-DROP TABLE IF EXISTS `pizza_ingredients_backup`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `pizza_ingredients_backup` (
-  `pizza_id` int NOT NULL,
-  `ingredient_id` int NOT NULL,
-  PRIMARY KEY (`pizza_id`,`ingredient_id`),
-  KEY `ingredient_id` (`ingredient_id`),
-  CONSTRAINT `pizza_ingredients_backup_ibfk_1` FOREIGN KEY (`pizza_id`) REFERENCES `pizza_backup` (`ID`),
-  CONSTRAINT `pizza_ingredients_backup_ibfk_2` FOREIGN KEY (`ingredient_id`) REFERENCES `ingredient_backup` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `pizza_ingredients_backup`
---
-
-LOCK TABLES `pizza_ingredients_backup` WRITE;
-/*!40000 ALTER TABLE `pizza_ingredients_backup` DISABLE KEYS */;
-INSERT INTO `pizza_ingredients_backup` VALUES (1,1),(2,1),(3,1),(4,1),(5,1),(6,1),(8,1),(9,1),(10,1),(1,2),(2,2),(3,2),(4,2),(5,2),(6,2),(9,2),(10,2),(2,3),(5,3),(8,3),(4,4),(3,5),(4,5),(5,6),(5,7),(4,8),(3,9),(6,9),(6,11),(8,11),(8,14),(10,14),(8,15),(10,15),(9,16),(9,17),(10,18);
-/*!40000 ALTER TABLE `pizza_ingredients_backup` ENABLE KEYS */;
-UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_unicode_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'IGNORE_SPACE,ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_after_insert_pizza_ingredient` AFTER INSERT ON `pizza_ingredient` FOR EACH ROW BEGIN
+    CALL UpdateMenuPizzaPrices();
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_unicode_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'IGNORE_SPACE,ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_after_update_pizza_ingredient` AFTER UPDATE ON `pizza_ingredient` FOR EACH ROW BEGIN
+    CALL UpdateMenuPizzaPrices();
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_unicode_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'IGNORE_SPACE,ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_after_delete_pizza_ingredient` AFTER DELETE ON `pizza_ingredient` FOR EACH ROW BEGIN
+    CALL UpdateMenuPizzaPrices();
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Temporary view structure for view `pizza_prices`
@@ -620,31 +543,6 @@ LOCK TABLES `positions` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `postal_code`
---
-
-DROP TABLE IF EXISTS `postal_code`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `postal_code` (
-  `postal_code_id` int NOT NULL AUTO_INCREMENT,
-  `postal_code` varchar(6) NOT NULL,
-  `street` varchar(50) NOT NULL,
-  PRIMARY KEY (`postal_code_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `postal_code`
---
-
-LOCK TABLES `postal_code` WRITE;
-/*!40000 ALTER TABLE `postal_code` DISABLE KEYS */;
-INSERT INTO `postal_code` VALUES (1,'6211AA','Brusselsestraat'),(2,'6211AB','Boschstraat'),(3,'6211AC','Bredestraat'),(4,'6211AD','Hoge Barakken'),(5,'6211AE','Kesselskade'),(6,'6211AG','Maastrichter Brugstraat'),(7,'6211AH','Sint Servaasklooster'),(8,'6211AJ','Mariastraat'),(9,'6211AL','Jodenstraat'),(10,'6211AM','Stokstraat'),(11,'6211AN','Helmstraat'),(12,'6211AP','Kleine Gracht'),(13,'6211AR','Sint Amorsplein'),(14,'6211AS','Onze Lieve Vrouweplein'),(15,'6211AT','Ezelmarkt'),(16,'6211AW','Maastrichter Smedenstraat'),(17,'6211AX','Oeverwal'),(18,'6211AZ','Heidenstraat'),(19,'6211BA','Papengang'),(20,'6211BB','Kapoenstraat'),(21,'6211BC','Vijfkoppenstraat'),(22,'6211BD','Sint Bernardusstraat'),(23,'6211BE','Muntstraat'),(24,'6211BG','Achter de Molens'),(25,'6211BH','Hof van Tilly'),(26,'6211BJ','Heggenstraat'),(27,'6211BK','Bourgognestraat'),(28,'6211BL','Bergstraat'),(29,'6211BM','Raadhuisstraat'),(30,'6211BN','Graanmarkt'),(31,'6211BP','Kommel'),(32,'6211BR','Scharnerweg'),(33,'6211BS','Statensingel'),(34,'6211BT','Batterijstraat'),(35,'6211BV','Van Hasseltkade'),(36,'6211BW','Hof van Lorreinen'),(37,'6211BX','Achter het Vleeshuis'),(38,'6211BY','Hoogbrugstraat'),(39,'6211BZ','Lage Barakken'),(40,'6211CA','Zwingelput'),(41,'6211CB','Bouillonstraat'),(42,'6211CC','Kleine Looiersstraat'),(43,'6211CD','Lenculenstraat'),(44,'6211CE','Oude Tweebergenpoort'),(45,'6211CF','Tongersestraat'),(46,'6211CG','Bieslanderweg'),(47,'6211CH','Bouillonstraat'),(48,'6211CJ','Helstraat'),(49,'6211CK','Binnenstad'),(50,'6211CL','Heggenstraat'),(51,'6211CM','Hoogfrankrijk'),(52,'6211CN','Kapoenstraat'),(53,'6211CP','Minckelersstraat'),(54,'6211CQ','Kleine Looiersstraat'),(55,'6211CR','Onze Lieve Vrouweplein'),(56,'6211CS','Stokstraat'),(57,'6211CT','Scharnerweg'),(58,'6211CV','Wilhelminasingel'),(59,'6211CW','Zwingelput'),(60,'6211CX','Brusselsestraat'),(61,'6211CY','Kesselskade'),(62,'6211CZ','Hoge Barakken'),(63,'6211DA','Statensingel'),(64,'6211DB','Maastrichter Brugstraat'),(65,'6211DC','Raadhuisstraat'),(66,'6211DD','Stokstraat'),(67,'6211DE','Kapoenstraat'),(68,'6211DF','Heggenstraat'),(69,'6211DG','Vijfkoppenstraat'),(70,'6211DH','Sint Bernardusstraat'),(71,'6211DJ','Muntstraat'),(72,'6211DK','Achter de Molens'),(73,'6211DL','Hof van Tilly'),(74,'6211DM','Heggenstraat'),(75,'6211DN','Bourgognestraat'),(76,'6211DP','Bergstraat'),(77,'6211DR','Raadhuisstraat'),(78,'6211DS','Graanmarkt'),(79,'6211DT','Kommel'),(80,'6211DV','Scharnerweg'),(81,'6211DW','Statensingel'),(82,'6211DX','Batterijstraat'),(83,'6211DY','Van Hasseltkade'),(84,'6211DZ','Hof van Lorreinen'),(85,'6211EA','Achter het Vleeshuis'),(86,'6211EB','Hoogbrugstraat'),(87,'6211EC','Lage Barakken'),(88,'6211ED','Zwingelput'),(89,'6211EE','Bouillonstraat'),(90,'6211EF','Kleine Looiersstraat'),(91,'6211EG','Lenculenstraat'),(92,'6211EH','Oude Tweebergenpoort'),(93,'6211EJ','Tongersestraat'),(94,'6211EK','Bieslanderweg'),(95,'6211EL','Bouillonstraat'),(96,'6211EM','Helstraat'),(97,'6221EL','Rechtstraat');
-/*!40000 ALTER TABLE `postal_code` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `postal_codes`
 --
 
@@ -653,9 +551,10 @@ DROP TABLE IF EXISTS `postal_codes`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `postal_codes` (
   `ID` int NOT NULL AUTO_INCREMENT,
-  `postal_code` varchar(8) DEFAULT NULL,
+  `postal_code` varchar(8) NOT NULL,
+  `street` varchar(50) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -664,6 +563,7 @@ CREATE TABLE `postal_codes` (
 
 LOCK TABLES `postal_codes` WRITE;
 /*!40000 ALTER TABLE `postal_codes` DISABLE KEYS */;
+INSERT INTO `postal_codes` VALUES (1,'6211AA','Brusselsestraat'),(2,'6211AB','Boschstraat'),(3,'6211AC','Bredestraat'),(4,'6211AD','Hoge Barakken'),(5,'6211AE','Kesselskade'),(6,'6211AG','Maastrichter Brugstraat'),(7,'6211AH','Sint Servaasklooster'),(8,'6211AJ','Mariastraat'),(9,'6211AL','Jodenstraat'),(10,'6211AM','Stokstraat'),(11,'6211AN','Helmstraat'),(12,'6211AP','Kleine Gracht'),(13,'6211AR','Sint Amorsplein'),(14,'6211AS','Onze Lieve Vrouweplein'),(15,'6211AT','Ezelmarkt'),(16,'6211AW','Maastrichter Smedenstraat'),(17,'6211AX','Oeverwal'),(18,'6211AZ','Heidenstraat'),(19,'6211BA','Papengang'),(20,'6211BB','Kapoenstraat'),(21,'6211BC','Vijfkoppenstraat'),(22,'6211BD','Sint Bernardusstraat'),(23,'6211BE','Muntstraat'),(24,'6211BG','Achter de Molens'),(25,'6211BH','Hof van Tilly'),(26,'6211BJ','Heggenstraat'),(27,'6211BK','Bourgognestraat'),(28,'6211BL','Bergstraat'),(29,'6211BM','Raadhuisstraat'),(30,'6211BN','Graanmarkt'),(31,'6211BP','Kommel'),(32,'6211BR','Scharnerweg'),(33,'6211BS','Statensingel'),(34,'6211BT','Batterijstraat'),(35,'6211BV','Van Hasseltkade'),(36,'6211BW','Hof van Lorreinen'),(37,'6211BX','Achter het Vleeshuis'),(38,'6211BY','Hoogbrugstraat'),(39,'6211BZ','Lage Barakken'),(40,'6211CA','Zwingelput'),(41,'6211CB','Bouillonstraat'),(42,'6211CC','Kleine Looiersstraat'),(43,'6211CD','Lenculenstraat'),(44,'6211CE','Oude Tweebergenpoort'),(45,'6211CF','Tongersestraat'),(46,'6211CG','Bieslanderweg'),(47,'6211CH','Bouillonstraat'),(48,'6211CJ','Helstraat'),(49,'6211CK','Binnenstad'),(50,'6211CL','Heggenstraat'),(51,'6211CM','Hoogfrankrijk'),(52,'6211CN','Kapoenstraat'),(53,'6211CP','Minckelersstraat'),(54,'6211CQ','Kleine Looiersstraat'),(55,'6211CR','Onze Lieve Vrouweplein'),(56,'6211CS','Stokstraat'),(57,'6211CT','Scharnerweg'),(58,'6211CV','Wilhelminasingel'),(59,'6211CW','Zwingelput'),(60,'6211CX','Brusselsestraat'),(61,'6211CY','Kesselskade'),(62,'6211CZ','Hoge Barakken'),(63,'6211DA','Statensingel'),(64,'6211DB','Maastrichter Brugstraat'),(65,'6211DC','Raadhuisstraat'),(66,'6211DD','Stokstraat'),(67,'6211DE','Kapoenstraat'),(68,'6211DF','Heggenstraat'),(69,'6211DG','Vijfkoppenstraat'),(70,'6211DH','Sint Bernardusstraat'),(71,'6211DJ','Muntstraat'),(72,'6211DK','Achter de Molens'),(73,'6211DL','Hof van Tilly'),(74,'6211DM','Heggenstraat'),(75,'6211DN','Bourgognestraat'),(76,'6211DP','Bergstraat'),(77,'6211DR','Raadhuisstraat'),(78,'6211DS','Graanmarkt'),(79,'6211DT','Kommel'),(80,'6211DV','Scharnerweg'),(81,'6211DW','Statensingel'),(82,'6211DX','Batterijstraat'),(83,'6211DY','Van Hasseltkade'),(84,'6211DZ','Hof van Lorreinen'),(85,'6211EA','Achter het Vleeshuis'),(86,'6211EB','Hoogbrugstraat'),(87,'6211EC','Lage Barakken'),(88,'6211ED','Zwingelput'),(89,'6211EE','Bouillonstraat'),(90,'6211EF','Kleine Looiersstraat'),(91,'6211EG','Lenculenstraat'),(92,'6211EH','Oude Tweebergenpoort'),(93,'6211EJ','Tongersestraat'),(94,'6211EK','Bieslanderweg'),(95,'6211EL','Bouillonstraat'),(96,'6211EM','Helstraat'),(97,'6221EL','Rechtstraat');
 /*!40000 ALTER TABLE `postal_codes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -724,4 +624,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-23 10:55:56
+-- Dump completed on 2024-09-24 18:07:27

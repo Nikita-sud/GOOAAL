@@ -29,11 +29,10 @@ class BasketScreen(ColoredScreen):
             price = float(item_data["price"].replace("$", ""))
             total += price
         
-        self.total_price = f"{total}$"  # Обновляем общую цену
+        self.total_price = f"{total:.2f}$"
 
     def on_kv_post(self,base_widget):
         self.update_basket()
     
     def place_order(self):
         print("Order placed with total:", self.total_price)
-        # Здесь можно добавить логику оформления заказа

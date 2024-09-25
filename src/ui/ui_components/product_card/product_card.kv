@@ -1,6 +1,5 @@
 #:kivy 2.0.0
 # product_card.kv
-
 <ProductCard>:
     orientation: 'vertical'
     padding: dp(10)
@@ -11,10 +10,15 @@
             pos: self.pos
             size: self.size
             radius: [dp(10)]
-            
+
     Image:
         source: root.image_source
-        size_hint_y: 0.7
+        size_hint_y: None  # Disable size hint for y so you can control the height
+        size_hint_x: None  # Disable size hint for x so you can control the width
+        height: dp(80)    # Increase height for the image
+        width: dp(160)     # Increase width for the image
+        allow_stretch: True
+        keep_ratio: True
         fit_mode: 'contain'
 
     Label:
@@ -26,7 +30,20 @@
 
     Button:
         text: 'Add to basket'
-        size_hint_y: 0.2
-        background_color: 0.8, 0.4, 0.1, 1
-        color: 1, 1, 1, 1
+        size_hint_x: 0.85
+        size_hint_y: None
+        background_color: 0, 0, 0, 0  
+        background_normal: ''
+        font_size: sp(16)
+        height: dp(37)
+        color: 1, 1, 1, 1  
+        pos_hint: {'center_x': 0.5}
         on_release: root.add_to_basket()
+
+        canvas.before:
+            Color:
+                rgba: 0.8, 0.4, 0.1, 1
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius: [dp(18)]

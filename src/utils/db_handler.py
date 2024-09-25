@@ -2,12 +2,12 @@ import os
 import mysql.connector
 import subprocess
 
-
 def clean_sql_script(script):
     cleaned_script = []
     for line in script.splitlines():
         if not line.strip().startswith('--') and not line.strip().startswith('#') and line.strip():
-            cleaned_script.append(line)
+            if "DELIMITER" not in line:
+                cleaned_script.append(line.strip())
     return ' '.join(cleaned_script)
 
 def sync_db():
@@ -47,15 +47,22 @@ def download_db():
 
         cursor.execute("USE test_pizza_shop")
 
-        with open(fr"database/test_pizza_shop.sql", "r",encoding="utf-8") as sql_file:
+        with open(fr"database/test_pizza_shop.sql", "r", encoding="utf-8") as sql_file:
             sql_script = sql_file.read()
 
         cleaned_sql = clean_sql_script(sql_script)
 
-        for statement in cleaned_sql.split(";"):
-            if (statement.strip()):
-                for result in cursor.execute(statement, multi=True):
-                    pass
+        # Split SQL statements correctly and handle multi-statement execution
+        sql_statements = cleaned_sql.split(";")
+        for statement in sql_statements:
+            if statement.strip():
+                try:
+                    print(f"Executing SQL statement: {statement.strip()}")  # Debugging
+                    cursor.execute(statement)
+                except mysql.connector.Error as err:
+                    print(f"Error executing statement: {statement.strip()}")
+                    print(f"MySQL Error: {err}")
+                    break
 
         cursor.execute("SHOW FULL TABLES;")
         all_tables = cursor.fetchall()
@@ -67,9 +74,8 @@ def download_db():
         print("DB was DOWNLOADED. You are using the latest version")
 
     except Exception as ex:
-        print("CONNECTION FAILED: "+str(ex))
+        print("CONNECTION FAILED: " + str(ex))
         pass
-
 
 def upload_db():
     try:
@@ -98,5 +104,5 @@ def upload_db():
     except Exception as ex:
         print(f"FAILED ON UPLOADING: {str(ex)}")
 
-upload_db()
-
+# upload_db()
+# download_db()

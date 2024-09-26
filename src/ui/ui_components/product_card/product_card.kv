@@ -26,24 +26,26 @@
         color: 0, 0, 0, 1
         halign: 'center'
         valign: 'middle'
-        font_size: sp(15)
+        font_size: sp(16)
+
 
     Button:
         text: 'Add to basket'
-        size_hint_x: 0.85
+        size_hint_x: 0.95
         size_hint_y: None
         background_color: 0, 0, 0, 0  
         background_normal: ''
-        font_size: sp(16)
+        font_size: sp(17)
         height: dp(37)
-        color: 1, 1, 1, 1  
+        color: 0.8, 0.4, 0.1, 1
         pos_hint: {'center_x': 0.5}
         on_release: root.add_to_basket()
+
 
         canvas.before:
             Color:
                 rgba: 0.8, 0.4, 0.1, 1
-            RoundedRectangle:
-                pos: self.pos
-                size: self.size
-                radius: [dp(18)]
+            Line:
+                width: 1.1
+                rounded_rectangle: (self.x, self.y, self.width, self.height, dp(23)) 
+

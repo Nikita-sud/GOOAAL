@@ -422,7 +422,7 @@ CREATE TABLE `pizza` (
 
 LOCK TABLES `pizza` WRITE;
 /*!40000 ALTER TABLE `pizza` DISABLE KEYS */;
-INSERT INTO `pizza` VALUES (1,'Margherita',1),(2,'Pepperoni',0),(3,'Hawaiian',0),(4,'Vegetarian Delight',1),(5,'Meat Feast',0),(6,'BBQ Chicken',0),(7,'Four Cheese',1),(8,'Spinach Artichoke',1),(9,'Beef Delight',0);
+INSERT INTO `pizza` VALUES (1,'Margherita',1),(2,'Pepperoni',0),(3,'Hawaii',0),(4,'Vegetarian Delight',1),(5,'Meat Feast',0),(6,'BBQ Chicken',0),(7,'Four Cheese',1),(8,'Spinach Artichoke',1),(9,'Beef Delight',0);
 /*!40000 ALTER TABLE `pizza` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -463,4 +463,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-26 21:11:52
+-- Dump completed on 2024-09-28 22:56:05

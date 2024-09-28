@@ -8,8 +8,15 @@
 -- INSERT INTO customer (name, last_name, gender, birthdate, phone, address, number_orders)
 -- VALUES ('Timur', 'Jercak', 1, '2012-12-12', '+12345', 1, 0);
 
-SELECT * FROM credentials;
+-- SELECT * FROM pizza;
 
+UPDATE pizza 
+SET name = "Hawaii"
+WHERE id = 3;
+-- ALTER TABLE pizza
+-- ADD COLUMN pizza_img CHAR(64);
+-- DESCRIBE credentials;
+-- SHOW TABLES;
 -- DESCRIBE customer;
 
 -- UPDATE customer

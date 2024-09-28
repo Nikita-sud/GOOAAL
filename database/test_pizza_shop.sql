@@ -385,11 +385,11 @@ DROP TABLE IF EXISTS `offers`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `offers` (
   `ID` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(10) NOT NULL,
-  `discount` float NOT NULL,
+  `name` varchar(40) DEFAULT NULL,
+  `price` float DEFAULT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -398,6 +398,7 @@ CREATE TABLE `offers` (
 
 LOCK TABLES `offers` WRITE;
 /*!40000 ALTER TABLE `offers` DISABLE KEYS */;
+INSERT INTO `offers` VALUES (1,'pizza_and_drink',10),(2,'desert_and_pizza',14.99),(3,'buy_two_get_one',0);
 /*!40000 ALTER TABLE `offers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -463,4 +464,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-28 23:49:25
+-- Dump completed on 2024-09-28 23:59:06

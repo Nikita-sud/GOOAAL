@@ -8,11 +8,21 @@
 -- INSERT INTO customer (name, last_name, gender, birthdate, phone, address, number_orders)
 -- VALUES ('Timur', 'Jercak', 1, '2012-12-12', '+12345', 1, 0);
 
--- SELECT * FROM pizza;
+SELECT * FROM offers;
+-- ALTER TABLE offers
+-- MODIFY COLUMN name varchar(40);
+-- INSERT INTO offers(name, price)
+-- VALUES
+-- ("pizza_and_drink", 10.00),
+-- ("desert_and_pizza", 14.99),
+-- ("buy_two_get_one", 0.00);
 
-UPDATE pizza 
-SET name = "Hawaii"
-WHERE id = 3;
+-- ALTER TABLE offers 
+-- CHANGE COLUMN discount price FLOAT;
+
+-- UPDATE pizza 
+-- SET name = "Hawaii"
+-- WHERE id = 3;
 -- ALTER TABLE pizza
 -- ADD COLUMN pizza_img CHAR(64);
 -- DESCRIBE credentials;

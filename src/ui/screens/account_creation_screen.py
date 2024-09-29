@@ -27,9 +27,10 @@ class AccountCreationScreen(ColoredScreen):
             else:
                 connection = connect_to_db()
                 customer_repo: CustomerInterface = CustomerRepo(connection)
-                customer_repo.create_user(self.first_name, self.last_name, self.gender, self.birthdate, self.phone_number, 2)
-                customer_repo.create_credentials(new_username, new_password)
+                customer_repo.create_user(self.first_name, self.last_name, self.gender, self.birthdate, self.phone_number,self.street_number, self.apart_number_input, self.postal_code, new_username, new_password)
+                # customer_repo.create_credentials(new_username, new_password)
                 self.ids.error_label.text = "Registration successful!"
+                self.manager.current_customer_id = customer_repo.get_customer_id(new_username)
                 self.manager.current = 'menu_screen'
         else:
             self.ids.error_label.text = "Please fill up all of the forms!"

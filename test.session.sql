@@ -1,7 +1,7 @@
 -- DESCRIBE credentials;
 -- ALTER TABLE customer
 -- CHANGE COLUMN ID customer_id INT NOT NULL AUTO_INCREMENT;
-SELECT * FROM customer_address;
+-- SELECT * FROM customer;
 -- SELECT * FROM cust;
 
 -- CREATE TABLE customer_address (
@@ -13,7 +13,7 @@ SELECT * FROM customer_address;
 --     FOREIGN KEY (postal_code_id) REFERENCES postal_codes(ID),
 --     FOREIGN KEY (city_id) REFERENCES cities(ID)
 -- );
-SELECT * FROM restaurants;
+SELECT * FROM customer;
 
 -- INSERT INTO customer_address(customer_address_id, street_number, apartment_number, postal_code_id, city_id) VALUES
 -- (1, 23, 4, 96, 2380),

@@ -50,23 +50,23 @@ class RegisterScreen(ColoredScreen):
             last_name = self.ids.lastname_input.text
             birthdate = self.ids.birthdate_input.text
             gender = 1 if self.gender=="M" else 2
-            city = self.ids.city_input
-            house_number = self.ids.house_number_input.text
+            street_number = self.ids.street_number_inp.text
+            apart_number_input = self.ids.apart_number_input.text
             postal_code = self.ids.postal_code_input.text
             phone_number = self.ids.phone_number_input.text
             street = self.ids.street_label.text
             print(street)
             if (street != "We do not support this address yet :("):
                 # create a repo for address!
-                if first_name != "" and last_name != "" and birthdate != "" and gender != "" and city != "" and house_number != "" and postal_code != "" and phone_number != "":
+                if first_name != "" and last_name != "" and birthdate != "" and gender != "" and street_number != "" and apart_number_input != "" and postal_code != "" and phone_number != "":
                     if (self.check_birthdate_format(birthdate)):
                         try:
                             self.account_creation_screen.first_name = first_name
                             self.account_creation_screen.last_name = last_name
                             self.account_creation_screen.birthdate = birthdate
                             self.account_creation_screen.gender = gender
-                            self.account_creation_screen.city = city
-                            self.account_creation_screen.house_number = house_number
+                            self.account_creation_screen.street_number = street_number
+                            self.account_creation_screen.apart_number_input = apart_number_input
                             self.account_creation_screen.postal_code = postal_code
                             self.account_creation_screen.phone_number = phone_number
                             self.account_creation_screen.street = street
@@ -81,5 +81,6 @@ class RegisterScreen(ColoredScreen):
             else:
                 self.ids.error_label.text = "Please provide another postal code"
         except Exception as ex:
+            print(ex)
             self.ids.error_label.text = "Please fill up all of the fields!"
 

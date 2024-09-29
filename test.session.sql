@@ -13,7 +13,40 @@
 --     FOREIGN KEY (postal_code_id) REFERENCES postal_codes(ID),
 --     FOREIGN KEY (city_id) REFERENCES cities(ID)
 -- );
-SELECT * FROM orders;
+-- SELECT * FROM employee;
+-- ALTER TABLE position
+-- ADD COLUMN wage FLOAT;
+-- CREATE TABLE positions (
+--     position_id INT AUTO_INCREMENT PRIMARY KEY,
+--     position VARCHAR(255),
+--     wage FLOAT
+-- );
+-- INSERT INTO positions (position, wage)
+-- VALUES
+-- ('Chef', 20.0),
+-- ('Cashier', 12.5),
+-- ('Delivery Driver', 15.0),
+-- ('Manager', 25.0),
+-- ('Assistant Chef', 17.0);
+-- UPDATE positions
+-- SET wage = 1000
+-- WHERE position_id = 1;
+
+-- UPDATE positions
+-- SET wage = 600
+-- WHERE position_id = 2;
+
+-- UPDATE positions
+-- SET wage = 600
+-- WHERE position_id = 3;
+
+-- UPDATE positions
+-- SET wage = 1200
+-- WHERE position_id = 4;
+
+-- UPDATE positions
+-- SET wage = 800
+-- WHERE position_id = 5;
 -- DELETE FROM orders;
 
 -- INSERT INTO customer_address(customer_address_id, street_number, apartment_number, postal_code_id, city_id) VALUES

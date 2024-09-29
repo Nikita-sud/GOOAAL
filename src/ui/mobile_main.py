@@ -3,6 +3,7 @@ import os
 
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from ui.screens.employee_active_order_screen import Employee_Active_order_Screen
 from utils.db_handler import download_db, upload_db, sync_db
 
 from kivy.app import App
@@ -44,6 +45,7 @@ class PizzaApp(App):
         sm.add_widget(RegisterScreen(name='register_screen'))
         sm.add_widget(OrderHistoryScreen(name='order_history_screen'))
         sm.add_widget(OrderDetailsScreen(name='order_details_screen'))
+        sm.add_widget(Employee_Active_order_Screen(name = 'employee_active_order_screen'))
 
         # Create the basket screen
         basket_screen = BasketScreen(name="basket_screen")

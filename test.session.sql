@@ -1,16 +1,68 @@
 -- DESCRIBE credentials;
 -- ALTER TABLE customer
 -- CHANGE COLUMN ID customer_id INT NOT NULL AUTO_INCREMENT;
+SELECT * FROM customer_address;
+-- SELECT * FROM cust;
+
+-- CREATE TABLE customer_address (
+--     customer_address_id INT AUTO_INCREMENT PRIMARY KEY,
+--     street_number INT,
+--     apartment_number VARCHAR(8),
+--     postal_code_id INT,
+--     city_id INT DEFAULT 2380,
+--     FOREIGN KEY (postal_code_id) REFERENCES postal_codes(ID),
+--     FOREIGN KEY (city_id) REFERENCES cities(ID)
+-- );
+SELECT * FROM restaurants;
+
+-- INSERT INTO customer_address(customer_address_id, street_number, apartment_number, postal_code_id, city_id) VALUES
+-- (1, 23, 4, 96, 2380),
+-- (2, 12, 1, 12, 2380);
 
 -- ALTER TABLE customer
 -- MODIFY COLUMN phone varchar(8);
-
+-- SELECT * FROM postal_codes;
 -- INSERT INTO customer (name, last_name, gender, birthdate, phone, address, number_orders)
 -- VALUES ('Timur', 'Jercak', 1, '2012-12-12', '+12345', 1, 0);
+-- CREATE TABLE restaurants(
+--     restaurant_id INT AUTO_INCREMENT PRIMARY KEY,
+--     address_id INT,
+--     number_of_employee INT DEFAULT 5,
+--     open BOOLEAN DEFAULT TRUE,
+--     earnings FLOAT DEFAULT 0.0,
+--     FOREIGN KEY (address_id) REFERENCES restaurant_address(ID)
+--     ON DELETE CASCADE
+--     ON UPDATE CASCADE
+-- )
+-- ALTER TABLE restaurants
+-- ADD COLUMN postal_code_cover_from INT;
+-- UPDATE restaurants
+-- SET postal_code_cover_from = 81
+-- WHERE restaurant_id=5;
+-- UPDATE restaurants
+-- SET postal_code_cover_till = 97
+-- WHERE restaurant_id=5;
+-- SELECT * FROM restaurants;
+-- INSERT INTO restaurants (restaurant_id, address_id)
+-- VALUES
+-- (1, 1),
+-- (2,2),
+-- (3,3),
+-- (4,4),
+-- (5,5)
+-- DESCRIBE restaurant_address;
+-- 2380 Maastricht
+-- 1 - 5
+-- INSERT INTO restaurant_address (ID, street_number, postal_code_id, city_id)
+-- VALUES
+-- (1, 12, 1, 2380),
+-- (2, 18, 50, 2380),
+-- (3, 62, 96, 2380),
+-- (4, 34, 15, 2380),
+-- (5, 65, 79, 2380);
 
-SELECT * FROM orders;
-
--- SHOW TABLES;
+-- ALTER TABLE positions
+-- MODIFY COLUMN position VARCHAR(50);
 
 -- DELETE FROM orders;
 -- UPDATE pizza 

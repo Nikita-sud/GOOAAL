@@ -1,6 +1,9 @@
 # basket_screen.py
 import sys
 import os
+
+from backend.repositories.restaurants.restaurants_intfc import RestaurantsInterface
+from backend.repositories.restaurants.restaurants_repo import RestaurantsRepo
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from kivy.uix.screenmanager import Screen
 from ui.screens.colored_screen import ColoredScreen
@@ -72,5 +75,8 @@ class BasketScreen(ColoredScreen):
         order_repo = OrderRepo(connection)
         order_repo.save_order(order)
         connection.close()
+
+        restaurant_repo : RestaurantsInterface = RestaurantsRepo(connect_to_db())
+        restaurant_repo.add_earnings(self.total_price, customer_id)
 
         print(f"Заказ оформлен! Номер заказа: {order.order_id}, Сумма: {self.total_price:.2f}$")

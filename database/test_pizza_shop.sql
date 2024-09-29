@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 9.0.1, for macos14.4 (arm64)
+-- MySQL dump 10.13  Distrib 8.0.39, for Win64 (x86_64)
 --
 -- Host: localhost    Database: test_pizza_shop
 -- ------------------------------------------------------
--- Server version	9.0.1
+-- Server version	8.0.39
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -420,7 +420,7 @@ CREATE TABLE `order_items` (
   PRIMARY KEY (`order_item_id`),
   KEY `order_id` (`order_id`),
   CONSTRAINT `order_items_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -429,7 +429,6 @@ CREATE TABLE `order_items` (
 
 LOCK TABLES `order_items` WRITE;
 /*!40000 ALTER TABLE `order_items` DISABLE KEYS */;
-INSERT INTO `order_items` VALUES (1,1,1,'Pizza',1,4.58),(2,1,2,'Pizza',2,6.87),(3,2,1,'Pizza',2,4.58),(4,2,2,'Pizza',3,6.87),(5,2,3,'Pizza',1,8.09),(6,2,4,'Pizza',1,7.63),(7,2,5,'Pizza',1,11.44),(8,2,6,'Pizza',1,7.48),(9,3,2,'Pizza',1,6.87);
 /*!40000 ALTER TABLE `order_items` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -479,7 +478,7 @@ CREATE TABLE `orders` (
   CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`status_id`) REFERENCES `order_status` (`status_id`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `orders_ibfk_3` FOREIGN KEY (`delivery_person_id`) REFERENCES `deliverymen` (`employee_id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -488,7 +487,6 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (1,16,18.32,1,NULL,NULL,'2024-09-29 13:14:06'),(2,16,64.41,1,NULL,NULL,'2024-09-29 13:14:34'),(3,16,6.87,1,NULL,NULL,'2024-09-29 13:22:09');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -664,4 +662,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-29 18:04:51
+-- Dump completed on 2024-09-29 19:29:42

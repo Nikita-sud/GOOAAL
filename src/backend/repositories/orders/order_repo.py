@@ -1,7 +1,10 @@
 # order_repo.py
 
+from backend.database import connect_to_db
 from backend.repositories.orders.order_intfc import OrderInterface
 from backend.models import Order
+import threading
+import time
 
 class OrderRepo(OrderInterface):
     def __init__(self, db_connection):
@@ -42,6 +45,21 @@ class OrderRepo(OrderInterface):
             ))
         self.db_connection.commit()
         cursor.close()
+        threading.Thread(target=self.update_order_status_after_delay, args=(order.order_id, 2, 10)).start()
+
+
+    def update_order_status_after_delay(self, order_id, new_status, delay_seconds):
+            time.sleep(delay_seconds)
+            print(f"Updating order {order_id} to status {new_status} after {delay_seconds} seconds")
+            self.db_connection =connect_to_db()
+            cursor = self.db_connection.cursor()
+            query = "UPDATE orders SET status_id = %s WHERE order_id = %s"
+            cursor.execute(query, (new_status, order_id))
+            self.db_connection.commit()
+            cursor.close()
+
+            if new_status == 2:
+                threading.Thread(target=self.update_order_status_after_delay, args=(order_id, 3, 10)).start()
 
     def get_order_by_id(self, order_id):
         cursor = self.db_connection.cursor(dictionary=True)

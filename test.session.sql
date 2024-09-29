@@ -8,20 +8,9 @@
 -- INSERT INTO customer (name, last_name, gender, birthdate, phone, address, number_orders)
 -- VALUES ('Timur', 'Jercak', 1, '2012-12-12', '+12345', 1, 0);
 
--- SELECT * FROM order_status;
--- SHOW TABLES;
--- SELECT * FROM orders;
--- ALTER TABLE offers
--- MODIFY COLUMN name varchar(40);
--- INSERT INTO offers(name, price)
--- VALUES
--- ("pizza_and_drink", 10.00),
--- ("desert_and_pizza", 14.99),
--- ("buy_two_get_one", 0.00);
+SELECT * FROM orders;
 
--- ALTER TABLE offers 
--- CHANGE COLUMN discount price FLOAT;
-
+-- DELETE FROM orders;
 -- UPDATE pizza 
 -- SET name = "Hawaii"
 -- WHERE id = 3;
@@ -175,4 +164,4 @@
 -- ('6221EL', 'Rechtstraat');
 
 
-SELECT * FROM customer;
+-- SELECT * FROM customer;

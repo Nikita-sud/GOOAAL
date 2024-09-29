@@ -9,12 +9,19 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from ui.ui_components.product_card.product_card import ProductCard
 from backend.repositories.pizza.pizza_repo import PizzaRepo
 from backend.database import connect_to_db
+from kivy.properties import ObjectProperty
 
 class PaginatedGrid(BoxLayout):
     pizza_items = ListProperty([])
     drinks_items = ListProperty([])
     desserts_items = ListProperty([])
     basket_screen = ObjectProperty(None)
+    product_carousel = ObjectProperty(None)
+    carousel_slide_change_callback = ObjectProperty(None)
+
+    drinks_slide = ObjectProperty(None)
+    pizza_slide = ObjectProperty(None)
+    desserts_slide = ObjectProperty(None)
 
     def __init__(self, **kwargs):
         Builder.load_file('src/ui/ui_components/paginated_grid/paginated_grid.kv')
@@ -70,3 +77,8 @@ class PaginatedGrid(BoxLayout):
     def on_kv_post(self, base_widget):
         self.update_pages()
         self.ids.product_carousel.load_slide(self.ids.pizza_slide)
+        self.product_carousel.bind(on_current_slide=self.on_carousel_current_slide_change)
+
+    def on_carousel_current_slide_change(self, carousel, current_slide):
+        if self.carousel_slide_change_callback:
+            self.carousel_slide_change_callback(current_slide)

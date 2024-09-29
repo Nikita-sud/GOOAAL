@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.39, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 9.0.1, for macos14.4 (arm64)
 --
 -- Host: localhost    Database: test_pizza_shop
 -- ------------------------------------------------------
--- Server version	8.0.39
+-- Server version	9.0.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -420,7 +420,7 @@ CREATE TABLE `order_items` (
   PRIMARY KEY (`order_item_id`),
   KEY `order_id` (`order_id`),
   CONSTRAINT `order_items_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -429,7 +429,7 @@ CREATE TABLE `order_items` (
 
 LOCK TABLES `order_items` WRITE;
 /*!40000 ALTER TABLE `order_items` DISABLE KEYS */;
-INSERT INTO `order_items` VALUES (15,9,2,'Pizza',1,6.87),(16,10,4,'Pizza',1,7.63),(17,11,1,'Pizza',1,4.58),(18,12,1,'Pizza',2,4.58);
+INSERT INTO `order_items` VALUES (15,9,2,'Pizza',1,6.87),(16,10,4,'Pizza',1,7.63),(17,11,1,'Pizza',1,4.58),(18,12,1,'Pizza',2,4.58),(19,13,2,'Pizza',1,6.87),(20,13,1,'Pizza',1,4.58),(21,14,2,'Pizza',2,6.87),(22,14,1,'Pizza',2,4.58),(23,14,4,'Pizza',1,7.63),(24,14,3,'Pizza',1,8.09),(25,14,5,'Pizza',1,11.44),(26,14,6,'Pizza',1,7.48);
 /*!40000 ALTER TABLE `order_items` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -479,7 +479,7 @@ CREATE TABLE `orders` (
   CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`status_id`) REFERENCES `order_status` (`status_id`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `orders_ibfk_3` FOREIGN KEY (`delivery_person_id`) REFERENCES `deliverymen` (`employee_id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -488,7 +488,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (9,15,6.87,3,NULL,NULL,'2024-09-29 19:36:03'),(10,15,7.63,3,NULL,NULL,'2024-09-29 19:37:27'),(11,15,4.58,3,NULL,NULL,'2024-09-29 19:38:38'),(12,15,9.16,3,NULL,NULL,'2024-09-29 19:38:45');
+INSERT INTO `orders` VALUES (9,15,6.87,3,NULL,NULL,'2024-09-29 19:36:03'),(10,15,7.63,3,NULL,NULL,'2024-09-29 19:37:27'),(11,15,4.58,3,NULL,NULL,'2024-09-29 19:38:38'),(12,15,9.16,3,NULL,NULL,'2024-09-29 19:38:45'),(13,16,11.45,3,NULL,NULL,'2024-09-29 19:41:03'),(14,16,57.54,1,NULL,NULL,'2024-09-29 19:41:44');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -664,4 +664,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-29 19:39:15
+-- Dump completed on 2024-09-29 20:28:40

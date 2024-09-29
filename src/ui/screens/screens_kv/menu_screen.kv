@@ -92,23 +92,28 @@
                     text: 'Drinks'
                     background_color: 0, 0, 0, 0
                     color: 1, 1, 1, 1
-                    on_release: 
-                        root.ids.paginated_grid.ids.product_carousel.load_slide(root.ids.paginated_grid.ids.drinks_slide)
+                    bold: root.current_category == 'Drinks'
+                    on_release:
+                        root.current_category = 'Drinks'
+                        root.ids.paginated_grid.product_carousel.load_slide(root.ids.paginated_grid.drinks_slide)
 
                 Button:
                     text: 'Pizza'
                     background_color: 0, 0, 0, 0
                     color: 1, 1, 1, 1
-                    bold: True
-                    on_release: 
-                        root.ids.paginated_grid.ids.product_carousel.load_slide(root.ids.paginated_grid.ids.pizza_slide)
+                    bold: root.current_category == 'Pizza'
+                    on_release:
+                        root.current_category = 'Pizza'
+                        root.ids.paginated_grid.product_carousel.load_slide(root.ids.paginated_grid.pizza_slide)
 
                 Button:
                     text: 'Desserts'
                     background_color: 0, 0, 0, 0
                     color: 1, 1, 1, 1
-                    on_release: 
-                        root.ids.paginated_grid.ids.product_carousel.load_slide(root.ids.paginated_grid.ids.desserts_slide)
+                    bold: root.current_category == 'Desserts'
+                    on_release:
+                        root.current_category = 'Desserts'
+                        root.ids.paginated_grid.product_carousel.load_slide(root.ids.paginated_grid.desserts_slide)
 
             # PaginatedGrid for products with Carousel
             PaginatedGrid:

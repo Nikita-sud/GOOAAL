@@ -10,6 +10,8 @@
 
 SELECT * FROM orders;
 
+-- SHOW TABLES;
+
 -- DELETE FROM orders;
 -- UPDATE pizza 
 -- SET name = "Hawaii"

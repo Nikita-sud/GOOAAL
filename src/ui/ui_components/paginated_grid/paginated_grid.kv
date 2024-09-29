@@ -3,6 +3,7 @@
 
 <PaginatedGrid>:
     orientation: 'vertical'
+    product_carousel: product_carousel
 
     Carousel:
         id: product_carousel
@@ -10,6 +11,7 @@
 
         BoxLayout:
             id: drinks_slide
+            on_kv_post: root.drinks_slide = self
             orientation: 'vertical'
             ScrollView:
                 do_scroll_x: False
@@ -26,6 +28,7 @@
 
         BoxLayout:
             id: pizza_slide
+            on_kv_post: root.pizza_slide = self
             orientation: 'vertical'
             ScrollView:
                 do_scroll_x: False
@@ -42,6 +45,7 @@
 
         BoxLayout:
             id: desserts_slide
+            on_kv_post: root.desserts_slide = self
             orientation: 'vertical'
             ScrollView:
                 do_scroll_x: False

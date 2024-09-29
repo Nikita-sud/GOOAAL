@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.39, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 9.0.1, for macos14.4 (arm64)
 --
 -- Host: localhost    Database: test_pizza_shop
 -- ------------------------------------------------------
--- Server version	8.0.39
+-- Server version	9.0.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -600,7 +600,9 @@ DROP TABLE IF EXISTS `positions`;
 CREATE TABLE `positions` (
   `ID` int NOT NULL AUTO_INCREMENT,
   `position` varchar(50) DEFAULT NULL,
+  `position` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -610,6 +612,7 @@ CREATE TABLE `positions` (
 
 LOCK TABLES `positions` WRITE;
 /*!40000 ALTER TABLE `positions` DISABLE KEYS */;
+INSERT INTO `positions` VALUES (1,'Chef'),(2,'Cashier'),(3,'Delivery Driver'),(4,'Manager'),(5,'Assistant Chef');
 INSERT INTO `positions` VALUES (1,'Chef'),(2,'Cashier'),(3,'Delivery Driver'),(4,'Manager'),(5,'Assistant Chef');
 /*!40000 ALTER TABLE `positions` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -657,6 +660,7 @@ CREATE TABLE `restaurant_address` (
   CONSTRAINT `restaurant_address_ibfk_1` FOREIGN KEY (`postal_code_id`) REFERENCES `postal_codes` (`ID`),
   CONSTRAINT `restaurant_address_ibfk_2` FOREIGN KEY (`city_id`) REFERENCES `cities` (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -665,6 +669,7 @@ CREATE TABLE `restaurant_address` (
 
 LOCK TABLES `restaurant_address` WRITE;
 /*!40000 ALTER TABLE `restaurant_address` DISABLE KEYS */;
+INSERT INTO `restaurant_address` VALUES (1,12,1,2380),(2,18,50,2380),(3,62,96,2380),(4,34,15,2380),(5,65,79,2380);
 INSERT INTO `restaurant_address` VALUES (1,12,1,2380),(2,18,50,2380),(3,62,96,2380),(4,34,15,2380),(5,65,79,2380);
 /*!40000 ALTER TABLE `restaurant_address` ENABLE KEYS */;
 UNLOCK TABLES;

@@ -11,6 +11,7 @@ from kivy.animation import Animation
 from kivy.properties import ObjectProperty
 from kivy.graphics import Color
 from kivy.uix.image import Image
+from kivy.properties import StringProperty
 
 
 class Menu(ColoredScreen):
@@ -18,6 +19,7 @@ class Menu(ColoredScreen):
     menu_opened = False
     darken_color_instruction = ObjectProperty(None)
     basket_screen = ObjectProperty(None)
+    current_category = StringProperty('Pizza')
 
     def __init__(self, **kwargs):
         self.offers_items.extend([
@@ -45,10 +47,11 @@ class Menu(ColoredScreen):
         # Recreate ProductCards with the correct basket_screen
         self.ids.paginated_grid.update_pages()
         self.update_offers(self.ids.special_offers)
+        self.ids.paginated_grid.carousel_slide_change_callback = self.on_carousel_current_slide_change
 
     def on_kv_post(self, base_widget):
         self.update_offers(self.ids.special_offers)
-        
+        self.ids.paginated_grid.carousel_slide_change_callback = self.on_carousel_current_slide_change
         # Retrieve the Color instruction from the darken_widget's canvas
         instructions = self.ids.darken_widget.canvas.before.get_group('darken_group')
         for instr in instructions:
@@ -57,6 +60,16 @@ class Menu(ColoredScreen):
                 break
         else:
             print("Color instruction not found in darken_widget's canvas.")
+
+    def on_carousel_current_slide_change(self, current_slide):
+        print("Carousel current slide changed")
+        paginated_grid = self.ids.paginated_grid
+        if current_slide is paginated_grid.drinks_slide:
+            self.current_category = 'Drinks'
+        elif current_slide is paginated_grid.pizza_slide:
+            self.current_category = 'Pizza'
+        elif current_slide is paginated_grid.desserts_slide:
+            self.current_category = 'Desserts'
     
     def toggle_menu(self):
         if not self.darken_color_instruction:

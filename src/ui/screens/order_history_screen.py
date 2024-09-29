@@ -28,7 +28,6 @@ class OrderHistoryScreen(ColoredScreen):
         # Получаем customer_id текущего пользователя
         self.customer_id = self.manager.current_customer_id
 
-        # Загружаем заказы пользователя из базы данных
         self.load_orders()
 
     def on_leave(self, *args):
@@ -42,7 +41,6 @@ class OrderHistoryScreen(ColoredScreen):
         self.orders = order_repo.get_orders_by_customer_id(self.customer_id)
         connection.close()
 
-        # Обновляем интерфейс
         self.update_orders_list()
         self.start_timer_for_update()
 
@@ -50,7 +48,10 @@ class OrderHistoryScreen(ColoredScreen):
         self.update_timer = Clock.schedule_interval(self.update_current_status_history, 5)
 
     def update_current_status_history(self, dt):
-        self.load_orders()
+        connection = connect_to_db()
+        order_repo = OrderRepo(connection)
+        self.orders = order_repo.get_orders_by_customer_id(self.customer_id)
+        connection.close()
         self.update_orders_list()
 
     def update_orders_list(self):

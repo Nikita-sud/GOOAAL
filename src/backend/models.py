@@ -1,5 +1,4 @@
 # models.py
-from src.backend.database import connect_to_db
 from datetime import datetime
 
 class Customer:
@@ -14,10 +13,10 @@ class Customer:
         self.number_orders = 0
 
 class Order:
-    def __init__(self, customer_id, items, total_price, status='Being Prepared'):
-        self.order_id = None  # Устанавливается после сохранения в БД
+    def __init__(self, customer_id, items, total_price, status_id=1, created_at=None):
         self.customer_id = customer_id
-        self.items = items  # Список товаров: пиццы, напитки, десерты
+        self.items = items
         self.total_price = total_price
-        self.status = status
-        self.created_at = datetime.now()
+        self.status_id = status_id
+        self.created_at = created_at or datetime.now()
+        self.order_id = None

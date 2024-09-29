@@ -1,0 +1,41 @@
+#:kivy 2.0.0
+# order_card.kv
+
+<OrderCard>:
+    orientation: 'vertical'
+    size_hint_y: None
+    height: dp(120)
+    padding: dp(10)
+    spacing: dp(5)
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [dp(10)]
+
+    BoxLayout:
+        orientation: 'horizontal'
+        spacing: dp(10)
+
+        Label:
+            text: "Order ID: {}".format(root.order.get('order_id', 'N/A'))
+            font_size: dp(16)
+            color: 0, 0, 0, 1
+
+        Label:
+            text: "Total Price: ${:.2f}".format(root.order.get('total_price', 0.0))
+            font_size: dp(16)
+            color: 0, 0, 0, 1
+
+    Label:
+        text: "Status: {}".format(root.order.get('status_name', 'Unknown'))
+        font_size: dp(16)
+        color: 0, 0, 0, 1
+
+    Button:
+        text: 'View Details'
+        size_hint_y: None
+        height: dp(40)
+        on_release: root.order_history_screen.view_order_details(root.order.get('order_id'))

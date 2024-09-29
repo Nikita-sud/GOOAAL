@@ -13,7 +13,8 @@
 --     FOREIGN KEY (postal_code_id) REFERENCES postal_codes(ID),
 --     FOREIGN KEY (city_id) REFERENCES cities(ID)
 -- );
-SELECT * FROM customer;
+SELECT * FROM orders;
+-- DELETE FROM orders;
 
 -- INSERT INTO customer_address(customer_address_id, street_number, apartment_number, postal_code_id, city_id) VALUES
 -- (1, 23, 4, 96, 2380),

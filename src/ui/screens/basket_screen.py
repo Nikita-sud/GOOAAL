@@ -2,6 +2,8 @@
 import sys
 import os
 
+from backend.repositories.customers.customer_intfc import CustomerInterface
+from backend.repositories.customers.customer_repo import CustomerRepo
 from backend.repositories.restaurants.restaurants_intfc import RestaurantsInterface
 from backend.repositories.restaurants.restaurants_repo import RestaurantsRepo
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -78,5 +80,7 @@ class BasketScreen(ColoredScreen):
 
         restaurant_repo : RestaurantsInterface = RestaurantsRepo(connect_to_db())
         restaurant_repo.add_earnings(self.total_price, customer_id)
+        customer_repo : CustomerInterface = CustomerRepo(connect_to_db())
+        customer_repo.update_customer_num_of_orders(customer_id)
 
         print(f"Заказ оформлен! Номер заказа: {order.order_id}, Сумма: {self.total_price:.2f}$")

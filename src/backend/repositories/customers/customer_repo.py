@@ -84,6 +84,13 @@ class CustomerRepo(CustomerInterface):
         cursor.execute(query, (id,))
         return cursor.fetchone()
     
+    def update_customer_num_of_orders(self, id: int):
+        cursor = self.db_connection.cursor()
+        query = "UPDATE customer SET number_orders = number_orders+1 WHERE customer_id = %s"
+        cursor.execute(query, (id,))
+        self.db_connection.commit()        
+        return 
+    
     def create_hashed_password_salt(self,password):
         salt = os.urandom(4)
 

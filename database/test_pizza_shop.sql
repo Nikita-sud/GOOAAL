@@ -568,9 +568,9 @@ DROP TABLE IF EXISTS `positions`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `positions` (
   `ID` int NOT NULL AUTO_INCREMENT,
-  `position` varchar(10) DEFAULT NULL,
+  `position` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -579,6 +579,7 @@ CREATE TABLE `positions` (
 
 LOCK TABLES `positions` WRITE;
 /*!40000 ALTER TABLE `positions` DISABLE KEYS */;
+INSERT INTO `positions` VALUES (1,'Chef'),(2,'Cashier'),(3,'Delivery Driver'),(4,'Manager'),(5,'Assistant Chef');
 /*!40000 ALTER TABLE `positions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -616,7 +617,6 @@ DROP TABLE IF EXISTS `restaurant_address`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `restaurant_address` (
   `ID` int NOT NULL AUTO_INCREMENT,
-  `street` varchar(40) DEFAULT NULL,
   `street_number` int DEFAULT NULL,
   `postal_code_id` int DEFAULT NULL,
   `city_id` int DEFAULT NULL,
@@ -625,7 +625,7 @@ CREATE TABLE `restaurant_address` (
   KEY `city_id` (`city_id`),
   CONSTRAINT `restaurant_address_ibfk_1` FOREIGN KEY (`postal_code_id`) REFERENCES `postal_codes` (`ID`),
   CONSTRAINT `restaurant_address_ibfk_2` FOREIGN KEY (`city_id`) REFERENCES `cities` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -634,7 +634,39 @@ CREATE TABLE `restaurant_address` (
 
 LOCK TABLES `restaurant_address` WRITE;
 /*!40000 ALTER TABLE `restaurant_address` DISABLE KEYS */;
+INSERT INTO `restaurant_address` VALUES (1,12,1,2380),(2,18,50,2380),(3,62,96,2380),(4,34,15,2380),(5,65,79,2380);
 /*!40000 ALTER TABLE `restaurant_address` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `restaurants`
+--
+
+DROP TABLE IF EXISTS `restaurants`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `restaurants` (
+  `restaurant_id` int NOT NULL AUTO_INCREMENT,
+  `address_id` int DEFAULT NULL,
+  `number_of_employee` int DEFAULT '5',
+  `open` tinyint(1) DEFAULT '1',
+  `earnings` float DEFAULT '0',
+  `postal_code_cover_till` int DEFAULT NULL,
+  `postal_code_cover_from` int DEFAULT NULL,
+  PRIMARY KEY (`restaurant_id`),
+  KEY `address_id` (`address_id`),
+  CONSTRAINT `restaurants_ibfk_1` FOREIGN KEY (`address_id`) REFERENCES `restaurant_address` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `restaurants`
+--
+
+LOCK TABLES `restaurants` WRITE;
+/*!40000 ALTER TABLE `restaurants` DISABLE KEYS */;
+INSERT INTO `restaurants` VALUES (1,1,5,1,0,20,1),(2,2,5,1,0,40,21),(3,3,5,1,0,60,41),(4,4,5,1,0,80,61),(5,5,5,1,0,97,81);
+/*!40000 ALTER TABLE `restaurants` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -664,4 +696,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-29 20:28:40
+-- Dump completed on 2024-09-29 20:11:27

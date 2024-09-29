@@ -8,7 +8,9 @@
 -- INSERT INTO customer (name, last_name, gender, birthdate, phone, address, number_orders)
 -- VALUES ('Timur', 'Jercak', 1, '2012-12-12', '+12345', 1, 0);
 
-SELECT * FROM offers;
+-- SELECT * FROM order_status;
+-- SHOW TABLES;
+-- SELECT * FROM orders;
 -- ALTER TABLE offers
 -- MODIFY COLUMN name varchar(40);
 -- INSERT INTO offers(name, price)

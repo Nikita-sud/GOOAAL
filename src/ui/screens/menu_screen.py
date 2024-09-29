@@ -2,8 +2,8 @@
 import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from ui.screens.colored_screen import ColoredScreen
-from ui.ui_components.product_card.product_card import ProductCard
+from screens.colored_screen import ColoredScreen
+from ui_components.product_card.product_card import ProductCard
 from kivy.properties import ListProperty
 from kivy.uix.boxlayout import BoxLayout
 from kivy.lang import Builder

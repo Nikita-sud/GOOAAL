@@ -50,7 +50,7 @@ class PaginatedGrid(BoxLayout):
             self.pizza_items.append({
                 "product_name": pizza_name,
                 "price": f"{pizza_price}$",
-                "image_source": "assets/images/pizza_image.jpeg"  # Здесь можно динамически генерировать путь к изображению
+                "image_source": f"assets/images/pizza/{''.join(pizza_name.lower().split(' '))}.jpg"  # Здесь можно динамически генерировать путь к изображению
             })
 
         connection.close()  # Закрываем соединение с базой данных

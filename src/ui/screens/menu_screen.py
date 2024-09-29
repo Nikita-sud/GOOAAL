@@ -10,6 +10,8 @@ from kivy.lang import Builder
 from kivy.animation import Animation
 from kivy.properties import ObjectProperty
 from kivy.graphics import Color
+from kivy.uix.image import Image
+
 
 class Menu(ColoredScreen):
     offers_items = ListProperty([]) 
@@ -28,11 +30,10 @@ class Menu(ColoredScreen):
     def update_offers(self, special_offer_window):
         special_offer_window.clear_widgets()
 
-        for item_data in self.offers_items:
-            item = ProductCard(**item_data)
+        for img_path in ['pizza_and_desert.png', 'pizza_and_drink.png', 'buy_two_get_free.png']:
             box = BoxLayout(orientation='vertical')
-            item.basket_screen = self.basket_screen
-            box.add_widget(item)
+            img = Image(source="assets/images/offers/"+img_path, allow_stretch=True, keep_ratio=False)
+            box.add_widget(img)
             special_offer_window.add_widget(box)
 
     def on_enter(self, *args):

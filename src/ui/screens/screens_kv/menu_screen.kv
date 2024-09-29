@@ -17,7 +17,8 @@
             
             orientation: 'vertical'
 
-            
+            Widget:
+                size_hint_y: 0.01
             # Top navigation bar (hamburger, special offer, and cart)
             BoxLayout:
                 size_hint_y: None
@@ -35,10 +36,25 @@
                         size: dp(30), dp(30)
                         center_x: self.parent.center_x
                         center_y: self.parent.center_y
-        
 
                 Widget:
-                    size_hint_x: 0.8
+                    size_hint_x: 0.3
+
+                BoxLayout:
+                    size_hint_y: 0.9
+                    canvas:
+                        Color:
+                            rgb: 1, 1, 1
+                        Ellipse:
+                            pos: (self.center_x - dp(50), self.top - dp(70))
+                            
+                            size: dp(100), dp(100)
+                            source: 'assets/images/la_logo.webp'
+                            angle_start: 0
+                            angle_end: 360
+
+                Widget:
+                    size_hint_x: 0.3
 
                 Button:
                     size_hint_x: 0.1
@@ -51,6 +67,9 @@
                         size: dp(30), dp(30)
                         center_x: self.parent.center_x
                         center_y: self.parent.center_y
+
+            Widget:
+                size_hint_y: 0.045
 
             # Special offer section
             Carousel:

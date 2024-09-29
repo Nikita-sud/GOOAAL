@@ -14,9 +14,9 @@
     Image:
         source: root.image_source
         size_hint_y: None  # Disable size hint for y so you can control the height
-        size_hint_x: None  # Disable size hint for x so you can control the width
-        height: dp(80)    # Increase height for the image
-        width: dp(160)     # Increase width for the image
+        size_hint_x: 1  # Disable size hint for x so you can control the width
+        height: dp(100)    # Increase height for the image
+        width: dp(200)     # Increase width for the image
         allow_stretch: True
         keep_ratio: True
         fit_mode: 'contain'
@@ -26,17 +26,17 @@
         color: 0, 0, 0, 1
         halign: 'center'
         valign: 'middle'
-        font_size: sp(16)
+        font_size: sp(15)
 
 
     Button:
         text: 'Add to basket'
-        size_hint_x: 0.95
+        size_hint_x: 0.80
         size_hint_y: None
         background_color: 0, 0, 0, 0  
         background_normal: ''
-        font_size: sp(17)
-        height: dp(37)
+        font_size: sp(16)
+        height: dp(34)
         color: 0.8, 0.4, 0.1, 1
         pos_hint: {'center_x': 0.5}
         on_release: root.add_to_basket()

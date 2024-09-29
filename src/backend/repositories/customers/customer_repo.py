@@ -74,3 +74,10 @@ class CustomerRepo(CustomerInterface):
         query = "DELETE FROM customer WHERE customer_id = %s"
         cursor.execute(query,(customer_id,))
         self.db_connection.commit()
+
+    def update_number_orders(self, customer_id: int, number_orders: int):
+        cursor = self.db_connection.cursor()
+        query = "UPDATE customer SET number_orders = %s WHERE customer_id = %s"
+        cursor.execute(query, (number_orders, customer_id))
+        self.db_connection.commit()
+        cursor.close()

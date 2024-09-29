@@ -7,6 +7,8 @@ from kivy.properties import ListProperty, StringProperty
 from kivy.lang import Builder
 from kivy.uix.boxlayout import BoxLayout
 from ui.ui_components.product_card_mini.product_card_mini import ProductCardMini
+from src.backend.repositories.orders.order_repo import OrderRepo
+from src.backend.models import Order
 
 class BasketScreen(ColoredScreen):
     basket_items = ListProperty([])  # Список товаров в корзине
@@ -35,4 +37,21 @@ class BasketScreen(ColoredScreen):
         self.update_basket()
     
     def place_order(self):
-        print("Order placed with total:", self.total_price)
+        if not any(item['category'] == 'Pizza' for item in self.basket_items):
+            print("Вы должны добавить хотя бы одну пиццу в заказ.")
+            return
+
+        customer_id = self.manager.current_customer_id  # Предполагается, что вы сохраняете ID пользователя после входа
+
+        # Создаем экземпляр заказа
+        order = Order(
+            customer_id=customer_id,
+            items=self.basket_items,
+            total_price=self.total_price,
+        )
+
+        # Сохраняем заказ в базе данных
+        order_repo = OrderRepo()
+        order_repo.save_order(order)
+
+        print(f"Заказ оформлен! Номер заказа: {order.order_id}, Сумма: {self.total_price}")

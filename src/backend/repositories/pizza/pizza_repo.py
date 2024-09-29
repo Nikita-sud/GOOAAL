@@ -1,9 +1,6 @@
 from backend.repositories.pizza.pizza_intfc import PizzaInterface
 from decimal import Decimal
 
-from backend.repositories.pizza.pizza_intfc import PizzaInterface
-from decimal import Decimal
-
 class PizzaRepo(PizzaInterface):
     
     def __init__(self, db_connection):

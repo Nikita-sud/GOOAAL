@@ -1,33 +1,23 @@
+# models.py
 from src.backend.database import connect_to_db
+from datetime import datetime
 
-def add_order(customer_id, pizza_id, username, password,):
-    connection = connect_to_db(username, password)  # Передача username и password
-    cursor = connection.cursor()
-    query = "INSERT INTO orders (customer_id, pizza_id) VALUES (%s, %s)"
-    cursor.execute(query, (customer_id, pizza_id))
-    connection.commit()
-    cursor.close()
-    connection.close()
+class Customer:
+    def __init__(self, name, last_name, gender_id, birthdate, phone, address_id):
+        self.customer_id = None  # Устанавливается после сохранения в БД
+        self.name = name
+        self.last_name = last_name
+        self.gender_id = gender_id
+        self.birthdate = birthdate
+        self.phone = phone
+        self.address_id = address_id
+        self.number_orders = 0
 
-def verify_user_credentials(username, password):
-    connection = None
-    try:
-        connection = connect_to_db(username, password)
-        cursor = connection.cursor()
-        
-        # Query to check if the username exists in the users table
-        query = "SELECT COUNT(*) FROM users WHERE username = %s"
-        cursor.execute(query, (username,))
-        result = cursor.fetchone()
-
-        # If user exists and password is correct, return True
-        if result and result[0] > 0:
-            return True
-        else:
-            return False
-    except Exception as e:
-        print(f"Error verifying user: {e}")
-        return False
-    finally:
-        if connection:
-            connection.close()
+class Order:
+    def __init__(self, customer_id, items, total_price, status='Being Prepared'):
+        self.order_id = None  # Устанавливается после сохранения в БД
+        self.customer_id = customer_id
+        self.items = items  # Список товаров: пиццы, напитки, десерты
+        self.total_price = total_price
+        self.status = status
+        self.created_at = datetime.now()

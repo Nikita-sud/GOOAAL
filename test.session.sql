@@ -3,7 +3,165 @@
 -- CHANGE COLUMN ID customer_id INT NOT NULL AUTO_INCREMENT;
 -- SELECT * FROM customer;
 -- SELECT * FROM cust;
+SELECT * FROM employee_credentials;
+-- CREATE TABLE employees(
+--     employee_id INT AUTO_INCREMENT PRIMARY KEY,
+--     first_name VARCHAR(20),
+--     last_name VARCHAR(20),
+--     position_id INT NOT NULL,
+--     address_id INT,
+--     restaurant_id INT,
+--     FOREIGN KEY (position_id) REFERENCES positions(position_id),
+--     FOREIGN KEY (address_id) REFERENCES employee_address(ID),
+--     FOREIGN KEY (restaurant_id) REFERENCES restaurants(restaurant_id)
+-- )
+-- ALTER TABLE employees
+-- MODIFY employee_credentials_id INT;
+-- CREATE TABLE employee_credentials(
+--     employee_credentials_id INT AUTO_INCREMENT PRIMARY KEY,
+--     email VARCHAR(100) NOT NULL,
+--     password VARCHAR(5)
+-- );
+-- INSERT INTO employees (first_name, last_name, position_id, address_id, restaurant_id, employee_credentials_id)
+-- VALUES
+-- -- Для ресторана 1
+-- ('John', 'Doe', 1, 1, 1, 1),
+-- ('Jane', 'Smith', 2, 2, 1, 2),
+-- ('Bob', 'Johnson', 3, 3, 1, 3),
+-- ('Alice', 'Davis', 4, 4, 1, 4),
+-- ('Charlie', 'Brown', 5, 5, 1, 5),
 
+-- -- Для ресторана 2
+-- ('Emily', 'Wilson', 1, 6, 2, 6),
+-- ('Frank', 'Moore', 2, 7, 2, 7),
+-- ('Grace', 'Taylor', 3, 8, 2, 8),
+-- ('Henry', 'Anderson', 4, 9, 2, 9),
+-- ('Isabel', 'Thomas', 5, 10, 2, 10),
+
+-- -- Для ресторана 3
+-- ('Jack', 'Jackson', 1, 11, 3, 11),
+-- ('Katie', 'White', 2, 12, 3, 12),
+-- ('Leo', 'Harris', 3, 13, 3, 13),
+-- ('Molly', 'Martin', 4, 14, 3, 14),
+-- ('Nina', 'Thompson', 5, 15, 3, 15),
+
+-- -- Для ресторана 4
+-- ('Oscar', 'Garcia', 1, 16, 4, 16),
+-- ('Paul', 'Martinez', 2, 17, 4, 17),
+-- ('Quincy', 'Robinson', 3, 18, 4, 18),
+-- ('Rachel', 'Clark', 4, 19, 4, 19),
+-- ('Sophia', 'Lewis', 5, 20, 4, 20),
+
+-- -- Для ресторана 5
+-- ('Tom', 'Lee', 1, 21, 5, 21),
+-- ('Uma', 'Walker', 2, 22, 5, 22),
+-- ('Victor', 'Hall', 3, 23, 5, 23),
+-- ('Wendy', 'Allen', 4, 24, 5, 24),
+-- ('Xander', 'Young', 5, 25, 5, 25);
+
+-- INSERT INTO employee_credentials (email, password)
+-- VALUES
+-- ('j.doe@lagoal.pizza', '12345'),
+-- ('j.smith@lagoal.pizza', '12345'),
+-- ('b.johnson@lagoal.pizza', '12345'),
+-- ('a.davis@lagoal.pizza', '12345'),
+-- ('c.brown@lagoal.pizza', '12345'),
+
+-- ('e.wilson@lagoal.pizza', '12345'),
+-- ('f.moore@lagoal.pizza', '12345'),
+-- ('g.taylor@lagoal.pizza', '12345'),
+-- ('h.anderson@lagoal.pizza', '12345'),
+-- ('i.thomas@lagoal.pizza', '12345'),
+
+-- ('j.jackson@lagoal.pizza', '12345'),
+-- ('k.white@lagoal.pizza', '12345'),
+-- ('l.harris@lagoal.pizza', '12345'),
+-- ('m.martin@lagoal.pizza', '12345'),
+-- ('n.thompson@lagoal.pizza', '12345'),
+
+-- ('o.garcia@lagoal.pizza', '12345'),
+-- ('p.martinez@lagoal.pizza', '12345'),
+-- ('q.robinson@lagoal.pizza', '12345'),
+-- ('r.clark@lagoal.pizza', '12345'),
+-- ('s.lewis@lagoal.pizza', '12345'),
+
+-- ('t.lee@lagoal.pizza', '12345'),
+-- ('u.walker@lagoal.pizza', '12345'),
+-- ('v.hall@lagoal.pizza', '12345'),
+-- ('w.allen@lagoal.pizza', '12345'),
+-- ('x.young@lagoal.pizza', '12345');
+
+-- INSERT INTO employees (first_name, last_name, position_id, address_id, restaurant_id, email)
+-- VALUES
+-- -- Для ресторана 1
+-- ('John', 'Doe', 1, 1, 1, 'j.doe@lagoal.pizza'),
+-- ('Jane', 'Smith', 2, 2, 1, 'j.smith@lagoal.pizza'),
+-- ('Bob', 'Johnson', 3, 3, 1, 'b.johnson@lagoal.pizza'),
+-- ('Alice', 'Davis', 4, 4, 1, 'a.davis@lagoal.pizza'),
+-- ('Charlie', 'Brown', 5, 5, 1, 'c.brown@lagoal.pizza'),
+
+-- -- Для ресторана 2
+-- ('Emily', 'Wilson', 1, 6, 2, 'e.wilson@lagoal.pizza'),
+-- ('Frank', 'Moore', 2, 7, 2, 'f.moore@lagoal.pizza'),
+-- ('Grace', 'Taylor', 3, 8, 2, 'g.taylor@lagoal.pizza'),
+-- ('Henry', 'Anderson', 4, 9, 2, 'h.anderson@lagoal.pizza'),
+-- ('Isabel', 'Thomas', 5, 10, 2, 'i.thomas@lagoal.pizza'),
+
+-- -- Для ресторана 3
+-- ('Jack', 'Jackson', 1, 11, 3, 'j.jackson@lagoal.pizza'),
+-- ('Katie', 'White', 2, 12, 3, 'k.white@lagoal.pizza'),
+-- ('Leo', 'Harris', 3, 13, 3, 'l.harris@lagoal.pizza'),
+-- ('Molly', 'Martin', 4, 14, 3, 'm.martin@lagoal.pizza'),
+-- ('Nina', 'Thompson', 5, 15, 3, 'n.thompson@lagoal.pizza'),
+
+-- -- Для ресторана 4
+-- ('Oscar', 'Garcia', 1, 16, 4, 'o.garcia@lagoal.pizza'),
+-- ('Paul', 'Martinez', 2, 17, 4, 'p.martinez@lagoal.pizza'),
+-- ('Quincy', 'Robinson', 3, 18, 4, 'q.robinson@lagoal.pizza'),
+-- ('Rachel', 'Clark', 4, 19, 4, 'r.clark@lagoal.pizza'),
+-- ('Sophia', 'Lewis', 5, 20, 4, 's.lewis@lagoal.pizza'),
+
+-- -- Для ресторана 5
+-- ('Tom', 'Lee', 1, 21, 5, 't.lee@lagoal.pizza'),
+-- ('Uma', 'Walker', 2, 22, 5, 'u.walker@lagoal.pizza'),
+-- ('Victor', 'Hall', 3, 23, 5, 'v.hall@lagoal.pizza'),
+-- ('Wendy', 'Allen', 4, 24, 5, 'w.allen@lagoal.pizza'),
+-- ('Xander', 'Young', 5, 25, 5, 'x.young@lagoal.pizza');
+
+
+
+-- SELECT * FROM employee_address;
+-- INSERT 
+-- INSERT INTO employee_address (house_number, postal_code_id, city_id)
+-- VALUES
+-- (101, FLOOR(1 + (RAND() * 97)), DEFAULT),
+-- (102, FLOOR(1 + (RAND() * 97)), DEFAULT),
+-- (103, FLOOR(1 + (RAND() * 97)), DEFAULT),
+-- (104, FLOOR(1 + (RAND() * 97)), DEFAULT),
+-- (105, FLOOR(1 + (RAND() * 97)), DEFAULT),
+-- (106, FLOOR(1 + (RAND() * 97)), DEFAULT),
+-- (107, FLOOR(1 + (RAND() * 97)), DEFAULT),
+-- (108, FLOOR(1 + (RAND() * 97)), DEFAULT),
+-- (109, FLOOR(1 + (RAND() * 97)), DEFAULT),
+-- (110, FLOOR(1 + (RAND() * 97)), DEFAULT),
+-- (111, FLOOR(1 + (RAND() * 97)), DEFAULT),
+-- (112, FLOOR(1 + (RAND() * 97)), DEFAULT),
+-- (113, FLOOR(1 + (RAND() * 97)), DEFAULT),
+-- (114, FLOOR(1 + (RAND() * 97)), DEFAULT),
+-- (115, FLOOR(1 + (RAND() * 97)), DEFAULT),
+-- (116, FLOOR(1 + (RAND() * 97)), DEFAULT),
+-- (117, FLOOR(1 + (RAND() * 97)), DEFAULT),
+-- (118, FLOOR(1 + (RAND() * 97)), DEFAULT),
+-- (119, FLOOR(1 + (RAND() * 97)), DEFAULT),
+-- (120, FLOOR(1 + (RAND() * 97)), DEFAULT),
+-- (121, FLOOR(1 + (RAND() * 97)), DEFAULT),
+-- (122, FLOOR(1 + (RAND() * 97)), DEFAULT),
+-- (123, FLOOR(1 + (RAND() * 97)), DEFAULT),
+-- (124, FLOOR(1 + (RAND() * 97)), DEFAULT),
+-- (125, FLOOR(1 + (RAND() * 97)), DEFAULT);
+
+-- ALTER TABLE employee_address 
+-- RENAME COLUMN street_number TO house number;
 -- CREATE TABLE customer_address (
 --     customer_address_id INT AUTO_INCREMENT PRIMARY KEY,
 --     street_number INT,

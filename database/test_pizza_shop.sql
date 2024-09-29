@@ -133,7 +133,7 @@ DROP TABLE IF EXISTS `customer_address`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `customer_address` (
   `customer_address_id` int NOT NULL AUTO_INCREMENT,
-  `street_number` int DEFAULT NULL,
+  `house_number` int DEFAULT NULL,
   `apartment_number` varchar(8) DEFAULT NULL,
   `postal_code_id` int DEFAULT NULL,
   `city_id` int DEFAULT '2380',
@@ -261,16 +261,15 @@ DROP TABLE IF EXISTS `employee_address`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `employee_address` (
   `ID` int NOT NULL AUTO_INCREMENT,
-  `street` varchar(40) DEFAULT NULL,
-  `street_number` int DEFAULT NULL,
+  `house_number` int DEFAULT NULL,
   `postal_code_id` int DEFAULT NULL,
-  `city_id` int DEFAULT NULL,
+  `city_id` int DEFAULT '2380',
   PRIMARY KEY (`ID`),
   KEY `postal_code_id` (`postal_code_id`),
   KEY `city_id` (`city_id`),
   CONSTRAINT `employee_address_ibfk_1` FOREIGN KEY (`postal_code_id`) REFERENCES `postal_codes` (`ID`),
   CONSTRAINT `employee_address_ibfk_2` FOREIGN KEY (`city_id`) REFERENCES `cities` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -279,7 +278,70 @@ CREATE TABLE `employee_address` (
 
 LOCK TABLES `employee_address` WRITE;
 /*!40000 ALTER TABLE `employee_address` DISABLE KEYS */;
+INSERT INTO `employee_address` VALUES (1,101,21,2380),(2,102,53,2380),(3,103,4,2380),(4,104,56,2380),(5,105,74,2380),(6,106,6,2380),(7,107,4,2380),(8,108,1,2380),(9,109,90,2380),(10,110,58,2380),(11,111,21,2380),(12,112,26,2380),(13,113,66,2380),(14,114,57,2380),(15,115,85,2380),(16,116,62,2380),(17,117,54,2380),(18,118,84,2380),(19,119,64,2380),(20,120,65,2380),(21,121,37,2380),(22,122,87,2380),(23,123,31,2380),(24,124,87,2380),(25,125,53,2380);
 /*!40000 ALTER TABLE `employee_address` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `employee_credentials`
+--
+
+DROP TABLE IF EXISTS `employee_credentials`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `employee_credentials` (
+  `employee_credentials_id` int NOT NULL AUTO_INCREMENT,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(5) DEFAULT NULL,
+  PRIMARY KEY (`employee_credentials_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `employee_credentials`
+--
+
+LOCK TABLES `employee_credentials` WRITE;
+/*!40000 ALTER TABLE `employee_credentials` DISABLE KEYS */;
+INSERT INTO `employee_credentials` VALUES (1,'j.doe@lagoal.pizza','12345'),(2,'j.smith@lagoal.pizza','12345'),(3,'b.johnson@lagoal.pizza','12345'),(4,'a.davis@lagoal.pizza','12345'),(5,'c.brown@lagoal.pizza','12345'),(6,'e.wilson@lagoal.pizza','12345'),(7,'f.moore@lagoal.pizza','12345'),(8,'g.taylor@lagoal.pizza','12345'),(9,'h.anderson@lagoal.pizza','12345'),(10,'i.thomas@lagoal.pizza','12345'),(11,'j.jackson@lagoal.pizza','12345'),(12,'k.white@lagoal.pizza','12345'),(13,'l.harris@lagoal.pizza','12345'),(14,'m.martin@lagoal.pizza','12345'),(15,'n.thompson@lagoal.pizza','12345'),(16,'o.garcia@lagoal.pizza','12345'),(17,'p.martinez@lagoal.pizza','12345'),(18,'q.robinson@lagoal.pizza','12345'),(19,'r.clark@lagoal.pizza','12345'),(20,'s.lewis@lagoal.pizza','12345'),(21,'t.lee@lagoal.pizza','12345'),(22,'u.walker@lagoal.pizza','12345'),(23,'v.hall@lagoal.pizza','12345'),(24,'w.allen@lagoal.pizza','12345'),(25,'x.young@lagoal.pizza','12345');
+/*!40000 ALTER TABLE `employee_credentials` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `employees`
+--
+
+DROP TABLE IF EXISTS `employees`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `employees` (
+  `employee_id` int NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(20) DEFAULT NULL,
+  `last_name` varchar(20) DEFAULT NULL,
+  `position_id` int NOT NULL,
+  `address_id` int DEFAULT NULL,
+  `restaurant_id` int DEFAULT NULL,
+  `employee_credentials_id` int DEFAULT NULL,
+  PRIMARY KEY (`employee_id`),
+  KEY `position_id` (`position_id`),
+  KEY `address_id` (`address_id`),
+  KEY `restaurant_id` (`restaurant_id`),
+  KEY `fk_employee_credentials` (`employee_credentials_id`),
+  CONSTRAINT `employees_ibfk_1` FOREIGN KEY (`position_id`) REFERENCES `positions` (`position_id`),
+  CONSTRAINT `employees_ibfk_2` FOREIGN KEY (`address_id`) REFERENCES `employee_address` (`ID`),
+  CONSTRAINT `employees_ibfk_3` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurants` (`restaurant_id`),
+  CONSTRAINT `fk_employee_credentials` FOREIGN KEY (`employee_credentials_id`) REFERENCES `employee_credentials` (`employee_credentials_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `employees`
+--
+
+LOCK TABLES `employees` WRITE;
+/*!40000 ALTER TABLE `employees` DISABLE KEYS */;
+INSERT INTO `employees` VALUES (1,'John','Doe',1,1,1,1),(2,'Jane','Smith',2,2,1,2),(3,'Bob','Johnson',3,3,1,3),(4,'Alice','Davis',4,4,1,4),(5,'Charlie','Brown',5,5,1,5),(6,'Emily','Wilson',1,6,2,6),(7,'Frank','Moore',2,7,2,7),(8,'Grace','Taylor',3,8,2,8),(9,'Henry','Anderson',4,9,2,9),(10,'Isabel','Thomas',5,10,2,10),(11,'Jack','Jackson',1,11,3,11),(12,'Katie','White',2,12,3,12),(13,'Leo','Harris',3,13,3,13),(14,'Molly','Martin',4,14,3,14),(15,'Nina','Thompson',5,15,3,15),(16,'Oscar','Garcia',1,16,4,16),(17,'Paul','Martinez',2,17,4,17),(18,'Quincy','Robinson',3,18,4,18),(19,'Rachel','Clark',4,19,4,19),(20,'Sophia','Lewis',5,20,4,20),(21,'Tom','Lee',1,21,5,21),(22,'Uma','Walker',2,22,5,22),(23,'Victor','Hall',3,23,5,23),(24,'Wendy','Allen',4,24,5,24),(25,'Xander','Young',5,25,5,25);
+/*!40000 ALTER TABLE `employees` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -728,4 +790,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-29 22:02:33
+-- Dump completed on 2024-09-29 22:27:49

@@ -1,8 +1,8 @@
 # order_repo.py
 
 from backend.repositories.orders.order_intfc import OrderInterface
-from src.backend.database import connect_to_db
-from src.backend.models import Order
+from backend.database import connect_to_db
+from backend.models import Order
 
 class OrderRepo(OrderInterface):
     def __init__(self):

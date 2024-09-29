@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from src.backend.models import Order
+from backend.models import Order
 
 class OrderInterface(ABC):
 

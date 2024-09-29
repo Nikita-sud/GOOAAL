@@ -7,8 +7,8 @@ from kivy.properties import ListProperty, StringProperty
 from kivy.lang import Builder
 from kivy.uix.boxlayout import BoxLayout
 from ui.ui_components.product_card_mini.product_card_mini import ProductCardMini
-from src.backend.repositories.orders.order_repo import OrderRepo
-from src.backend.models import Order
+from backend.repositories.orders.order_repo import OrderRepo
+from backend.models import Order
 
 class BasketScreen(ColoredScreen):
     basket_items = ListProperty([])  # Список товаров в корзине

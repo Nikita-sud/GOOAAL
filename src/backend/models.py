@@ -1,5 +1,5 @@
 # models.py
-from src.backend.database import connect_to_db
+from backend.database import connect_to_db
 from datetime import datetime
 
 class Customer:

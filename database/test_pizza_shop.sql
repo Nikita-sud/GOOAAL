@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.39, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 9.0.1, for macos14.4 (arm64)
 --
 -- Host: localhost    Database: test_pizza_shop
 -- ------------------------------------------------------
--- Server version	8.0.39
+-- Server version	9.0.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -453,6 +453,116 @@ LOCK TABLES `pizza_ingredient` WRITE;
 INSERT INTO `pizza_ingredient` VALUES (1,1,1.00),(1,2,1.00),(1,20,1.00),(2,1,1.00),(2,2,1.00),(2,3,1.00),(2,20,1.00),(3,1,1.00),(3,2,1.00),(3,4,1.00),(3,10,1.00),(3,20,1.00),(4,1,1.00),(4,2,1.00),(4,6,1.00),(4,7,1.00),(4,8,1.00),(4,20,1.00),(5,1,1.00),(5,2,1.00),(5,3,1.00),(5,5,1.00),(5,15,1.00),(5,20,1.00),(6,2,1.00),(6,11,1.00),(6,17,1.00),(6,20,1.00),(7,1,1.00),(7,2,1.00),(7,16,1.00),(7,19,1.00),(7,20,1.00),(8,1,1.00),(8,2,1.00),(8,13,1.00),(8,14,1.00),(8,20,1.00),(9,1,1.00),(9,2,1.00),(9,12,1.00),(9,15,1.00),(9,18,1.00),(9,20,1.00);
 /*!40000 ALTER TABLE `pizza_ingredient` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Temporary view structure for view `pizza_prices`
+--
+
+DROP TABLE IF EXISTS `pizza_prices`;
+/*!50001 DROP VIEW IF EXISTS `pizza_prices`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `pizza_prices` AS SELECT 
+ 1 AS `pizza_id`,
+ 1 AS `pizza_name`,
+ 1 AS `total_price`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Table structure for table `positions`
+--
+
+DROP TABLE IF EXISTS `positions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `positions` (
+  `ID` int NOT NULL AUTO_INCREMENT,
+  `position` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `positions`
+--
+
+LOCK TABLES `positions` WRITE;
+/*!40000 ALTER TABLE `positions` DISABLE KEYS */;
+/*!40000 ALTER TABLE `positions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `postal_codes`
+--
+
+DROP TABLE IF EXISTS `postal_codes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `postal_codes` (
+  `ID` int NOT NULL AUTO_INCREMENT,
+  `postal_code` varchar(8) NOT NULL,
+  `street` varchar(50) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `postal_codes`
+--
+
+LOCK TABLES `postal_codes` WRITE;
+/*!40000 ALTER TABLE `postal_codes` DISABLE KEYS */;
+INSERT INTO `postal_codes` VALUES (1,'6211AA','Brusselsestraat'),(2,'6211AB','Boschstraat'),(3,'6211AC','Bredestraat'),(4,'6211AD','Hoge Barakken'),(5,'6211AE','Kesselskade'),(6,'6211AG','Maastrichter Brugstraat'),(7,'6211AH','Sint Servaasklooster'),(8,'6211AJ','Mariastraat'),(9,'6211AL','Jodenstraat'),(10,'6211AM','Stokstraat'),(11,'6211AN','Helmstraat'),(12,'6211AP','Kleine Gracht'),(13,'6211AR','Sint Amorsplein'),(14,'6211AS','Onze Lieve Vrouweplein'),(15,'6211AT','Ezelmarkt'),(16,'6211AW','Maastrichter Smedenstraat'),(17,'6211AX','Oeverwal'),(18,'6211AZ','Heidenstraat'),(19,'6211BA','Papengang'),(20,'6211BB','Kapoenstraat'),(21,'6211BC','Vijfkoppenstraat'),(22,'6211BD','Sint Bernardusstraat'),(23,'6211BE','Muntstraat'),(24,'6211BG','Achter de Molens'),(25,'6211BH','Hof van Tilly'),(26,'6211BJ','Heggenstraat'),(27,'6211BK','Bourgognestraat'),(28,'6211BL','Bergstraat'),(29,'6211BM','Raadhuisstraat'),(30,'6211BN','Graanmarkt'),(31,'6211BP','Kommel'),(32,'6211BR','Scharnerweg'),(33,'6211BS','Statensingel'),(34,'6211BT','Batterijstraat'),(35,'6211BV','Van Hasseltkade'),(36,'6211BW','Hof van Lorreinen'),(37,'6211BX','Achter het Vleeshuis'),(38,'6211BY','Hoogbrugstraat'),(39,'6211BZ','Lage Barakken'),(40,'6211CA','Zwingelput'),(41,'6211CB','Bouillonstraat'),(42,'6211CC','Kleine Looiersstraat'),(43,'6211CD','Lenculenstraat'),(44,'6211CE','Oude Tweebergenpoort'),(45,'6211CF','Tongersestraat'),(46,'6211CG','Bieslanderweg'),(47,'6211CH','Bouillonstraat'),(48,'6211CJ','Helstraat'),(49,'6211CK','Binnenstad'),(50,'6211CL','Heggenstraat'),(51,'6211CM','Hoogfrankrijk'),(52,'6211CN','Kapoenstraat'),(53,'6211CP','Minckelersstraat'),(54,'6211CQ','Kleine Looiersstraat'),(55,'6211CR','Onze Lieve Vrouweplein'),(56,'6211CS','Stokstraat'),(57,'6211CT','Scharnerweg'),(58,'6211CV','Wilhelminasingel'),(59,'6211CW','Zwingelput'),(60,'6211CX','Brusselsestraat'),(61,'6211CY','Kesselskade'),(62,'6211CZ','Hoge Barakken'),(63,'6211DA','Statensingel'),(64,'6211DB','Maastrichter Brugstraat'),(65,'6211DC','Raadhuisstraat'),(66,'6211DD','Stokstraat'),(67,'6211DE','Kapoenstraat'),(68,'6211DF','Heggenstraat'),(69,'6211DG','Vijfkoppenstraat'),(70,'6211DH','Sint Bernardusstraat'),(71,'6211DJ','Muntstraat'),(72,'6211DK','Achter de Molens'),(73,'6211DL','Hof van Tilly'),(74,'6211DM','Heggenstraat'),(75,'6211DN','Bourgognestraat'),(76,'6211DP','Bergstraat'),(77,'6211DR','Raadhuisstraat'),(78,'6211DS','Graanmarkt'),(79,'6211DT','Kommel'),(80,'6211DV','Scharnerweg'),(81,'6211DW','Statensingel'),(82,'6211DX','Batterijstraat'),(83,'6211DY','Van Hasseltkade'),(84,'6211DZ','Hof van Lorreinen'),(85,'6211EA','Achter het Vleeshuis'),(86,'6211EB','Hoogbrugstraat'),(87,'6211EC','Lage Barakken'),(88,'6211ED','Zwingelput'),(89,'6211EE','Bouillonstraat'),(90,'6211EF','Kleine Looiersstraat'),(91,'6211EG','Lenculenstraat'),(92,'6211EH','Oude Tweebergenpoort'),(93,'6211EJ','Tongersestraat'),(94,'6211EK','Bieslanderweg'),(95,'6211EL','Bouillonstraat'),(96,'6211EM','Helstraat'),(97,'6221EL','Rechtstraat');
+/*!40000 ALTER TABLE `postal_codes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `restaurant_address`
+--
+
+DROP TABLE IF EXISTS `restaurant_address`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `restaurant_address` (
+  `ID` int NOT NULL AUTO_INCREMENT,
+  `street` varchar(40) DEFAULT NULL,
+  `street_number` int DEFAULT NULL,
+  `postal_code_id` int DEFAULT NULL,
+  `city_id` int DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `postal_code_id` (`postal_code_id`),
+  KEY `city_id` (`city_id`),
+  CONSTRAINT `restaurant_address_ibfk_1` FOREIGN KEY (`postal_code_id`) REFERENCES `postal_codes` (`ID`),
+  CONSTRAINT `restaurant_address_ibfk_2` FOREIGN KEY (`city_id`) REFERENCES `cities` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `restaurant_address`
+--
+
+LOCK TABLES `restaurant_address` WRITE;
+/*!40000 ALTER TABLE `restaurant_address` DISABLE KEYS */;
+/*!40000 ALTER TABLE `restaurant_address` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Final view structure for view `pizza_prices`
+--
+
+/*!50001 DROP VIEW IF EXISTS `pizza_prices`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_unicode_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`admin`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `pizza_prices` AS select `p`.`ID` AS `pizza_id`,`p`.`name` AS `pizza_name`,sum((`i`.`price` * `pi`.`quantity`)) AS `total_price` from ((`pizza` `p` join `pizza_ingredient` `pi` on((`p`.`ID` = `pi`.`pizza_id`))) join `ingredient` `i` on((`pi`.`ingredient_id` = `i`.`ID`))) group by `p`.`ID`,`p`.`name` */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -463,4 +573,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-26 21:11:52
+-- Dump completed on 2024-09-27  8:47:02

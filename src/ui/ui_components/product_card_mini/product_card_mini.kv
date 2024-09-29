@@ -14,18 +14,26 @@
             size: self.size
             radius: [dp(10)]
 
+    # Название товара
+    Label:
+        text: root.product_name
+        size_hint_x: 0.4
+        color: 0, 0, 0, 1
+
     # Кнопка уменьшения количества
     Button:
         text: "-"
         size_hint: None, None
         size: dp(30), dp(30)
         on_release: root.decrease_quantity()
-    
-    # Название товара
-    Label:
-        text: root.product_name
-        size_hint_x: 0.4
-        color: 0, 0, 0, 1
+        background_normal: ''
+        background_color: 0, 0, 0, 0
+        canvas.before:
+            Color:
+                rgba: 1, 0.5, 0, 1  # Оранжевый цвет
+            Ellipse:
+                pos: self.pos
+                size: self.size
 
     # Отображение количества
     Label:
@@ -39,7 +47,15 @@
         size_hint: None, None
         size: dp(30), dp(30)
         on_release: root.increase_quantity()
-    
+        background_normal: ''
+        background_color: 0, 0, 0, 0
+        canvas.before:
+            Color:
+                rgba: 1, 0.5, 0, 1  # Оранжевый цвет
+            Ellipse:
+                pos: self.pos
+                size: self.size
+
     # Цена за количество
     Label:
         text: f"${root.price * root.quantity:.2f}"

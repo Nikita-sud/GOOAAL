@@ -15,6 +15,8 @@ from ui.screens.account_creation_screen import AccountCreationScreen
 from ui.screens.basket_screen import BasketScreen
 from ui.screens.menu_screen import Menu
 from ui.ui_components.paginated_grid.paginated_grid import PaginatedGrid
+from ui.screens.order_history_screen import OrderHistoryScreen
+from ui.screens.order_details_screen import OrderDetailsScreen
 
 
 class PizzaApp(App):
@@ -37,8 +39,11 @@ class PizzaApp(App):
         Window.size = (400, 800)
         Window.resizable = False
         sm = ScreenManager(transition=FadeTransition(duration=0.1))
+        sm.current_customer_id = None
         sm.add_widget(LoginScreen(name='login_screen'))
         sm.add_widget(RegisterScreen(name='register_screen'))
+        sm.add_widget(OrderHistoryScreen(name='order_history_screen'))
+        sm.add_widget(OrderDetailsScreen(name='order_details_screen'))
 
         # Create the basket screen
         basket_screen = BasketScreen(name="basket_screen")

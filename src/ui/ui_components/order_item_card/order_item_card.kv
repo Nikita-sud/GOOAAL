@@ -1,0 +1,26 @@
+#:kivy 2.0.0
+# order_item_card.kv
+
+<OrderItemCard>:
+    orientation: 'horizontal'
+    size_hint_y: None
+    height: dp(50)
+    padding: dp(10)
+    spacing: dp(10)
+
+    Label:
+        text: root.item_name
+        font_size: dp(16)
+        color: 0, 0, 0, 1
+
+    Label:
+        text: "x{}".format(root.quantity)
+        font_size: dp(16)
+        color: 0, 0, 0, 1
+        size_hint_x: 0.2
+
+    Label:
+        text: "${:.2f}".format(root.price * root.quantity)
+        font_size: dp(16)
+        color: 0, 0, 0, 1
+        size_hint_x: 0.2

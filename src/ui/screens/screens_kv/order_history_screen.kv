@@ -1,0 +1,43 @@
+#:kivy 2.0.0
+# order_history_screen.kv
+
+<OrderHistoryScreen>:
+    name: 'order_history_screen'
+    canvas.before:
+        Color:
+            rgba: self.background_color
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation: 'vertical'
+        padding: dp(10)
+        spacing: dp(10)
+
+        # Верхняя панель с кнопкой "Назад" и заголовком
+        BoxLayout:
+            size_hint_y: None
+            height: dp(50)
+            Button:
+                text: '< Back'
+                size_hint_x: None
+                width: dp(80)
+                on_release: app.root.current = 'menu_screen'
+            Label:
+                text: 'My Orders'
+                font_size: dp(20)
+                halign: 'center'
+                valign: 'middle'
+
+        # Список заказов
+        ScrollView:
+            do_scroll_x: False
+            do_scroll_y: True
+            GridLayout:
+                id: orders_grid
+                cols: 1
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: dp(10)
+                padding: [dp(10), dp(10)]

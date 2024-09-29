@@ -10,6 +10,14 @@ class CustomerRepo(CustomerInterface):
     def __init__(self, db_connection):
         self.db_connection = db_connection
 
+    def get_customer_id(self, username):
+        cursor = self.db_connection.cursor()
+        query = "SELECT customer_id FROM credentials WHERE username = %s"
+        cursor.execute(query, (username,))
+        result = cursor.fetchone()
+        cursor.close()
+        return result[0] if result else None
+
     def create_user(self, name: str, last_name: str, gender: int, birthdate: str, phone:str, address:int):
         cursor = self.db_connection.cursor()
         query = """

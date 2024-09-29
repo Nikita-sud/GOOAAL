@@ -10,8 +10,7 @@
         Rectangle:
             pos: self.pos
             size: self.size
-            
-    
+
     BoxLayout:
         orientation: 'vertical'
         padding: dp(10)
@@ -38,15 +37,13 @@
                 padding: [dp(10), dp(10)]
                 size_hint_y: None
                 height: self.minimum_height
-                
 
-        
         BoxLayout:
             size_hint_y: None
             height: dp(60)
             padding: [dp(10), dp(0)]
             Label:
-                text: "Total Price: " + root.total_price
+                text: "Total Price: ${:.2f}".format(root.total_price)
                 color: 0, 0, 0, 1
                 size_hint_x: 0.7
 

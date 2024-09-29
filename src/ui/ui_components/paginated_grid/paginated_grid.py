@@ -27,18 +27,16 @@ class PaginatedGrid(BoxLayout):
         # Статические данные для напитков и десертов
         self.drinks_items.clear()
         self.drinks_items.extend([
-            {"product_name": "Coke", "price": "3$", "image_source": "assets/images/coke_image.jpeg"},
-            {"product_name": "Fanta", "price": "3$", "image_source": "assets/images/fanta_image.webp"}
+            {"product_name": "Coke", "price": "3$", "image_source": "assets/images/coke_image.jpeg", "category": "Drink", "item_id": 1},
+            {"product_name": "Fanta", "price": "3$", "image_source": "assets/images/fanta_image.webp", "category": "Drink", "item_id": 2}
         ])
 
-        self.desserts_items.clear()
         self.desserts_items.extend([
-            {"product_name": "Cheesecake", "price": "7$", "image_source": "assets/images/cheesecake.jpeg"},
-            {"product_name": "Ice Cream", "price": "5$", "image_source": "assets/images/ice_cream.jpeg"}
+            {"product_name": "Cheesecake", "price": "7$", "image_source": "assets/images/cheesecake.jpeg", "category": "Desert", "item_id": 1},
+            {"product_name": "Ice Cream", "price": "5$", "image_source": "assets/images/ice_cream.jpeg", "category": "Desert", "item_id": 2}
         ])
 
     def load_pizza_items(self):
-        """Загружаем пиццы из базы данных с динамическими ценами."""
         connection = connect_to_db()  # Подключение к базе данных
         pizza_repo = PizzaRepo(connection)  # Создаем экземпляр репозитория пицц
         
@@ -50,7 +48,9 @@ class PaginatedGrid(BoxLayout):
             self.pizza_items.append({
                 "product_name": pizza_name,
                 "price": f"{pizza_price}$",
-                "image_source": f"assets/images/pizza/{''.join(pizza_name.lower().split(' '))}.jpg"  # Здесь можно динамически генерировать путь к изображению
+                "image_source": f"assets/images/pizza/{''.join(pizza_name.lower().split(' '))}.jpg",
+                "category": "Pizza",   # Добавлено поле category
+                "item_id": pizza_id    # Добавлено поле item_id
             })
 
         connection.close()  # Закрываем соединение с базой данных
@@ -58,7 +58,7 @@ class PaginatedGrid(BoxLayout):
     def update_grid(self, grid, items):
         grid.clear_widgets()
         for item_data in items:
-            item = ProductCard(**item_data)  # Создаем карточку продукта
+            item = ProductCard(**item_data)
             item.basket_screen = self.basket_screen  # Передаем ссылку на корзину
             grid.add_widget(item)
 

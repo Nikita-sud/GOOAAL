@@ -56,7 +56,7 @@ class OrderHistoryScreen(ColoredScreen):
 
     def update_orders_list(self):
         self.ids.orders_grid.clear_widgets()
-        for order in self.orders:        
+        for order in self.orders:      
             order_card = OrderCard(order=order)
             order_card.order_history_screen = self
             self.ids.orders_grid.add_widget(order_card)

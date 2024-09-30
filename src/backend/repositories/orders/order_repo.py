@@ -45,7 +45,7 @@ class OrderRepo(OrderInterface):
             ))
         self.db_connection.commit()
         cursor.close()
-        threading.Thread(target=self.update_order_status_after_delay, args=(order.order_id, 2, 10)).start()
+        threading.Thread(target=self.update_order_status_after_delay, args=(order.order_id, 2, 15)).start()
 
 
     def update_order_status_after_delay(self, order_id, new_status, delay_seconds):
@@ -59,7 +59,7 @@ class OrderRepo(OrderInterface):
             cursor.close()
 
             if new_status == 2:
-                threading.Thread(target=self.update_order_status_after_delay, args=(order_id, 3, 10)).start()
+                threading.Thread(target=self.update_order_status_after_delay, args=(order_id, 3, 15)).start()
 
     def get_order_by_id(self, order_id):
         cursor = self.db_connection.cursor(dictionary=True)
@@ -122,3 +122,14 @@ class OrderRepo(OrderInterface):
         order['total_price'] = float(order['total_price'])
         cursor.close()
         return {'order': order, 'items': items}
+    
+    def get_all_orders(self):
+        cursor = self.db_connection.cursor(dictionary=True)
+        query = """SELECT o.order_id, o.total_price, o.created_at, os.status_name
+        FROM orders o 
+        JOIN order_status os ON o.status_id = os.status_id
+        ORDER BY o.created_at DESC"""
+        cursor.execute(query)
+        orders = cursor.fetchall()
+        cursor.close()
+        return orders

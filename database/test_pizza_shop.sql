@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 9.0.1, for macos14.4 (arm64)
+-- MySQL dump 10.13  Distrib 8.0.39, for Win64 (x86_64)
 --
 -- Host: localhost    Database: test_pizza_shop
 -- ------------------------------------------------------
--- Server version	9.0.1
+-- Server version	8.0.39
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -88,7 +88,7 @@ CREATE TABLE `credentials` (
 
 LOCK TABLES `credentials` WRITE;
 /*!40000 ALTER TABLE `credentials` DISABLE KEYS */;
-INSERT INTO `credentials` VALUES (16,'nikita','8617c96e1825c193a31ec2f8ab56650bfee01721f59759f6965ebb85440ba001','50ff7907'),(15,'tim','2be01e15bbd8891ec1497521b290bd508511eaec94a60405ab17bbe5dd63a41d','dbb7ccb7');
+INSERT INTO `credentials` VALUES (16,'nikita','8617c96e1825c193a31ec2f8ab56650bfee01721f59759f6965ebb85440ba001','50ff7907'),(17,'ope','95bedd060987319ae3744b3e6385590e8e1257fe733ffc3a2d74e0910fbd7b4b','07bd7d81'),(15,'tim','2be01e15bbd8891ec1497521b290bd508511eaec94a60405ab17bbe5dd63a41d','dbb7ccb7');
 /*!40000 ALTER TABLE `credentials` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -111,7 +111,7 @@ CREATE TABLE `customer` (
   PRIMARY KEY (`customer_id`),
   KEY `fk_gender` (`gender_id`),
   CONSTRAINT `fk_gender` FOREIGN KEY (`gender_id`) REFERENCES `gender` (`gender_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -120,8 +120,39 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES (15,'Timur','Jercak',1,'1998-06-13','12345',2,0),(16,'Nikita','Bulgaru',1,'2004-08-28','+12345',2,0);
+INSERT INTO `customer` VALUES (15,'Timur','Jercak',1,'1998-06-13','12345',2,0),(16,'Nikita','Bulgaru',1,'2004-08-28','+12345',2,0),(17,'Robert','Oppenheimer',1,'1904-03-23','43784',3,3);
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `customer_address`
+--
+
+DROP TABLE IF EXISTS `customer_address`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `customer_address` (
+  `customer_address_id` int NOT NULL AUTO_INCREMENT,
+  `house_number` int DEFAULT NULL,
+  `apartment_number` varchar(8) DEFAULT NULL,
+  `postal_code_id` int DEFAULT NULL,
+  `city_id` int DEFAULT '2380',
+  PRIMARY KEY (`customer_address_id`),
+  KEY `postal_code_id` (`postal_code_id`),
+  KEY `city_id` (`city_id`),
+  CONSTRAINT `customer_address_ibfk_1` FOREIGN KEY (`postal_code_id`) REFERENCES `postal_codes` (`ID`),
+  CONSTRAINT `customer_address_ibfk_2` FOREIGN KEY (`city_id`) REFERENCES `cities` (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `customer_address`
+--
+
+LOCK TABLES `customer_address` WRITE;
+/*!40000 ALTER TABLE `customer_address` DISABLE KEYS */;
+INSERT INTO `customer_address` VALUES (1,23,'4',96,2380),(2,12,'1',12,2380),(3,12,'2',41,2380);
+/*!40000 ALTER TABLE `customer_address` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -230,16 +261,15 @@ DROP TABLE IF EXISTS `employee_address`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `employee_address` (
   `ID` int NOT NULL AUTO_INCREMENT,
-  `street` varchar(40) DEFAULT NULL,
-  `street_number` int DEFAULT NULL,
+  `house_number` int DEFAULT NULL,
   `postal_code_id` int DEFAULT NULL,
-  `city_id` int DEFAULT NULL,
+  `city_id` int DEFAULT '2380',
   PRIMARY KEY (`ID`),
   KEY `postal_code_id` (`postal_code_id`),
   KEY `city_id` (`city_id`),
   CONSTRAINT `employee_address_ibfk_1` FOREIGN KEY (`postal_code_id`) REFERENCES `postal_codes` (`ID`),
   CONSTRAINT `employee_address_ibfk_2` FOREIGN KEY (`city_id`) REFERENCES `cities` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -248,7 +278,70 @@ CREATE TABLE `employee_address` (
 
 LOCK TABLES `employee_address` WRITE;
 /*!40000 ALTER TABLE `employee_address` DISABLE KEYS */;
+INSERT INTO `employee_address` VALUES (1,101,21,2380),(2,102,53,2380),(3,103,4,2380),(4,104,56,2380),(5,105,74,2380),(6,106,6,2380),(7,107,4,2380),(8,108,1,2380),(9,109,90,2380),(10,110,58,2380),(11,111,21,2380),(12,112,26,2380),(13,113,66,2380),(14,114,57,2380),(15,115,85,2380),(16,116,62,2380),(17,117,54,2380),(18,118,84,2380),(19,119,64,2380),(20,120,65,2380),(21,121,37,2380),(22,122,87,2380),(23,123,31,2380),(24,124,87,2380),(25,125,53,2380);
 /*!40000 ALTER TABLE `employee_address` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `employee_credentials`
+--
+
+DROP TABLE IF EXISTS `employee_credentials`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `employee_credentials` (
+  `employee_credentials_id` int NOT NULL AUTO_INCREMENT,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(5) DEFAULT NULL,
+  PRIMARY KEY (`employee_credentials_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `employee_credentials`
+--
+
+LOCK TABLES `employee_credentials` WRITE;
+/*!40000 ALTER TABLE `employee_credentials` DISABLE KEYS */;
+INSERT INTO `employee_credentials` VALUES (1,'j.doe@lagoal.pizza','12345'),(2,'j.smith@lagoal.pizza','12345'),(3,'b.johnson@lagoal.pizza','12345'),(4,'a.davis@lagoal.pizza','12345'),(5,'c.brown@lagoal.pizza','12345'),(6,'e.wilson@lagoal.pizza','12345'),(7,'f.moore@lagoal.pizza','12345'),(8,'g.taylor@lagoal.pizza','12345'),(9,'h.anderson@lagoal.pizza','12345'),(10,'i.thomas@lagoal.pizza','12345'),(11,'j.jackson@lagoal.pizza','12345'),(12,'k.white@lagoal.pizza','12345'),(13,'l.harris@lagoal.pizza','12345'),(14,'m.martin@lagoal.pizza','12345'),(15,'n.thompson@lagoal.pizza','12345'),(16,'o.garcia@lagoal.pizza','12345'),(17,'p.martinez@lagoal.pizza','12345'),(18,'q.robinson@lagoal.pizza','12345'),(19,'r.clark@lagoal.pizza','12345'),(20,'s.lewis@lagoal.pizza','12345'),(21,'t.lee@lagoal.pizza','12345'),(22,'u.walker@lagoal.pizza','12345'),(23,'v.hall@lagoal.pizza','12345'),(24,'w.allen@lagoal.pizza','12345'),(25,'x.young@lagoal.pizza','12345');
+/*!40000 ALTER TABLE `employee_credentials` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `employees`
+--
+
+DROP TABLE IF EXISTS `employees`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `employees` (
+  `employee_id` int NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(20) DEFAULT NULL,
+  `last_name` varchar(20) DEFAULT NULL,
+  `position_id` int NOT NULL,
+  `address_id` int DEFAULT NULL,
+  `restaurant_id` int DEFAULT NULL,
+  `employee_credentials_id` int DEFAULT NULL,
+  PRIMARY KEY (`employee_id`),
+  KEY `position_id` (`position_id`),
+  KEY `address_id` (`address_id`),
+  KEY `restaurant_id` (`restaurant_id`),
+  KEY `fk_employee_credentials` (`employee_credentials_id`),
+  CONSTRAINT `employees_ibfk_1` FOREIGN KEY (`position_id`) REFERENCES `positions` (`position_id`),
+  CONSTRAINT `employees_ibfk_2` FOREIGN KEY (`address_id`) REFERENCES `employee_address` (`ID`),
+  CONSTRAINT `employees_ibfk_3` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurants` (`restaurant_id`),
+  CONSTRAINT `fk_employee_credentials` FOREIGN KEY (`employee_credentials_id`) REFERENCES `employee_credentials` (`employee_credentials_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `employees`
+--
+
+LOCK TABLES `employees` WRITE;
+/*!40000 ALTER TABLE `employees` DISABLE KEYS */;
+INSERT INTO `employees` VALUES (1,'John','Doe',1,1,1,1),(2,'Jane','Smith',2,2,1,2),(3,'Bob','Johnson',3,3,1,3),(4,'Alice','Davis',4,4,1,4),(5,'Charlie','Brown',5,5,1,5),(6,'Emily','Wilson',1,6,2,6),(7,'Frank','Moore',2,7,2,7),(8,'Grace','Taylor',3,8,2,8),(9,'Henry','Anderson',4,9,2,9),(10,'Isabel','Thomas',5,10,2,10),(11,'Jack','Jackson',1,11,3,11),(12,'Katie','White',2,12,3,12),(13,'Leo','Harris',3,13,3,13),(14,'Molly','Martin',4,14,3,14),(15,'Nina','Thompson',5,15,3,15),(16,'Oscar','Garcia',1,16,4,16),(17,'Paul','Martinez',2,17,4,17),(18,'Quincy','Robinson',3,18,4,18),(19,'Rachel','Clark',4,19,4,19),(20,'Sophia','Lewis',5,20,4,20),(21,'Tom','Lee',1,21,5,21),(22,'Uma','Walker',2,22,5,22),(23,'Victor','Hall',3,23,5,23),(24,'Wendy','Allen',4,24,5,24),(25,'Xander','Young',5,25,5,25);
+/*!40000 ALTER TABLE `employees` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -429,7 +522,7 @@ CREATE TABLE `order_items` (
 
 LOCK TABLES `order_items` WRITE;
 /*!40000 ALTER TABLE `order_items` DISABLE KEYS */;
-INSERT INTO `order_items` VALUES (15,9,2,'Pizza',1,6.87),(16,10,4,'Pizza',1,7.63),(17,11,1,'Pizza',1,4.58),(18,12,1,'Pizza',2,4.58),(19,13,2,'Pizza',1,6.87),(20,13,1,'Pizza',1,4.58),(21,14,2,'Pizza',2,6.87),(22,14,1,'Pizza',2,4.58),(23,14,4,'Pizza',1,7.63),(24,14,3,'Pizza',1,8.09),(25,14,5,'Pizza',1,11.44),(26,14,6,'Pizza',1,7.48);
+INSERT INTO `order_items` VALUES (21,15,2,'Pizza',1,6.87),(22,15,4,'Pizza',1,7.63),(23,16,1,'Pizza',1,4.58),(24,17,1,'Pizza',1,4.58),(25,17,2,'Pizza',1,6.87),(26,17,4,'Pizza',1,7.63);
 /*!40000 ALTER TABLE `order_items` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -479,7 +572,7 @@ CREATE TABLE `orders` (
   CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`status_id`) REFERENCES `order_status` (`status_id`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `orders_ibfk_3` FOREIGN KEY (`delivery_person_id`) REFERENCES `deliverymen` (`employee_id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -488,7 +581,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (9,15,6.87,3,NULL,NULL,'2024-09-29 19:36:03'),(10,15,7.63,3,NULL,NULL,'2024-09-29 19:37:27'),(11,15,4.58,3,NULL,NULL,'2024-09-29 19:38:38'),(12,15,9.16,3,NULL,NULL,'2024-09-29 19:38:45'),(13,16,11.45,3,NULL,NULL,'2024-09-29 19:41:03'),(14,16,57.54,1,NULL,NULL,'2024-09-29 19:41:44');
+INSERT INTO `orders` VALUES (15,17,14.50,3,NULL,NULL,'2024-09-29 21:50:58'),(16,17,4.58,3,NULL,NULL,'2024-09-29 23:26:24'),(17,17,19.08,3,NULL,NULL,'2024-09-29 23:26:58');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -567,9 +660,10 @@ DROP TABLE IF EXISTS `positions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `positions` (
-  `ID` int NOT NULL AUTO_INCREMENT,
-  `position` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`ID`)
+  `position_id` int NOT NULL AUTO_INCREMENT,
+  `position` varchar(255) DEFAULT NULL,
+  `wage` float DEFAULT NULL,
+  PRIMARY KEY (`position_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -579,7 +673,7 @@ CREATE TABLE `positions` (
 
 LOCK TABLES `positions` WRITE;
 /*!40000 ALTER TABLE `positions` DISABLE KEYS */;
-INSERT INTO `positions` VALUES (1,'Chef'),(2,'Cashier'),(3,'Delivery Driver'),(4,'Manager'),(5,'Assistant Chef');
+INSERT INTO `positions` VALUES (1,'Chef',1000),(2,'Cashier',600),(3,'Delivery Driver',600),(4,'Manager',1200),(5,'Assistant Chef',800);
 /*!40000 ALTER TABLE `positions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -665,7 +759,7 @@ CREATE TABLE `restaurants` (
 
 LOCK TABLES `restaurants` WRITE;
 /*!40000 ALTER TABLE `restaurants` DISABLE KEYS */;
-INSERT INTO `restaurants` VALUES (1,1,5,1,0,20,1),(2,2,5,1,0,40,21),(3,3,5,1,0,60,41),(4,4,5,1,0,80,61),(5,5,5,1,0,97,81);
+INSERT INTO `restaurants` VALUES (1,1,5,1,8.09,20,1),(2,2,5,1,0,40,21),(3,3,5,1,42.74,60,41),(4,4,5,1,0,80,61),(5,5,5,1,0,97,81);
 /*!40000 ALTER TABLE `restaurants` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -679,10 +773,10 @@ UNLOCK TABLES;
 /*!50001 SET @saved_col_connection     = @@collation_connection */;
 /*!50001 SET character_set_client      = utf8mb4 */;
 /*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_unicode_ci */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`admin`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `pizza_prices` AS select `p`.`ID` AS `pizza_id`,`p`.`name` AS `pizza_name`,sum((`i`.`price` * `pi`.`quantity`)) AS `total_price` from ((`pizza` `p` join `pizza_ingredient` `pi` on((`p`.`ID` = `pi`.`pizza_id`))) join `ingredient` `i` on((`pi`.`ingredient_id` = `i`.`ID`))) group by `p`.`ID`,`p`.`name` */;
+/*!50001 VIEW `pizza_prices` AS select 1 AS `pizza_id`,1 AS `pizza_name`,1 AS `total_price` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -696,4 +790,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-29 20:32:39
+-- Dump completed on 2024-09-29 23:27:28

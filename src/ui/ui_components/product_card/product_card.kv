@@ -1,5 +1,6 @@
 #:kivy 2.0.0
 # product_card.kv
+
 <ProductCard>:
     orientation: 'vertical'
     padding: dp(10)
@@ -28,24 +29,47 @@
         valign: 'middle'
         font_size: sp(15)
 
-
-    Button:
-        text: 'Add to basket'
-        size_hint_x: 0.80
+    BoxLayout:
+        orientation: 'horizontal'
         size_hint_y: None
-        background_color: 0, 0, 0, 0  
-        background_normal: ''
-        font_size: sp(16)
-        height: dp(34)
-        color: 0.8, 0.4, 0.1, 1
-        pos_hint: {'center_x': 0.5}
-        on_release: root.add_to_basket()
+        height: dp(40)
+        spacing: dp(10)
 
+        Button:
+            text: 'Add to basket'
+            size_hint_x: 0.80
+            size_hint_y: None
+            background_color: 0, 0, 0, 0  
+            background_normal: ''
+            font_size: sp(16)
+            height: dp(34)
+            color: 0.8, 0.4, 0.1, 1
+            pos_hint: {'center_x': 0.5}
+            on_release: root.add_to_basket()
 
-        canvas.before:
-            Color:
-                rgba: 0.8, 0.4, 0.1, 1
-            Line:
-                width: 1.1
-                rounded_rectangle: (self.x, self.y, self.width, self.height, dp(23)) 
+            canvas.before:
+                Color:
+                    rgba: 0.8, 0.4, 0.1, 1
+                Line:
+                    width: 1.1
+                    rounded_rectangle: (self.x, self.y, self.width, self.height, dp(23)) 
 
+        Button:
+            text: 'i'
+            size_hint_x: None  # Отключаем размер по ширине
+            size_hint_y: None
+            width: dp(34)  # Ширина равна высоте
+            height: dp(34)  # Фиксируем высоту и ширину
+            background_color: 0, 0, 0, 0
+            background_normal: ''
+            color: 1, 1, 1, 1
+            on_release: root.show_info()
+
+            canvas.before:
+                Color:
+                    rgba: 0.87, 0.42, 0.16, 1
+                Ellipse:
+                    pos: self.pos
+                    size: (self.height, self.height)  # Делаем высоту и ширину одинаковыми
+
+            font_size: sp(16)

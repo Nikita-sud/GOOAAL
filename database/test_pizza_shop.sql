@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.39, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 9.0.1, for macos14.4 (arm64)
 --
 -- Host: localhost    Database: test_pizza_shop
 -- ------------------------------------------------------
--- Server version	8.0.39
+-- Server version	9.0.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -120,7 +120,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES (15,'Timur','Jercak',1,'1998-06-13','12345',2,0),(16,'Nikita','Bulgaru',1,'2004-08-28','+12345',2,0),(17,'Robert','Oppenheimer',1,'1904-03-23','43784',3,3);
+INSERT INTO `customer` VALUES (15,'Timur','Jercak',1,'1998-06-13','12345',2,0),(16,'Nikita','Bulgaru',1,'2004-08-28','+12345',2,1),(17,'Robert','Oppenheimer',1,'1904-03-23','43784',3,3);
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -513,7 +513,7 @@ CREATE TABLE `order_items` (
   PRIMARY KEY (`order_item_id`),
   KEY `order_id` (`order_id`),
   CONSTRAINT `order_items_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -522,7 +522,7 @@ CREATE TABLE `order_items` (
 
 LOCK TABLES `order_items` WRITE;
 /*!40000 ALTER TABLE `order_items` DISABLE KEYS */;
-INSERT INTO `order_items` VALUES (21,15,2,'Pizza',1,6.87),(22,15,4,'Pizza',1,7.63),(23,16,1,'Pizza',1,4.58),(24,17,1,'Pizza',1,4.58),(25,17,2,'Pizza',1,6.87),(26,17,4,'Pizza',1,7.63);
+INSERT INTO `order_items` VALUES (21,15,2,'Pizza',1,6.87),(22,15,4,'Pizza',1,7.63),(23,16,1,'Pizza',1,4.58),(24,17,1,'Pizza',1,4.58),(25,17,2,'Pizza',1,6.87),(26,17,4,'Pizza',1,7.63),(27,18,5,'Pizza',2,11.44),(28,18,6,'Pizza',3,7.48),(29,18,7,'Pizza',1,7.63);
 /*!40000 ALTER TABLE `order_items` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -572,7 +572,7 @@ CREATE TABLE `orders` (
   CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`status_id`) REFERENCES `order_status` (`status_id`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `orders_ibfk_3` FOREIGN KEY (`delivery_person_id`) REFERENCES `deliverymen` (`employee_id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -581,7 +581,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (15,17,14.50,3,NULL,NULL,'2024-09-29 21:50:58'),(16,17,4.58,3,NULL,NULL,'2024-09-29 23:26:24'),(17,17,19.08,3,NULL,NULL,'2024-09-29 23:26:58');
+INSERT INTO `orders` VALUES (15,17,14.50,3,NULL,NULL,'2024-09-29 21:50:58'),(16,17,4.58,3,NULL,NULL,'2024-09-29 23:26:24'),(17,17,19.08,3,NULL,NULL,'2024-09-29 23:26:58'),(18,16,52.95,3,NULL,NULL,'2024-10-01 09:59:29');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -759,7 +759,7 @@ CREATE TABLE `restaurants` (
 
 LOCK TABLES `restaurants` WRITE;
 /*!40000 ALTER TABLE `restaurants` DISABLE KEYS */;
-INSERT INTO `restaurants` VALUES (1,1,5,1,8.09,20,1),(2,2,5,1,0,40,21),(3,3,5,1,42.74,60,41),(4,4,5,1,0,80,61),(5,5,5,1,0,97,81);
+INSERT INTO `restaurants` VALUES (1,1,5,1,61.04,20,1),(2,2,5,1,0,40,21),(3,3,5,1,42.74,60,41),(4,4,5,1,0,80,61),(5,5,5,1,0,97,81);
 /*!40000 ALTER TABLE `restaurants` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -790,4 +790,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-29 23:27:28
+-- Dump completed on 2024-10-01 11:32:53

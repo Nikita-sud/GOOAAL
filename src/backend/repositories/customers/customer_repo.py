@@ -96,24 +96,7 @@ class CustomerRepo(CustomerInterface):
 
         hashed_password = hashlib.pbkdf2_hmac('sha256', password.encode('utf-8'), salt, 100000)
         return [hashed_password.hex(), salt.hex()]
-    
-    # def create_credentials(self, username:str, password:str):
-    #     cursor = self.db_connection.cursor()
-
-    #     get_last_pk = "SELECT LAST_INSERT_ID()"
-    #     cursor.execute(get_last_pk)
-    #     customer_id = cursor.fetchone()[0]
-    #     print(customer_id)
-
-    #     query = """
-    #         INSERT INTO credentials (customer_id, username, password, salt) VALUES(%s, %s, %s, %s)
-    #         """
-    #     salt = os.urandom(4)
-    #     hashed_password = hashlib.pbkdf2_hmac('sha256', password.encode('utf-8'), salt, 100000)
-    #     cursor.execute(query, (customer_id, username, hashed_password.hex(), salt.hex(),))
-    #     self.db_connection.commit()
-    #     cursor.close()
-    #     return
+ 
     
     def check_user(self, username:str, password:str) -> (bool):
         cursor = self.db_connection.cursor()

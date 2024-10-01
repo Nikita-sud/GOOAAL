@@ -1,6 +1,3 @@
-#:kivy 2.0.0
-# product_card.kv
-
 <ProductCard>:
     orientation: 'vertical'
     padding: dp(10)
@@ -12,15 +9,41 @@
             size: self.size
             radius: [dp(10)]
 
-    Image:
-        source: root.image_source
-        size_hint_y: None  # Disable size hint for y so you can control the height
-        size_hint_x: 1  # Disable size hint for x so you can control the width
-        height: dp(100)    # Increase height for the image
-        width: dp(200)     # Increase width for the image
-        allow_stretch: True
-        keep_ratio: True
-        fit_mode: 'contain'
+    RelativeLayout:
+        size_hint_y: None
+        height: dp(100)
+
+        Image:
+            source: root.image_source
+            size_hint_y: None
+            size_hint_x: 1
+            height: dp(100)
+            width: dp(200)
+            allow_stretch: True
+            keep_ratio: True
+            fit_mode: 'contain'
+
+        Button:
+            text: 'i'
+            size_hint_x: None
+            size_hint_y: None
+            width: dp(34)
+            height: dp(34)
+            background_color: 0, 0, 0, 0
+            background_normal: ''
+            color: 0.8, 0.4, 0.1, 1  # Цвет текста
+            font_size: sp(16)
+            bold: True  # Делаем шрифт жирным
+            pos_hint: {'right': 1, 'top': 1}
+
+            on_release: root.show_info()
+
+            canvas.before:
+                Color:
+                    rgba: 0.8, 0.4, 0.1, 1  # Цвет контура
+                Line:
+                    width: 1.2
+                    rounded_rectangle: (self.x, self.y, self.width, self.height, dp(23))  # Добавляем закруглённый контур
 
     Label:
         text: root.product_name + "\n" + root.price
@@ -29,47 +52,21 @@
         valign: 'middle'
         font_size: sp(15)
 
-    BoxLayout:
-        orientation: 'horizontal'
+    Button:
+        text: 'Add to basket'
+        size_hint_x: 0.80
         size_hint_y: None
-        height: dp(40)
-        spacing: dp(10)
+        background_color: 0, 0, 0, 0  
+        background_normal: ''
+        font_size: sp(16)
+        height: dp(34)
+        color: 0.8, 0.4, 0.1, 1
+        pos_hint: {'center_x': 0.5}
+        on_release: root.add_to_basket()
 
-        Button:
-            text: 'Add to basket'
-            size_hint_x: 0.80
-            size_hint_y: None
-            background_color: 0, 0, 0, 0  
-            background_normal: ''
-            font_size: sp(16)
-            height: dp(34)
-            color: 0.8, 0.4, 0.1, 1
-            pos_hint: {'center_x': 0.5}
-            on_release: root.add_to_basket()
-
-            canvas.before:
-                Color:
-                    rgba: 0.8, 0.4, 0.1, 1
-                Line:
-                    width: 1.1
-                    rounded_rectangle: (self.x, self.y, self.width, self.height, dp(23)) 
-
-        Button:
-            text: 'i'
-            size_hint_x: None  # Отключаем размер по ширине
-            size_hint_y: None
-            width: dp(34)  # Ширина равна высоте
-            height: dp(34)  # Фиксируем высоту и ширину
-            background_color: 0, 0, 0, 0
-            background_normal: ''
-            color: 1, 1, 1, 1
-            on_release: root.show_info()
-
-            canvas.before:
-                Color:
-                    rgba: 0.87, 0.42, 0.16, 1
-                Ellipse:
-                    pos: self.pos
-                    size: (self.height, self.height)  # Делаем высоту и ширину одинаковыми
-
-            font_size: sp(16)
+        canvas.before:
+            Color:
+                rgba: 0.8, 0.4, 0.1, 1
+            Line:
+                width: 1.1
+                rounded_rectangle: (self.x, self.y, self.width, self.height, dp(23))

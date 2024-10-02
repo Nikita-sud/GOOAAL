@@ -74,3 +74,10 @@ class PizzaRepo(PizzaInterface):
             self.db_connection.commit()
         
         return float(price)
+    
+    def is_vegetarian(self, pizza_id: int) -> bool:
+        cursor = self.db_connection.cursor()
+        query = "SELECT vegetarian FROM pizza WHERE id = %s"
+        cursor.execute(query, (pizza_id,))
+        result = cursor.fetchone()
+        return result[0] == 1

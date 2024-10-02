@@ -55,7 +55,7 @@ class CustomerRepo(CustomerInterface):
 
         cursor.execute("START TRANSACTION;")
         cursor.execute("""
-        INSERT INTO customer_address (street_number, apartment_number, postal_code_id)
+        INSERT INTO customer_address (house_number, apartment_number, postal_code_id)
         VALUES (%s, %s, %s);
     """, (street_number, apartment_number, postal_code_id))
         cursor.execute("SET @address_id = LAST_INSERT_ID();")

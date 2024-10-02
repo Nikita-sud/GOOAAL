@@ -13,10 +13,11 @@ class Customer:
         self.number_orders = 0
 
 class Order:
-    def __init__(self, customer_id, items, total_price, status_id=1, created_at=None):
+    def __init__(self, customer_id, items, total_price, discount_applied, status_id=1, created_at=None):
         self.customer_id = customer_id
         self.items = items
         self.total_price = total_price
         self.status_id = status_id
         self.created_at = created_at or datetime.now()
         self.order_id = None
+        self.discount_applied = discount_applied

@@ -3,7 +3,10 @@
 -- CHANGE COLUMN ID customer_id INT NOT NULL AUTO_INCREMENT;
 -- SELECT * FROM customer;
 -- SELECT * FROM cust;
-SELECT * FROM employee_credentials;
+SELECT * FROM orders;
+
+-- INSERT INTO offers(name, price, code) VALUES 
+-- ('offer_10', 0.1, 'GOAL10');
 -- CREATE TABLE employees(
 --     employee_id INT AUTO_INCREMENT PRIMARY KEY,
 --     first_name VARCHAR(20),

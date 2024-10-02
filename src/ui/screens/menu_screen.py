@@ -32,7 +32,7 @@ class Menu(ColoredScreen):
     def update_offers(self, special_offer_window):
         special_offer_window.clear_widgets()
 
-        for img_path in ['pizza_and_desert.png', 'pizza_and_drink.png', 'buy_two_get_free.png']:
+        for img_path in ['code_goal10.png','pizza_and_desert.png', 'pizza_and_drink.png']:
             box = BoxLayout(orientation='vertical')
             img = Image(source="assets/images/offers/"+img_path, allow_stretch=True, keep_ratio=False)
             box.add_widget(img)

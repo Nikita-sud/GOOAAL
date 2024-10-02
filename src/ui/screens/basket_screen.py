@@ -27,6 +27,28 @@ class BasketScreen(ColoredScreen):
         Builder.load_file('src/ui/ui_components/product_card_mini/product_card_mini.kv')
         super().__init__(**kwargs)
 
+    def check_offer_code(self, code_name):
+        try:
+            print(code_name)
+            connection = connect_to_db()
+            cursor = connection.cursor()
+            query = """
+            SELECT price FROM offers
+            WHERE code = %s"""
+            cursor.execute(query, (code_name.lower(),))
+            result = cursor.fetchone()
+            if(result==None):
+                self.ids.offer_message.text = "Invalid code :("
+            else:
+                self.ids.offer_message.text = "Discount was applied! :)"
+                self.discount = result[0]
+                self.total_price = self.total_price*(1-float(self.discount))
+            connection.close()
+        except Exception as ex:
+            print(ex)
+            self.ids.offer_message.text = "Invalid code :("
+
+
     def update_basket(self):
         self.ids.basket_items_grid.clear_widgets()
         total = 0
@@ -69,7 +91,8 @@ class BasketScreen(ColoredScreen):
             customer_id=customer_id,
             items=order_items,
             total_price=self.total_price,
-            status_id=1  # Статус "Ожидается обработка"
+            discount_applied=self.discount,
+            status_id=1,
         )
 
         # Сохраняем заказ в базе данных

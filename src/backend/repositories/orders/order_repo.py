@@ -23,10 +23,10 @@ class OrderRepo(OrderInterface):
             order.created_at = datetime.now()
 
         query = """
-        INSERT INTO orders (customer_id, total_price, status_id, created_at)
-        VALUES (%s, %s, %s, %s)
+        INSERT INTO orders (customer_id, total_price, status_id, created_at, discount_applied)
+        VALUES (%s, %s, %s, %s, %s)
         """
-        cursor.execute(query, (order.customer_id, order.total_price, order.status_id, order.created_at))
+        cursor.execute(query, (order.customer_id, order.total_price, order.status_id, order.created_at, order.discount_applied))
         self.db_connection.commit()
         order.order_id = cursor.lastrowid  # Получаем ID созданного заказа
 

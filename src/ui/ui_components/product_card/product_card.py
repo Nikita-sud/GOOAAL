@@ -43,10 +43,10 @@ class ProductCard(BoxLayout):
         content = BoxLayout(orientation='vertical', padding=dp(10), spacing=dp(10))
         
         # Контейнер для изображения
-        image_layout = RelativeLayout(size_hint_y=None, height=dp(150))  # Используем RelativeLayout для наложения
-        
-        # Основное изображение пиццы
-        pizza_image = Image(source=self.image_source, size_hint_y=None, height=dp(150))
+        image_layout = RelativeLayout(size_hint=(1, None), height=self.minimum_height)  # Контейнер адаптируется к высоте изображения
+
+# Основное изображение пиццы
+        pizza_image = Image(source=self.image_source, size_hint=(1, 1), allow_stretch=True, keep_ratio=True)
         image_layout.add_widget(pizza_image)
 
         # Проверяем, является ли пицца вегетарианской

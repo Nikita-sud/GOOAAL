@@ -20,7 +20,7 @@
         size_hint_x: 0.2
 
     Label:
-        text: "${:.2f}".format(root.price * root.quantity)
+        text: "{:.2f}".format(root.price * root.quantity)+"$"
         font_size: dp(16)
         color: 0, 0, 0, 1
         size_hint_x: 0.2

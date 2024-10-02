@@ -15,20 +15,16 @@
         padding: dp(10)
         spacing: dp(10)
 
-        # Верхняя панель с кнопкой "Назад" и заголовком
-        BoxLayout:
+        # Заголовок посередине
+        Label:
+            text: 'My Orders'
+            font_size: dp(20)
+            halign: 'center'
+            valign: 'middle'
             size_hint_y: None
             height: dp(50)
-            Button:
-                text: '< Back'
-                size_hint_x: None
-                width: dp(80)
-                on_release: app.root.current = 'menu_screen'
-            Label:
-                text: 'My Orders'
-                font_size: dp(20)
-                halign: 'center'
-                valign: 'middle'
+            text_size: self.size
+            bold: True
 
         # Список заказов
         ScrollView:
@@ -41,3 +37,32 @@
                 height: self.minimum_height
                 spacing: dp(10)
                 padding: [dp(10), dp(10)]
+
+        # Кнопка назад с иконкой стрелки внизу
+        BoxLayout:
+            size_hint_y: None
+            height: dp(60)
+            padding: [dp(10), dp(0)]
+            spacing: dp(10)
+
+            Button:
+                size_hint_x: 0.5
+                background_normal: ''
+                background_color: 0, 0, 0, 0  # Make background transparent
+                on_release: app.root.current = 'menu_screen'
+                canvas.before:
+                    Color:
+                        rgba: 1, 1, 1, 1  # Белый цвет
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [dp(10)]
+                # Вставка изображения стрелки внутрь кнопки
+                Image:
+                    source: 'assets/images/back_arrow.png'
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    size_hint: None, None
+                    size: dp(24), dp(24)
+                    allow_stretch: True
+                    keep_ratio: True

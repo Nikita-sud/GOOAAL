@@ -78,11 +78,26 @@ class CustomerRepo(CustomerInterface):
         self.db_connection.commit()        
         return
 
-    def get_customer_by_id(self, id: int) ->(str):
+    def get_customer_by_id(self, id: int) -> dict:
         cursor = self.db_connection.cursor()
-        query = "SELECT * FROM customer WHERE id = %s"
+        query = """
+            SELECT c.name, c.last_name, ca.house_number, ca.apartment_number, pc.street, pc.postal_code
+            FROM customer c
+            JOIN customer_address ca ON c.address = ca.customer_address_id
+            JOIN postal_codes pc ON ca.postal_code_id = pc.ID
+            WHERE c.customer_id = %s
+        """
         cursor.execute(query, (id,))
-        return cursor.fetchone()
+        result = cursor.fetchone()
+        cursor.close()
+
+        if result:
+            return {
+                'name': result[0],
+                'last_name': result[1],
+                'address': f"{result[4]} {result[2]}, {result[3]} - {result[5]}"
+            }
+        return None
     
     def update_customer_num_of_orders(self, id: int):
         cursor = self.db_connection.cursor()
@@ -134,3 +149,24 @@ class CustomerRepo(CustomerInterface):
         cursor.execute(query, (number_orders, customer_id))
         self.db_connection.commit()
         cursor.close()
+
+    def get_customer_by_id(self, id: int) -> dict:
+        cursor = self.db_connection.cursor()
+        query = """
+            SELECT c.name, c.last_name, ca.house_number, ca.apartment_number, pc.postal_code
+            FROM customer c
+            JOIN customer_address ca ON c.address = ca.customer_address_id
+            JOIN postal_codes pc ON ca.postal_code_id = pc.ID
+            WHERE c.customer_id = %s
+        """
+        cursor.execute(query, (id,))
+        result = cursor.fetchone()
+        cursor.close()
+
+        if result:
+            return {
+                'name': result[0],
+                'last_name': result[1],
+                'address': f"{result[2]}, {result[3]} - {result[4]}"
+            }
+        return None

@@ -14,64 +14,201 @@
         orientation: 'vertical'
         padding: dp(10)
         spacing: dp(10)
+        size_hint_y: 1
 
-        # Верхняя панель с кнопкой "Назад"
-        BoxLayout:
+        # Заголовок "Order Details" посередине (белый текст)
+        Label:
+            text: 'Order Details'
+            font_size: dp(20)
+            halign: 'center'
+            valign: 'middle'
             size_hint_y: None
             height: dp(50)
-            Button:
-                text: '< Back'
-                size_hint_x: None
-                width: dp(80)
-                on_release: root.back_to_history()
+            text_size: self.size
+            bold: True
+
+        GridLayout:
+            cols: 2
+            size_hint_y: None
+            size_hint_x: 1  # Разрешаем GridLayout занимать всю ширину
+            height: self.minimum_height
+            row_default_height: dp(40)
+            spacing: dp(20)
+            padding: [dp(10), 0]
+
             Label:
-                text: 'Order Details'
-                font_size: dp(20)
+                text: 'Order ID:'
+                font_size: dp(16)
+                halign: 'left'  # Выравниваем текст влево
+                valign: 'middle'
+                size_hint_x: 0.5  # Занимаем 50% ширины
+                color: 0, 0, 0, 1
+
+            Label:
+                id: order_id_label
+                text: ''
+                font_size: dp(16)
+                halign: 'right'  # Выравниваем текст вправо
+                valign: 'middle'
+                size_hint_x: 0.5  # Занимаем 50% ширины
+                color: 0, 0, 0, 1
+
+            Label:
+                text: 'Customer Name:'
+                font_size: dp(16)
+                halign: 'left'  # Выравниваем текст влево
+                valign: 'middle'
+                size_hint_x: 0.5  # Занимаем 50% ширины
+                color: 0, 0, 0, 1
+
+            Label:
+                id: customer_name_label
+                text: ''
+                font_size: dp(16)
+                halign: 'right'  # Выравниваем текст вправо
+                valign: 'middle'
+                size_hint_x: 0.5  # Занимаем 50% ширины
+                color: 0, 0, 0, 1
+
+            Label:
+                text: 'Customer Address:'
+                font_size: dp(16)
+                halign: 'left'  # Выравниваем текст влево
+                valign: 'middle'
+                size_hint_x: 0.5  # Занимаем 50% ширины
+                color: 0, 0, 0, 1
+                
+
+            Label:
+                id: customer_address_label
+                text: ''
+                font_size: dp(16)
+                halign: 'right'  # Выравниваем текст вправо
+                valign: 'middle'
+                size_hint_x: 0.5  # Занимаем 50% ширины
+                color: 0, 0, 0, 1
+
+            Label:
+                text: 'Order Date:'
+                font_size: dp(16)
+                halign: 'left'  # Выравниваем текст влево
+                valign: 'middle'
+                size_hint_x: 0.5  # Занимаем 50% ширины
+                color: 0, 0, 0, 1
+                
+
+            Label:
+                id: order_date_label
+                text: ''
+                font_size: dp(16)
+                halign: 'right'  # Выравниваем текст вправо
+                valign: 'middle'
+                size_hint_x: 0.5  # Занимаем 50% ширины
+                color: 0, 0, 0, 1
+
+            Label:
+                text: 'Status:'
+                font_size: dp(16)
+                halign: 'left'  # Выравниваем текст влево
+                valign: 'middle'
+                size_hint_x: 0.5  # Занимаем 50% ширины
+                color: 0, 0, 0, 1
+                
+
+            Label:
+                id: order_status_label
+                text: ''
+                font_size: dp(16)
+                halign: 'right'  # Выравниваем текст вправо
+                valign: 'middle'
+                size_hint_x: 0.5  # Занимаем 50% ширины
+                color: 0, 0, 0, 1
+
+            Label:
+                text: 'Total Price:'
+                font_size: dp(16)
+                halign: 'left'  # Выравниваем текст влево
+                valign: 'middle'
+                size_hint_x: 0.5  # Занимаем 50% ширины
+                color: 0, 0, 0, 1
+                
+
+            Label:
+                id: total_price_label
+                text: ''
+                font_size: dp(16)
+                halign: 'right'  # Выравниваем текст вправо
+                valign: 'middle'
+                size_hint_x: 0.5  # Занимаем 50% ширины
+                color: 0, 0, 0, 1
+                
+        # Закругленный прямоугольник на заднем плане для секции "Items"
+        BoxLayout:
+            orientation: 'vertical'
+            padding: dp(10)
+            spacing: dp(10)
+            size_hint_y: 1  # Заполняем все доступное пространство
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1  # Светло-серый фон
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [dp(10)]
+
+            Label:
+                text: 'Items:'
+                font_size: dp(18)
                 halign: 'center'
                 valign: 'middle'
-
-        # Информация о заказе
-        Label:
-            id: order_id_label
-            text: ''
-            font_size: dp(16)
-            halign: 'left'
-            valign: 'middle'
-
-        Label:
-            id: order_date_label
-            text: ''
-            font_size: dp(16)
-            halign: 'left'
-            valign: 'middle'
-
-        Label:
-            id: order_status_label
-            text: ''
-            font_size: dp(16)
-            halign: 'left'
-            valign: 'middle'
-
-        Label:
-            id: total_price_label
-            text: ''
-            font_size: dp(16)
-            halign: 'left'
-            valign: 'middle'
-
-        Label:
-            text: 'Items:'
-            font_size: dp(18)
-            halign: 'left'
-            valign: 'middle'
-
-        ScrollView:
-            do_scroll_x: False
-            do_scroll_y: True
-            GridLayout:
-                id: items_grid
-                cols: 1
                 size_hint_y: None
-                height: self.minimum_height
-                spacing: dp(5)
-                padding: [dp(5), dp(5)]
+                height: dp(30)
+                color: 0, 0, 0, 1  # Черный цвет текста
+
+            # Список элементов заказа с ScrollView
+            ScrollView:
+                do_scroll_x: False
+                do_scroll_y: True
+
+                BoxLayout:
+                    orientation: 'vertical'
+                    size_hint_y: None
+                    height: self.minimum_height
+                    # Этот BoxLayout выравнивает элементы по центру
+                    GridLayout:
+                        id: items_grid
+                        cols: 1
+                        size_hint: None, None
+                        width: root.width * 0.8  # Устанавливаем ширину для центрирования
+                        height: self.minimum_height
+                        row_default_height: dp(40)
+                        spacing: dp(5)
+                        padding: [dp(5), dp(5)]
+
+        # Кнопка назад с иконкой стрелки внизу
+        BoxLayout:
+            size_hint_y: None
+            height: dp(60)
+            padding: [dp(10), dp(0)]
+            spacing: dp(10)
+
+            Button:
+                size_hint_x: 0.5
+                background_normal: ''
+                background_color: 0, 0, 0, 0  # Прозрачный фон
+                on_release: root.back_to_history()
+                canvas.before:
+                    Color:
+                        rgba: 1, 1, 1, 1  # Белый цвет
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [dp(10)]
+                Image:
+                    source: 'assets/images/back_arrow.png'
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    size_hint: None, None
+                    size: dp(24), dp(24)
+                    allow_stretch: True
+                    keep_ratio: True

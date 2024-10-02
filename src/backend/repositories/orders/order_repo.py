@@ -86,9 +86,9 @@ class OrderRepo(OrderInterface):
     def get_order_details(self, order_id):
         cursor = self.db_connection.cursor(dictionary=True)
 
-        # Получаем информацию о заказе
+        # Получаем информацию о заказе, включая customer_id
         order_query = """
-        SELECT o.order_id, o.total_price, o.created_at, os.status_name
+        SELECT o.order_id, o.customer_id, o.total_price, o.created_at, os.status_name
         FROM orders o
         JOIN order_status os ON o.status_id = os.status_id
         WHERE o.order_id = %s
@@ -99,12 +99,12 @@ class OrderRepo(OrderInterface):
         # Получаем товары в заказе
         items_query = """
         SELECT oi.quantity, oi.price, oi.category,
-               CASE
-                   WHEN oi.category = 'Pizza' THEN p.name
-                   WHEN oi.category = 'Drink' THEN d.name
-                   WHEN oi.category = 'Desert' THEN ds.name
-                   ELSE 'Unknown'
-               END AS product_name
+            CASE
+                WHEN oi.category = 'Pizza' THEN p.name
+                WHEN oi.category = 'Drink' THEN d.name
+                WHEN oi.category = 'Desert' THEN ds.name
+                ELSE 'Unknown'
+            END AS product_name
         FROM order_items oi
         LEFT JOIN pizza p ON oi.item_id = p.ID AND oi.category = 'Pizza'
         LEFT JOIN drinks d ON oi.item_id = d.ID AND oi.category = 'Drink'

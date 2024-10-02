@@ -25,7 +25,7 @@
             color: 0, 0, 0, 1
 
         Label:
-            text: "Total Price: ${:.2f}".format(root.order.get('total_price', 0.0))
+            text: "Total Price: {:.2f}$".format(root.order.get('total_price', 0.0))
             font_size: dp(16)
             color: 0, 0, 0, 1
 
@@ -36,6 +36,19 @@
 
     Button:
         text: 'View Details'
+        size_hint_x: 0.80
         size_hint_y: None
-        height: dp(40)
+        background_color: 0, 0, 0, 0
+        background_normal: ''
+        font_size: sp(16)
+        height: dp(34)
+        color: 0.8, 0.4, 0.1, 1
+        pos_hint: {'center_x': 0.5}
         on_release: root.order_history_screen.view_order_details(root.order.get('order_id'))
+
+        canvas.before:
+            Color:
+                rgba: 0.8, 0.4, 0.1, 1
+            Line:
+                width: 1.1
+                rounded_rectangle: (self.x, self.y, self.width, self.height, dp(23))

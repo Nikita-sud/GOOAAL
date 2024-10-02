@@ -75,7 +75,6 @@ SELECT * FROM customer_address;
 -- ('g.taylor@lagoal.pizza', '12345'),
 -- ('h.anderson@lagoal.pizza', '12345'),
 -- ('i.thomas@lagoal.pizza', '12345'),
-
 -- ('j.jackson@lagoal.pizza', '12345'),
 -- ('k.white@lagoal.pizza', '12345'),
 -- ('l.harris@lagoal.pizza', '12345'),

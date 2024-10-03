@@ -2,8 +2,8 @@
 -- ALTER TABLE customer
 -- CHANGE COLUMN ID customer_id INT NOT NULL AUTO_INCREMENT;
 -- SELECT * FROM customer;
--- SELECT * FROM cust;
-SELECT * FROM customer;
+SELECT * FROM orders;
+-- SHOW TABLES;
 -- ALTER TABLE customer
 -- ADD COLUMN discount_for_next FLOAT DEFAULT 0.00;
 

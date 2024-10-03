@@ -273,16 +273,14 @@ class BasketScreen(ColoredScreen):
         # Сохраняем заказ
         self.order_repo.save_order(order)
 
-        # Назначаем доставщика на заказ
         try:
             delivery_person = self.deliverymen_repo.find_available_delivery_person(postal_code_id)
             if delivery_person:
                 self.order_repo.assign_order_to_delivery_person(order.order_id, delivery_person['employee_id'])
         except Exception as ex:
             print(f"Error while assigning delivery person: {ex}")
-            return
+            # return
 
-        # Продолжаем с логикой обновления ресторана и клиента
         restaurant_repo : RestaurantsInterface = RestaurantsRepo(connect_to_db())
         restaurant_repo.add_earnings(self.total_price, customer_id)
         customer_repo : CustomerInterface = CustomerRepo(connect_to_db())

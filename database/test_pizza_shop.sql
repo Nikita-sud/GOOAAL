@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 9.0.1, for macos14.4 (arm64)
+-- MySQL dump 10.13  Distrib 8.0.39, for Win64 (x86_64)
 --
 -- Host: localhost    Database: test_pizza_shop
 -- ------------------------------------------------------
--- Server version	9.0.1
+-- Server version	8.0.39
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -121,7 +121,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES (15,'Timur','Jercak',1,'1998-06-13','12345',2,8,0.1),(16,'Nikita','Bulgaru',1,'2004-08-28','+12345',2,7,0),(17,'Robert','Oppenheimer',1,'1904-03-23','43784',3,7,0),(18,'Jana','Olaf',2,'1969-10-30','92834',4,1,0),(19,'Mike','Wazowski',1,'2024-10-03','23421',5,1,0);
+INSERT INTO `customer` VALUES (15,'Timur','Jercak',1,'1998-06-13','12345',2,11,0),(16,'Nikita','Bulgaru',1,'2004-08-28','+12345',2,7,0),(17,'Robert','Oppenheimer',1,'1904-03-23','43784',3,7,0),(18,'Jana','Olaf',2,'1969-10-30','92834',4,1,0),(19,'Mike','Wazowski',1,'2024-10-03','23421',5,1,0);
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -516,7 +516,7 @@ CREATE TABLE `order_items` (
   PRIMARY KEY (`order_item_id`),
   KEY `order_id` (`order_id`),
   CONSTRAINT `order_items_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -525,7 +525,7 @@ CREATE TABLE `order_items` (
 
 LOCK TABLES `order_items` WRITE;
 /*!40000 ALTER TABLE `order_items` DISABLE KEYS */;
-INSERT INTO `order_items` VALUES (21,15,2,'Pizza',1,6.87),(22,15,4,'Pizza',1,7.63),(23,16,1,'Pizza',1,4.58),(24,17,1,'Pizza',1,4.58),(25,17,2,'Pizza',1,6.87),(26,17,4,'Pizza',1,7.63),(27,18,5,'Pizza',2,11.44),(28,18,6,'Pizza',3,7.48),(29,18,7,'Pizza',1,7.63),(30,19,1,'Pizza',1,4.58),(31,20,4,'Pizza',3,7.63),(32,20,3,'Pizza',1,8.09),(33,20,6,'Pizza',1,7.48),(34,20,5,'Pizza',1,11.44),(35,21,1,'Pizza',1,4.58),(36,22,3,'Pizza',1,8.09),(37,23,2,'Pizza',1,6.87),(38,24,1,'Pizza',4,4.58),(39,25,1,'Pizza',1,4.58),(40,25,2,'Pizza',1,6.87),(41,25,3,'Pizza',1,8.09),(42,25,4,'Pizza',1,7.63),(43,25,5,'Pizza',1,11.44),(44,25,6,'Pizza',1,7.48),(45,26,1,'Pizza',2,4.58),(46,26,1,'Drink',2,3.00),(47,27,4,'Pizza',1,7.63),(48,28,1,'Pizza',1,4.58),(49,29,2,'Pizza',1,6.87),(50,29,1,'Pizza',1,4.58),(51,30,1,'Pizza',1,4.58),(52,30,3,'Pizza',1,8.09),(53,31,1,'Pizza',10,4.58),(54,32,1,'Pizza',1,4.58),(55,32,3,'Pizza',9,8.09),(56,33,1,'Pizza',10,4.58),(57,34,1,'Pizza',1,4.58),(58,35,1,'Pizza',1,4.58),(59,36,1,'Pizza',1,4.58),(60,37,1,'Pizza',1,4.58),(61,38,1,'Pizza',1,4.58),(62,39,1,'Pizza',1,4.58);
+INSERT INTO `order_items` VALUES (21,15,2,'Pizza',1,6.87),(22,15,4,'Pizza',1,7.63),(23,16,1,'Pizza',1,4.58),(24,17,1,'Pizza',1,4.58),(25,17,2,'Pizza',1,6.87),(26,17,4,'Pizza',1,7.63),(27,18,5,'Pizza',2,11.44),(28,18,6,'Pizza',3,7.48),(29,18,7,'Pizza',1,7.63),(30,19,1,'Pizza',1,4.58),(31,20,4,'Pizza',3,7.63),(32,20,3,'Pizza',1,8.09),(33,20,6,'Pizza',1,7.48),(34,20,5,'Pizza',1,11.44),(35,21,1,'Pizza',1,4.58),(36,22,3,'Pizza',1,8.09),(37,23,2,'Pizza',1,6.87),(38,24,1,'Pizza',4,4.58),(39,25,1,'Pizza',1,4.58),(40,25,2,'Pizza',1,6.87),(41,25,3,'Pizza',1,8.09),(42,25,4,'Pizza',1,7.63),(43,25,5,'Pizza',1,11.44),(44,25,6,'Pizza',1,7.48),(45,26,1,'Pizza',2,4.58),(46,26,1,'Drink',2,3.00),(47,27,4,'Pizza',1,7.63),(48,28,1,'Pizza',1,4.58),(49,29,2,'Pizza',1,6.87),(50,29,1,'Pizza',1,4.58),(51,30,1,'Pizza',1,4.58),(52,30,3,'Pizza',1,8.09),(53,31,1,'Pizza',10,4.58),(54,32,1,'Pizza',1,4.58),(55,32,3,'Pizza',9,8.09),(56,33,1,'Pizza',10,4.58),(57,34,1,'Pizza',1,4.58),(58,35,1,'Pizza',1,4.58),(59,36,1,'Pizza',1,4.58),(60,37,1,'Pizza',1,4.58),(61,38,1,'Pizza',1,4.58),(62,39,1,'Pizza',1,4.58),(63,40,1,'Pizza',1,4.58),(64,41,1,'Pizza',1,4.58),(65,42,1,'Pizza',1,4.58);
 /*!40000 ALTER TABLE `order_items` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -576,7 +576,7 @@ CREATE TABLE `orders` (
   CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`status_id`) REFERENCES `order_status` (`status_id`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `orders_ibfk_3` FOREIGN KEY (`delivery_person_id`) REFERENCES `deliverymen` (`employee_id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -585,7 +585,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (15,17,14.50,3,NULL,NULL,'2024-09-29 21:50:58',NULL),(16,17,4.58,3,NULL,NULL,'2024-09-29 23:26:24',NULL),(17,17,19.08,3,NULL,NULL,'2024-09-29 23:26:58',NULL),(18,16,52.95,3,NULL,NULL,'2024-10-01 09:59:29',NULL),(19,15,4.58,3,NULL,NULL,'2024-10-01 15:26:43',NULL),(20,17,49.90,3,NULL,NULL,'2024-10-02 16:48:23',NULL),(21,17,3.71,3,NULL,NULL,'2024-10-02 21:59:23',NULL),(22,17,7.28,3,NULL,NULL,'2024-10-02 22:03:43',NULL),(23,17,6.18,3,NULL,NULL,'2024-10-02 22:10:19',0.1),(24,18,16.49,3,NULL,NULL,'2024-10-02 23:06:36',0.1),(25,16,46.09,3,NULL,NULL,'2024-10-03 09:59:03',0),(26,19,7.58,3,NULL,NULL,'2024-10-03 12:14:36',0),(27,15,7.63,2,26,'2024-10-03 16:15:05','2024-10-03 12:55:09',0),(28,15,4.58,1,NULL,NULL,'2024-10-03 12:59:53',0),(29,15,11.45,3,NULL,NULL,'2024-10-03 13:14:59',0),(30,15,12.67,3,NULL,NULL,'2024-10-03 13:15:12',0),(31,15,45.80,3,NULL,NULL,'2024-10-03 13:29:56',0),(32,15,77.39,3,NULL,NULL,'2024-10-03 13:32:48',0),(33,15,45.80,3,NULL,NULL,'2024-10-03 13:52:48',0),(34,16,4.58,3,NULL,NULL,'2024-10-03 14:59:33',0),(35,16,4.58,3,NULL,NULL,'2024-10-03 15:27:10',0),(36,16,4.58,4,NULL,NULL,'2024-10-03 15:37:57',0),(37,16,4.58,3,NULL,NULL,'2024-10-03 15:38:20',0),(38,16,4.58,3,NULL,NULL,'2024-10-03 15:45:00',0),(39,16,4.58,3,26,'2024-10-03 18:48:41','2024-10-03 18:18:37',0);
+INSERT INTO `orders` VALUES (15,17,14.50,3,NULL,NULL,'2024-09-29 21:50:58',NULL),(16,17,4.58,3,NULL,NULL,'2024-09-29 23:26:24',NULL),(17,17,19.08,3,NULL,NULL,'2024-09-29 23:26:58',NULL),(18,16,52.95,3,NULL,NULL,'2024-10-01 09:59:29',NULL),(19,15,4.58,3,NULL,NULL,'2024-10-01 15:26:43',NULL),(20,17,49.90,3,NULL,NULL,'2024-10-02 16:48:23',NULL),(21,17,3.71,3,NULL,NULL,'2024-10-02 21:59:23',NULL),(22,17,7.28,3,NULL,NULL,'2024-10-02 22:03:43',NULL),(23,17,6.18,3,NULL,NULL,'2024-10-02 22:10:19',0.1),(24,18,16.49,3,NULL,NULL,'2024-10-02 23:06:36',0.1),(25,16,46.09,3,NULL,NULL,'2024-10-03 09:59:03',0),(26,19,7.58,3,NULL,NULL,'2024-10-03 12:14:36',0),(27,15,7.63,2,26,'2024-10-03 16:15:05','2024-10-03 12:55:09',0),(28,15,4.58,1,NULL,NULL,'2024-10-03 12:59:53',0),(29,15,11.45,3,NULL,NULL,'2024-10-03 13:14:59',0),(30,15,12.67,3,NULL,NULL,'2024-10-03 13:15:12',0),(31,15,45.80,3,NULL,NULL,'2024-10-03 13:29:56',0),(32,15,77.39,3,NULL,NULL,'2024-10-03 13:32:48',0),(33,15,45.80,3,NULL,NULL,'2024-10-03 13:52:48',0),(34,16,4.58,3,NULL,NULL,'2024-10-03 14:59:33',0),(35,16,4.58,3,NULL,NULL,'2024-10-03 15:27:10',0),(36,16,4.58,4,NULL,NULL,'2024-10-03 15:37:57',0),(37,16,4.58,3,NULL,NULL,'2024-10-03 15:38:20',0),(38,16,4.58,3,NULL,NULL,'2024-10-03 15:45:00',0),(39,16,4.58,3,26,'2024-10-03 18:48:41','2024-10-03 18:18:37',0),(40,15,4.12,3,NULL,NULL,'2024-10-03 20:52:22',0),(41,15,4.58,3,NULL,NULL,'2024-10-03 20:52:36',0),(42,15,4.58,2,NULL,NULL,'2024-10-03 20:53:09',0);
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -763,7 +763,7 @@ CREATE TABLE `restaurants` (
 
 LOCK TABLES `restaurants` WRITE;
 /*!40000 ALTER TABLE `restaurants` DISABLE KEYS */;
-INSERT INTO `restaurants` VALUES (1,1,5,1,339.93,20,1),(2,2,5,1,0,40,21),(3,3,5,1,109.814,60,41),(4,4,5,1,0,80,61),(5,5,5,1,24.068,97,81);
+INSERT INTO `restaurants` VALUES (1,1,5,1,353.212,20,1),(2,2,5,1,0,40,21),(3,3,5,1,109.814,60,41),(4,4,5,1,0,80,61),(5,5,5,1,24.068,97,81);
 /*!40000 ALTER TABLE `restaurants` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -794,4 +794,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-10-03 18:19:25
+-- Dump completed on 2024-10-03 20:53:16

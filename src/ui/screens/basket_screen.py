@@ -50,10 +50,11 @@ class BasketScreen(ColoredScreen):
         customer_repo : CustomerInterface = CustomerRepo(connect_to_db())
         self.discount_offer = customer_repo.get_discount_for_next(self.manager.current_customer_id)
         print(self.discount_offer)
-        epsilon = 0.00001
-        if abs(float(self.discount_offer) - 0.1) < epsilon:
-            self.ids.offer_message.text = "Hooray! You have a discount 10% :)"
 
+        if self.discount_offer>=0.1:
+            self.ids.offer_message.text = "Hooray! You have a discount 10% :)"
+        else:
+            self.ids.offer_message.text =''
 
 
         self.update_basket()
@@ -103,6 +104,8 @@ class BasketScreen(ColoredScreen):
         total = 0
         num_of_pizza = 0
         
+        epsilon = 0.00001
+
 
         try:
             self.birth_offer = self.check_birthday(self.manager.current_customer_id)
@@ -150,12 +153,14 @@ class BasketScreen(ColoredScreen):
 
         if (num_of_pizza>=10):
             self.ids.offer_message.text = "If your order has more than 10 pizza you will recieve a 10{} bonus for your next order!".format('%')
-        else:
-            self.ids.offer_message.text=''
+
+
         self.total_price = total*(1-self.discount_offer)
 
     def on_kv_post(self, base_widget):
         self.update_basket()
+        
+       
 
     def show_order_popup(self):
         content = BoxLayout(orientation='vertical', padding=dp(10), spacing=dp(10))

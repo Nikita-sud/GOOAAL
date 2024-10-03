@@ -156,8 +156,9 @@ class BasketScreen(ColoredScreen):
         order_layout.add_widget(Label(text="Your Order:", font_size=sp(18), color=(0, 0, 0, 1), size_hint_y=None, height=dp(30)))
 
         for item in self.basket_items:
+            tot_price = item['quantity']*float(item['price'].replace("$", ''))
             order_item_label = Label(
-                text=f"{item['quantity']}x {item['product_name']} - ${item['price']}",
+                text=f"{item['quantity']}x {item['product_name']} - ${tot_price}",
                 font_size=sp(16),
                 color=(0, 0, 0, 1),  
                 size_hint_y=None,

@@ -17,6 +17,7 @@ from backend.repositories.orders.order_repo import OrderRepo
 from backend.models import Order
 from kivy.metrics import dp
 from backend.database import connect_to_db
+import datetime
 
 class BasketScreen(ColoredScreen):
     basket_items = ListProperty([])  # Список товаров в корзине
@@ -48,10 +49,24 @@ class BasketScreen(ColoredScreen):
             print(ex)
             self.ids.offer_message.text = "Invalid code :("
 
+    # def check_birthday(self, customer_id):
+    #     connection = connect_to_db()
+    #     cursor = connection.cursor()
+    #     query = """
+    #     SELECT birthday FROM customer
+    #     WHERE customeer_id = %s"""
+    #     cursor.execute(query, (int(customer_id),))
+    #     result = cursor.fetchone()
+    #     birth_date = datetime.strptime(result[0], '%d.%m.%Y').date()
+    #     today = datetime.today()
+
+    #     if(birth_date.day == today.day and birth_date.month == today.month):
+
 
     def update_basket(self):
         self.ids.basket_items_grid.clear_widgets()
         total = 0
+
         for item_data in self.basket_items:
             item = ProductCardMini(
                 product_name=item_data['product_name'],

@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 9.0.1, for macos14.4 (arm64)
+-- MySQL dump 10.13  Distrib 8.0.39, for Win64 (x86_64)
 --
 -- Host: localhost    Database: test_pizza_shop
 -- ------------------------------------------------------
--- Server version	9.0.1
+-- Server version	8.0.39
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -88,7 +88,7 @@ CREATE TABLE `credentials` (
 
 LOCK TABLES `credentials` WRITE;
 /*!40000 ALTER TABLE `credentials` DISABLE KEYS */;
-INSERT INTO `credentials` VALUES (18,'jancik','e95b73b1dcec7abf6c3cf39da301a208ba1081f9a7686ba54f6d505141359a8e','6104297a'),(16,'nikita','8617c96e1825c193a31ec2f8ab56650bfee01721f59759f6965ebb85440ba001','50ff7907'),(17,'ope','95bedd060987319ae3744b3e6385590e8e1257fe733ffc3a2d74e0910fbd7b4b','07bd7d81'),(15,'tim','2be01e15bbd8891ec1497521b290bd508511eaec94a60405ab17bbe5dd63a41d','dbb7ccb7');
+INSERT INTO `credentials` VALUES (18,'jancik','e95b73b1dcec7abf6c3cf39da301a208ba1081f9a7686ba54f6d505141359a8e','6104297a'),(19,'mw','bb9560804a99c228987b719d5d4c9f4d3bed3e72bcad72461f9600befea1f3ce','4e8a947e'),(16,'nikita','8617c96e1825c193a31ec2f8ab56650bfee01721f59759f6965ebb85440ba001','50ff7907'),(17,'ope','95bedd060987319ae3744b3e6385590e8e1257fe733ffc3a2d74e0910fbd7b4b','07bd7d81'),(15,'tim','2be01e15bbd8891ec1497521b290bd508511eaec94a60405ab17bbe5dd63a41d','dbb7ccb7');
 /*!40000 ALTER TABLE `credentials` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -111,7 +111,7 @@ CREATE TABLE `customer` (
   PRIMARY KEY (`customer_id`),
   KEY `fk_gender` (`gender_id`),
   CONSTRAINT `fk_gender` FOREIGN KEY (`gender_id`) REFERENCES `gender` (`gender_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -120,7 +120,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES (15,'Timur','Jercak',1,'1998-06-13','12345',2,1),(16,'Nikita','Bulgaru',1,'2004-08-28','+12345',2,2),(17,'Robert','Oppenheimer',1,'1904-03-23','43784',3,7),(18,'Jana','Olaf',2,'1969-10-30','92834',4,1);
+INSERT INTO `customer` VALUES (15,'Timur','Jercak',1,'1998-06-13','12345',2,1),(16,'Nikita','Bulgaru',1,'2004-08-28','+12345',2,2),(17,'Robert','Oppenheimer',1,'1904-03-23','43784',3,7),(18,'Jana','Olaf',2,'1969-10-30','92834',4,1),(19,'Mike','Wazowski',1,'2024-10-03','23421',5,0);
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -142,7 +142,7 @@ CREATE TABLE `customer_address` (
   KEY `city_id` (`city_id`),
   CONSTRAINT `customer_address_ibfk_1` FOREIGN KEY (`postal_code_id`) REFERENCES `postal_codes` (`ID`),
   CONSTRAINT `customer_address_ibfk_2` FOREIGN KEY (`city_id`) REFERENCES `cities` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151,7 +151,7 @@ CREATE TABLE `customer_address` (
 
 LOCK TABLES `customer_address` WRITE;
 /*!40000 ALTER TABLE `customer_address` DISABLE KEYS */;
-INSERT INTO `customer_address` VALUES (1,23,'4',96,2380),(2,12,'1',12,2380),(3,12,'2',41,2380),(4,2,'1',95,2380);
+INSERT INTO `customer_address` VALUES (1,23,'4',96,2380),(2,12,'1',12,2380),(3,12,'2',41,2380),(4,2,'1',95,2380),(5,12,'12',97,2380);
 /*!40000 ALTER TABLE `customer_address` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -792,4 +792,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-10-03  9:59:50
+-- Dump completed on 2024-10-03 12:04:19

@@ -219,6 +219,36 @@ class BasketScreen(ColoredScreen):
 
         customer_id = self.manager.current_customer_id
 
+        # Получаем customer_address_id клиента из таблицы customer
+        connection = connect_to_db()
+        cursor = connection.cursor()
+        query = """
+        SELECT address FROM customer WHERE customer_id = %s
+        """
+        cursor.execute(query, (customer_id,))
+        customer_address_result = cursor.fetchone()
+        customer_address_id = customer_address_result[0] if customer_address_result else None
+        connection.close()
+
+        if customer_address_id is None:
+            self.ids.offer_message.text = "Address not found for customer!"
+            return
+
+        # Получаем почтовый индекс клиента из таблицы customer_address
+        connection = connect_to_db()
+        cursor = connection.cursor()
+        query = """
+        SELECT postal_code_id FROM customer_address WHERE customer_address_id = %s
+        """
+        cursor.execute(query, (customer_address_id,))
+        postal_code_result = cursor.fetchone()
+        postal_code_id = postal_code_result[0] if postal_code_result else None
+        connection.close()
+
+        if postal_code_id is None:
+            self.ids.offer_message.text = "Postal code not found for customer!"
+            return
+
         order_items = []
         num_of_pizza = 0
         for item in self.basket_items:
@@ -240,9 +270,19 @@ class BasketScreen(ColoredScreen):
         )
         self.ids.basket_items_grid.clear_widgets()
 
-
+        # Сохраняем заказ
         self.order_repo.save_order(order)
 
+        # Назначаем доставщика на заказ
+        try:
+            delivery_person = self.deliverymen_repo.find_available_delivery_person(postal_code_id)
+            if delivery_person:
+                self.order_repo.assign_order_to_delivery_person(order.order_id, delivery_person['employee_id'])
+        except Exception as ex:
+            print(f"Error while assigning delivery person: {ex}")
+            return
+
+        # Продолжаем с логикой обновления ресторана и клиента
         restaurant_repo : RestaurantsInterface = RestaurantsRepo(connect_to_db())
         restaurant_repo.add_earnings(self.total_price, customer_id)
         customer_repo : CustomerInterface = CustomerRepo(connect_to_db())

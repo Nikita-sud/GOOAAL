@@ -79,7 +79,7 @@ class BasketScreen(ColoredScreen):
     def update_basket(self):
         self.ids.basket_items_grid.clear_widgets()
         total = 0
-
+        num_of_pizza = 0
         try:
             self.birth_offer = self.check_birthday(self.manager.current_customer_id)
             self.one_free_drink, self.one_free_pizza = ((False, False) if self.birth_offer == False else (True, True))
@@ -120,7 +120,12 @@ class BasketScreen(ColoredScreen):
                 # self.birth_offer=False
             else:
                 total += item.price * item.quantity
-       
+
+            if (item_data['category']=='Pizza'):
+                num_of_pizza+=1
+        if (num_of_pizza>=10):
+            self.ids.offer_message.text = "If you order more than 10 pizza you will recieve a 10{} bonus for your next order!".format('%')
+
         self.total_price = total
 
     def on_kv_post(self, base_widget):

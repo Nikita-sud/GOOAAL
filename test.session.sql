@@ -3,7 +3,9 @@
 -- CHANGE COLUMN ID customer_id INT NOT NULL AUTO_INCREMENT;
 -- SELECT * FROM customer;
 -- SELECT * FROM cust;
-SELECT * FROM customer_address;
+-- SELECT * FROM customer;
+-- ALTER TABLE customer
+-- ADD COLUMN discount_for_next FLOAT DEFAULT 0.00;
 
 -- INSERT INTO offers(name, price, code) VALUES 
 -- ('offer_10', 0.1, 'GOAL10');

@@ -3,7 +3,7 @@
 -- CHANGE COLUMN ID customer_id INT NOT NULL AUTO_INCREMENT;
 -- SELECT * FROM customer;
 -- SELECT * FROM cust;
-SELECT * FROM customer;
+SELECT * FROM customer_address;
 
 -- INSERT INTO offers(name, price, code) VALUES 
 -- ('offer_10', 0.1, 'GOAL10');
@@ -75,12 +75,12 @@ SELECT * FROM customer;
 -- ('g.taylor@lagoal.pizza', '12345'),
 -- ('h.anderson@lagoal.pizza', '12345'),
 -- ('i.thomas@lagoal.pizza', '12345'),
-
 -- ('j.jackson@lagoal.pizza', '12345'),
 -- ('k.white@lagoal.pizza', '12345'),
 -- ('l.harris@lagoal.pizza', '12345'),
 -- ('m.martin@lagoal.pizza', '12345'),
 -- ('n.thompson@lagoal.pizza', '12345'),
+
 
 -- ('o.garcia@lagoal.pizza', '12345'),
 -- ('p.martinez@lagoal.pizza', '12345'),

@@ -1,15 +1,15 @@
-# order_details_screen.py
+# src/ui/screens/order_details_screen.py
 
 import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from kivy.app import App
+from kivy.lang import Builder
 from ui.screens.colored_screen import ColoredScreen
 from kivy.properties import NumericProperty, ObjectProperty
-from kivy.lang import Builder
-from backend.database import connect_to_db
-from backend.repositories.orders.order_repo import OrderRepo
 from ui.ui_components.order_item_card.order_item_card import OrderItemCard
-from backend.repositories.customers.customer_repo import CustomerRepo
+from datetime import datetime, timedelta
+from kivy.clock import Clock
 
 class OrderDetailsScreen(ColoredScreen):
     name = 'order_details_screen'
@@ -17,7 +17,13 @@ class OrderDetailsScreen(ColoredScreen):
     order_details = ObjectProperty(None)
     customer_details = ObjectProperty(None)
 
-    def __init__(self, **kwargs):
+    # Добавляем ObjectProperty для репозиториев
+    order_repo = ObjectProperty(None)
+    customer_repo = ObjectProperty(None)
+
+    def __init__(self, order_repo, customer_repo, **kwargs):
+        self.order_repo = order_repo
+        self.customer_repo = customer_repo
         Builder.load_file('src/ui/screens/screens_kv/order_details_screen.kv')
         Builder.load_file('src/ui/ui_components/order_item_card/order_item_card.kv')
         super().__init__(**kwargs)
@@ -27,17 +33,27 @@ class OrderDetailsScreen(ColoredScreen):
         self.load_order_details()
 
     def load_order_details(self):
-        connection = connect_to_db()
-        order_repo = OrderRepo(connection)
-        customer_repo = CustomerRepo(connection)
-
-        self.order_details = order_repo.get_order_details(self.order_id)
+        # Загружаем детали заказа
+        self.order_details = self.order_repo.get_order_details(self.order_id)
         customer_id = self.order_details['order']['customer_id']
-        self.customer_details = customer_repo.get_customer_by_id(customer_id)
+        self.customer_details = self.customer_repo.get_customer_by_id(customer_id)
 
-        connection.close()
+        # Получаем время создания заказа (так как это уже объект datetime, strptime не нужен)
+        order_created_at = self.order_details['order']['created_at']
 
-        # Обновляем интерфейс
+        # Вычисляем, сколько секунд прошло с момента создания заказа
+        elapsed_time = (datetime.now() - order_created_at).total_seconds()
+
+        # Если прошло менее 5 секунд, показываем кнопку и прячем её через оставшееся время
+        if elapsed_time < 5:
+            remaining_time = 5 - elapsed_time
+            self.ids.cancel_button.opacity = 1
+            Clock.schedule_once(self.hide_cancel_button, remaining_time)
+        else:
+            # Если прошло больше 5 секунд, сразу скрываем кнопку
+            self.ids.cancel_button.opacity = 0
+
+        # Обновляем интерфейс заказа
         self.update_order_details()
 
     def update_order_details(self):
@@ -63,3 +79,12 @@ class OrderDetailsScreen(ColoredScreen):
 
     def back_to_history(self):
         self.manager.current = 'order_history_screen'
+
+    def hide_cancel_button(self, dt):
+        self.ids.cancel_button.opacity = 0  # Прячем кнопку
+
+    def cancel_order(self):
+        success = self.order_repo.cancel_order(self.order_id)
+        if success:
+            self.ids.cancel_button.opacity = 0  # Скрываем кнопку после успешной отмены
+            print(f"Order {self.order_id} was canceled.")

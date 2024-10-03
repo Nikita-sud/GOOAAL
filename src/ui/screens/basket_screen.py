@@ -34,6 +34,10 @@ class BasketScreen(ColoredScreen):
     total_price = NumericProperty(0.0)  
     birth_offer = None
     discount_offer = 0.00
+    
+    # Добавляем ObjectProperty для репозитория заказов
+    order_repo = ObjectProperty(None)
+    
     def __init__(self, **kwargs):
         self.discount = 0
         Builder.load_file('src/ui/screens/screens_kv/basket_screen.kv')
@@ -232,10 +236,7 @@ class BasketScreen(ColoredScreen):
         self.ids.basket_items_grid.clear_widgets()
 
 
-        connection = connect_to_db()
-        order_repo = OrderRepo(connection)
-        order_repo.save_order(order)
-        connection.close()
+        self.order_repo.save_order(order)
 
         restaurant_repo : RestaurantsInterface = RestaurantsRepo(connect_to_db())
         restaurant_repo.add_earnings(self.total_price, customer_id)

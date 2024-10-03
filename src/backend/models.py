@@ -21,3 +21,11 @@ class Order:
         self.created_at = created_at or datetime.now()
         self.order_id = None
         self.discount_applied = discount_applied
+
+class DeliveryPerson:
+    def __init__(self, employee_id, postal_code_id, availability=True, number_of_deliveries=0, last_delivery_time=None):
+        self.employee_id = employee_id
+        self.postal_code_id = postal_code_id
+        self.availability = availability
+        self.number_of_deliveries = number_of_deliveries
+        self.last_delivery_time = last_delivery_time

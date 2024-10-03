@@ -212,3 +212,19 @@
                     size: dp(24), dp(24)
                     allow_stretch: True
                     keep_ratio: True
+
+            # Добавляем кнопку отмены
+            Button:
+                id: cancel_button
+                text: "Cancel Order"
+                size_hint_x: 0.5
+                background_normal: ''
+                background_color: 1, 0, 0, 1  # Красная кнопка
+                on_release: root.cancel_order()
+                canvas.before:
+                    Color:
+                        rgba: 1, 1, 1, 1  # Белый цвет для текста
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [dp(10)]

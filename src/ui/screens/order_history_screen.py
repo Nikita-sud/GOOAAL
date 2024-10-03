@@ -2,16 +2,18 @@
 
 import sys
 import os
-import time
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from ui.screens.colored_screen import ColoredScreen
-from kivy.properties import ListProperty, NumericProperty
-from kivy.lang import Builder
-from backend.database import connect_to_db
-from backend.repositories.orders.order_repo import OrderRepo
-from ui.ui_components.order_card.order_card import OrderCard  # Обновленный импорт
+from kivy.app import App
 from kivy.clock import Clock
+from kivy.lang import Builder
+from ui.screens.colored_screen import ColoredScreen
+from kivy.properties import ListProperty, NumericProperty, ObjectProperty
+from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.screenmanager import Screen
 
+from backend.repositories.orders.order_repo import OrderRepo
+from backend.repositories.customers.customer_repo import CustomerRepo
+from ui.ui_components.order_card.order_card import OrderCard
 
 class OrderHistoryScreen(ColoredScreen):
     name = 'order_history_screen'
@@ -19,7 +21,13 @@ class OrderHistoryScreen(ColoredScreen):
     customer_id = NumericProperty(0)
     update_timer = None
 
-    def __init__(self, **kwargs):
+    # Добавляем ObjectProperty для репозиториев
+    order_repo = ObjectProperty(None)
+    customer_repo = ObjectProperty(None)
+
+    def __init__(self, order_repo, customer_repo, **kwargs):
+        self.order_repo = order_repo
+        self.customer_repo = customer_repo
         Builder.load_file('src/ui/screens/screens_kv/order_history_screen.kv')
         Builder.load_file('src/ui/ui_components/order_card/order_card.kv')
         super().__init__(**kwargs)
@@ -36,11 +44,7 @@ class OrderHistoryScreen(ColoredScreen):
             self.update_timer = None
 
     def load_orders(self):
-        connection = connect_to_db()
-        order_repo = OrderRepo(connection)
-        self.orders = order_repo.get_orders_by_customer_id(self.customer_id)
-        connection.close()
-
+        self.orders = self.order_repo.get_orders_by_customer_id(self.customer_id)
         self.update_orders_list()
         self.start_timer_for_update()
 
@@ -48,15 +52,12 @@ class OrderHistoryScreen(ColoredScreen):
         self.update_timer = Clock.schedule_interval(self.update_current_status_history, 5)
 
     def update_current_status_history(self, dt):
-        connection = connect_to_db()
-        order_repo = OrderRepo(connection)
-        self.orders = order_repo.get_orders_by_customer_id(self.customer_id)
-        connection.close()
+        self.orders = self.order_repo.get_orders_by_customer_id(self.customer_id)
         self.update_orders_list()
 
     def update_orders_list(self):
         self.ids.orders_grid.clear_widgets()
-        for order in self.orders:      
+        for order in self.orders:
             order_card = OrderCard(order=order)
             order_card.order_history_screen = self
             self.ids.orders_grid.add_widget(order_card)

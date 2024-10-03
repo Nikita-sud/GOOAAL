@@ -21,17 +21,19 @@ class CustomerRepo(CustomerInterface):
     def set_discount_for_next(self, customer_id, discount):
         cursor = self.db_connection.cursor()
         query = "UPDATE customer SET discount_for_next = %s WHERE customer_id = %s"
-        print('Discount was added')
         cursor.execute(query, (discount,customer_id,))
+        print(f'Discount was added {discount}')
         cursor.close()
+        self.db_connection.commit()  
 
     def get_discount_for_next(self, customer_id):
         cursor = self.db_connection.cursor()
         query = "SELECT discount_for_next FROM customer WHERE customer_id = %s"
         cursor.execute(query, (customer_id,))
         result = cursor.fetchone()
+        print(f'Discount: {result[0]}')
         cursor.close()
-        return result[0]
+        return float(result[0])
     
     def get_postal_code_id(self, postal_code):
         cursor = self.db_connection.cursor()

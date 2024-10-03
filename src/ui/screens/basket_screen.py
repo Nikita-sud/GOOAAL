@@ -45,8 +45,12 @@ class BasketScreen(ColoredScreen):
         self.one_free_drink, self.one_free_pizza = ((False, False) if self.birth_offer == False else (True, True))
         customer_repo : CustomerInterface = CustomerRepo(connect_to_db())
         self.discount_offer = customer_repo.get_discount_for_next(self.manager.current_customer_id)
-        if(self.discount_offer>0.00):
+        print(self.discount_offer)
+        epsilon = 0.00001
+        if abs(float(self.discount_offer) - 0.1) < epsilon:
             self.ids.offer_message.text = "Hooray! You have a discount 10% :)"
+
+
 
         self.update_basket()
 
@@ -82,8 +86,7 @@ class BasketScreen(ColoredScreen):
         result = cursor.fetchone()
         today = datetime.datetime.today()
         birth_date = result[0]
-        print(birth_date.month)
-        print(today.month)
+
 
         if(birth_date.day == today.day and birth_date.month == today.month):
             self.ids.offer_message.text = "It`s your birthday! One pizza and a drink for free! :)"
@@ -95,6 +98,8 @@ class BasketScreen(ColoredScreen):
         self.ids.basket_items_grid.clear_widgets()
         total = 0
         num_of_pizza = 0
+        
+
         try:
             self.birth_offer = self.check_birthday(self.manager.current_customer_id)
             self.one_free_drink, self.one_free_pizza = ((False, False) if self.birth_offer == False else (True, True))
@@ -138,9 +143,11 @@ class BasketScreen(ColoredScreen):
 
             if (item_data['category']=='Pizza'):
                 num_of_pizza+=item_data['quantity']
-        if (num_of_pizza>=10):
-            self.ids.offer_message.text = "If you order more than 10 pizza you will recieve a 10{} bonus for your next order!".format('%')
 
+        if (num_of_pizza>=10):
+            self.ids.offer_message.text = "If your order has more than 10 pizza you will recieve a 10{} bonus for your next order!".format('%')
+        else:
+            self.ids.offer_message.text=''
         self.total_price = total*(1-self.discount_offer)
 
     def on_kv_post(self, base_widget):

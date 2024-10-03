@@ -23,6 +23,8 @@ class BasketScreen(ColoredScreen):
     total_price = NumericProperty(0.0)  # Общая цена
 
     def __init__(self, **kwargs):
+        self.discount = 0
+
         Builder.load_file('src/ui/screens/screens_kv/basket_screen.kv')
         Builder.load_file('src/ui/ui_components/product_card_mini/product_card_mini.kv')
         super().__init__(**kwargs)

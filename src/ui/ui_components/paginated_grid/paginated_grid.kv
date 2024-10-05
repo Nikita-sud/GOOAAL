@@ -2,60 +2,78 @@
 # paginated_grid.kv
 
 <PaginatedGrid>:
+    # Set the layout orientation to vertical
     orientation: 'vertical'
+    # Reference to the Carousel widget within PaginatedGrid
     product_carousel: product_carousel
 
+    # Carousel widget to handle pagination between different product categories
     Carousel:
         id: product_carousel
-        direction: 'right'
+        direction: 'right'  # Slide direction
 
+        # First slide for Drinks category
         BoxLayout:
             id: drinks_slide
-            on_kv_post: root.drinks_slide = self
+            on_kv_post: root.drinks_slide = self  # Assign the current BoxLayout to root.drinks_slide
             orientation: 'vertical'
+            
+            # ScrollView to enable vertical scrolling of drink items
             ScrollView:
-                do_scroll_x: False
-                do_scroll_y: True
+                do_scroll_x: False  # Disable horizontal scrolling
+                do_scroll_y: True   # Enable vertical scrolling
+                
+                # GridLayout to arrange drink items in a grid
                 GridLayout:
                     id: drinks_grid
-                    cols: 2
-                    row_default_height: dp(200)
-                    row_force_default: True
-                    spacing: dp(10)
-                    padding: [dp(10), dp(10)]
+                    cols: 2  # Number of columns
+                    row_default_height: dp(200)  # Default row height
+                    row_force_default: True  # Enforce default row height
+                    spacing: dp(10)  # Space between widgets
+                    padding: [dp(10), dp(10)]  # Padding around the grid
                     size_hint_y: None
-                    height: self.minimum_height
+                    height: self.minimum_height  # Adjust height based on content
 
+        # Second slide for Pizza category
         BoxLayout:
             id: pizza_slide
-            on_kv_post: root.pizza_slide = self
+            on_kv_post: root.pizza_slide = self  # Assign the current BoxLayout to root.pizza_slide
             orientation: 'vertical'
+            
+            # ScrollView to enable vertical scrolling of pizza items
             ScrollView:
-                do_scroll_x: False
-                do_scroll_y: True
+                do_scroll_x: False  # Disable horizontal scrolling
+                do_scroll_y: True   # Enable vertical scrolling
+                
+                # GridLayout to arrange pizza items in a grid
                 GridLayout:
                     id: pizza_grid
-                    cols: 2
-                    row_default_height: dp(200)
-                    row_force_default: True
-                    spacing: dp(10)
-                    padding: [dp(10), dp(10)]
+                    cols: 2  # Number of columns
+                    row_default_height: dp(200)  # Default row height
+                    row_force_default: True  # Enforce default row height
+                    spacing: dp(10)  # Space between widgets
+                    padding: [dp(10), dp(10)]  # Padding around the grid
                     size_hint_y: None
-                    height: self.minimum_height
+                    height: self.minimum_height  # Adjust height based on content
 
+        # Third slide for Desserts category
         BoxLayout:
             id: desserts_slide
-            on_kv_post: root.desserts_slide = self
+            on_kv_post: root.desserts_slide = self  # Assign the current BoxLayout to root.desserts_slide
             orientation: 'vertical'
+            
+            # ScrollView to enable vertical scrolling of dessert items
             ScrollView:
-                do_scroll_x: False
-                do_scroll_y: True
+                do_scroll_x: False  # Disable horizontal scrolling
+                do_scroll_y: True   # Enable vertical scrolling
+                
+                # GridLayout to arrange dessert items in a grid
                 GridLayout:
                     id: desserts_grid
-                    cols: 2
-                    row_default_height: dp(200)
-                    row_force_default: True
-                    spacing: dp(10)
-                    padding: [dp(10), dp(10)]
+                    cols: 2  # Number of columns
+                    row_default_height: dp(200)  # Default row height
+                    row_force_default: True  # Enforce default row height
+                    spacing: dp(10)  # Space between widgets
+                    padding: [dp(10), dp(10)]  # Padding around the grid
                     size_hint_y: None
-                    height: self.minimum_height
+                    height: self.minimum_height  # Adjust height based on content

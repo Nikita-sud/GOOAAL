@@ -4,6 +4,7 @@
 <BasketScreen>:
     name: 'basket_screen'
 
+    # Set the background color and draw a rectangle before other elements are rendered
     canvas.before:
         Color:
             rgba: self.background_color
@@ -13,121 +14,122 @@
 
     BoxLayout:
         orientation: 'vertical'
-        padding: dp(10)
-        spacing: dp(10)
+        padding: dp(10)  # Padding inside the main container
+        spacing: dp(10)  # Spacing between child elements
 
         ScrollView:
-            do_scroll_x: False
-            do_scroll_y: True
+            do_scroll_x: False  # Disable horizontal scrolling
+            do_scroll_y: True  # Enable vertical scrolling
 
             GridLayout:
-                id: basket_items_grid
-                cols: 1
-                row_default_height: dp(50)
-                row_force_default: True
-                spacing: dp(10)
-                padding: [dp(10), dp(10)]
-                size_hint_y: None
-                height: self.minimum_height
+                id: basket_items_grid  # Container for basket items
+                cols: 1  # One column layout
+                row_default_height: dp(50)  # Default height for rows
+                row_force_default: True  # Force rows to have default height
+                spacing: dp(10)  # Spacing between rows
+                padding: [dp(10), dp(10)]  # Padding inside the grid
+                size_hint_y: None  # Height is determined by its children
+                height: self.minimum_height  # Set height to fit all children
 
         # Total Price Label
         Label:
-            text: "Total Price: {:.2f} $".format(root.total_price)
-            color: 1, 1, 1, 1  # Белый цвет
-            bold: True
-            size_hint_y: None
-            height: dp(30)
-            halign: 'center'
-            valign: 'middle'
-            text_size: self.size
+            text: "Total Price: {:.2f} $".format(root.total_price)  # Display the total price
+            color: 1, 1, 1, 1  # White color
+            bold: True  # Make the text bold
+            size_hint_y: None  # Fixed height
+            height: dp(30)  # Height of the label
+            halign: 'center'  # Horizontal alignment of text
+            valign: 'middle'  # Vertical alignment of text
+            text_size: self.size  # Set text size to the size of the label
 
+        # Label for offer messages
         Label:
-            text: ''
+            text: ''  # Initially empty
             id: offer_message
-            color: 1, 1, 1, 1  # Белый цвет
-            bold: True
-            size_hint_y: None
-            height: dp(30)
-            halign: 'center'
-            valign: 'middle'
-            text_size: self.size
+            color: 1, 1, 1, 1  # White color
+            bold: True  # Make the text bold
+            size_hint_y: None  # Fixed height
+            height: dp(30)  # Height of the label
+            halign: 'center'  # Horizontal alignment of text
+            valign: 'middle'  # Vertical alignment of text
+            text_size: self.size  # Set text size to the size of the label
 
+        # BoxLayout for the offer code input field
         BoxLayout:
             orientation: 'vertical'
-            size_hint_x: 0.95
-            pos_hint: {'center_x': 0.5}
+            size_hint_x: 0.95  # Width relative to parent
+            pos_hint: {'center_x': 0.5}  # Center horizontally
             size_hint_y: None
-            height: dp(50)  
-            spacing: dp(10)
+            height: dp(50)  # Fixed height
+            spacing: dp(10)  # Spacing between elements
 
-
-
+            # Background styling for the input box
             canvas.before:
                 Color:
-                    rgba: 1, 1, 1, 1  
+                    rgba: 1, 1, 1, 1  # Set color to white
                 RoundedRectangle:
                     pos: self.pos
                     size: self.size
-                    radius: [dp(10)]  
+                    radius: [dp(10)]  # Rounded corners with radius 10dp
 
+            # Text input for the offer code
             TextInput:
                 id: offer_code
-                hint_text: 'Offer Code *'
-                multiline: False
-                font_size: sp(19)
+                hint_text: 'Offer Code *'  # Placeholder text
+                multiline: False  # Single line input
+                font_size: sp(19)  # Font size for the input text
                 size_hint_y: None
-                height: dp(45)
-                background_normal: ''
-                background_active: ''
-                background_color: (0, 0, 0, 0)
-                padding: [dp(20), dp(12)]
-                cursor_color: 0.87, 0.42, 0.16, 1
-                selection_color: 0.87, 0.42, 0.16, 0.5
-                on_text: root.check_offer_code(self.text)
+                height: dp(45)  # Fixed height for the input field
+                background_normal: ''  # Remove default background
+                background_active: ''  # Remove default active background
+                background_color: (0, 0, 0, 0)  # Transparent background
+                padding: [dp(20), dp(12)]  # Padding inside the input box
+                cursor_color: 0.87, 0.42, 0.16, 1  # Color of the cursor
+                selection_color: 0.87, 0.42, 0.16, 0.5  # Color of the selection highlight
+                on_text: root.check_offer_code(self.text)  # Call method to check offer code when text changes
 
-
-        
         # Buttons Layout
         BoxLayout:
-            size_hint_y: None
-            height: dp(60)
-            padding: [dp(10), dp(0)]
-            spacing: dp(10)
+            size_hint_y: None  # Fixed height for the buttons layout
+            height: dp(60)  # Height of the buttons layout
+            padding: [dp(10), dp(0)]  # Padding around the buttons
+            spacing: dp(10)  # Spacing between buttons
             
-            # Кнопка назад с иконкой стрелки
+            # Back button with an icon
             Button:
-                size_hint_x: 0.5
-                background_normal: ''
-                background_color: 0, 0, 0, 0  # Make background transparent
-                on_release: app.root.current = 'menu_screen'
+                size_hint_x: 0.5  # Width of the button relative to parent
+                background_normal: ''  # Remove default button background
+                background_color: 0, 0, 0, 0  # Transparent background
+                on_release: app.root.current = 'menu_screen'  # Switch to the menu screen when pressed
+                # Draw rounded rectangle as the button background
                 canvas.before:
                     Color:
-                        rgba: 1, 1, 1, 1  # Белый цвет
+                        rgba: 1, 1, 1, 1  # White color
                     RoundedRectangle:
                         pos: self.pos
                         size: self.size
                         radius: [dp(10)]
-                # Вставка изображения стрелки внутрь кнопки
+                # Insert an arrow icon inside the button
                 Image:
-                    source: 'assets/images/back_arrow.png'
-                    center_x: self.parent.center_x
-                    center_y: self.parent.center_y
-                    size_hint: None, None
-                    size: dp(24), dp(24)
-                    allow_stretch: True
-                    keep_ratio: True
+                    source: 'assets/images/back_arrow.png'  # Path to the back arrow image
+                    center_x: self.parent.center_x  # Center horizontally within the button
+                    center_y: self.parent.center_y  # Center vertically within the button
+                    size_hint: None, None  # No scaling relative to parent
+                    size: dp(24), dp(24)  # Fixed size for the image
+                    fit_mode: 'contain'
             
-            # Кнопка "Place Order"
+            # Place Order button
             Button:
                 text: "Place Order"
-                size_hint_x: 0.5
-                background_normal: ''
-                background_color: 0, 0, 0, 0  # Make background transparent
-                color: 0, 0, 0, 1  # Черный цвет текста
-                on_release: root.place_order()
+                size_hint_x: 0.5  # Width of the button relative to parent
+                background_normal: ''  # Remove default button background
+                background_color: 0, 0, 0, 0  # Transparent background
+                color: 0, 0, 0, 1  # Black text color
+                on_release: root.place_order()  # Call the place_order method when pressed
+                # Draw rounded rectangle as the button background
                 canvas.before:
                     Color:
-                        rgba: 1, 1, 1, 1  # Белый цвет
+                        rgba: 1, 1, 1, 1  # White color
                     RoundedRectangle:
                         pos: self.pos
                         size: self.size

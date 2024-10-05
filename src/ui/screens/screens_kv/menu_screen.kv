@@ -3,100 +3,104 @@
 
 <Menu>:
     name: 'menu_screen'
-    darken_color_instruction: None 
+    darken_color_instruction: None
     canvas.before:
         Color:
-            rgba: self.background_color
+            rgba: self.background_color  # Use the background color of the screen
         Rectangle:
-            pos: self.pos
-            size: self.size
-    
+            pos: self.pos  # Set the position to match the screen position
+            size: self.size  # Set the size to match the screen size
+
     FloatLayout:
+        # Main BoxLayout for the special offers and other UI elements
         BoxLayout:
             id: special_offers_boxlayout
-            
             orientation: 'vertical'
 
             Widget:
-                size_hint_y: 0.01
+                size_hint_y: 0.01  # Spacer at the top
+
             # Top navigation bar (hamburger, special offer, and cart)
             BoxLayout:
                 size_hint_y: None
-                height: dp(60)
-                padding: dp(10)
-                
+                height: dp(60)  # Height for the navigation bar
+                padding: dp(10)  # Padding inside the BoxLayout
+
+                # Hamburger menu button
                 Button:
-                    size_hint_x: 0.1
-                    background_color: 0, 0, 0, 0
-                    on_release: root.toggle_menu()
+                    size_hint_x: 0.1  # Set width of the button
+                    background_color: 0, 0, 0, 0  # Transparent background
+                    on_release: root.toggle_menu()  # Toggle the side menu
                     Image:
-                        source: 'assets/images/burger_menu.png'
+                        source: 'assets/images/burger_menu.png'  # Hamburger icon
                         fit_mode: 'contain'
-                        size_hint: None, None
-                        size: dp(30), dp(30)
-                        center_x: self.parent.center_x
-                        center_y: self.parent.center_y
+                        size_hint: None, None  # Fixed size
+                        size: dp(30), dp(30)  # Size of the image
+                        center_x: self.parent.center_x  # Center horizontally
+                        center_y: self.parent.center_y  # Center vertically
 
                 Widget:
-                    size_hint_x: 0.3
+                    size_hint_x: 0.3  # Spacer between hamburger and logo
 
+                # Logo section
                 BoxLayout:
-                    size_hint_y: 0.9
+                    size_hint_y: 0.9  # Set height relative to the navigation bar
                     canvas:
                         Color:
-                            rgb: 1, 1, 1
+                            rgb: 1, 1, 1  # White background for the logo
                         Ellipse:
-                            pos: (self.center_x - dp(50), self.top - dp(70))
-                            
-                            size: dp(100), dp(100)
+                            pos: (self.center_x - dp(50), self.top - dp(70))  # Position of the logo
+                            size: dp(100), dp(100)  # Size of the ellipse (logo)
                             source: 'assets/images/la_logo.webp'
                             angle_start: 0
                             angle_end: 360
 
                 Widget:
-                    size_hint_x: 0.3
+                    size_hint_x: 0.3  # Spacer between logo and cart button
 
+                # Cart button
                 Button:
-                    size_hint_x: 0.1
-                    background_color: 0, 0, 0, 0
-                    on_release: root.to_basket()
+                    size_hint_x: 0.1  # Set width of the button
+                    background_color: 0, 0, 0, 0  # Transparent background
+                    on_release: root.to_basket()  # Go to the basket screen
                     Image:
-                        source: 'assets/images/cart.png'
+                        source: 'assets/images/cart.png'  # Cart icon
                         fit_mode: 'contain'
-                        size_hint: None, None
-                        size: dp(30), dp(30)
-                        center_x: self.parent.center_x
-                        center_y: self.parent.center_y
+                        size_hint: None, None  # Fixed size
+                        size: dp(30), dp(30)  # Size of the image
+                        center_x: self.parent.center_x  # Center horizontally
+                        center_y: self.parent.center_y  # Center vertically
 
             Widget:
-                size_hint_y: 0.045
+                size_hint_y: 0.045  # Spacer below the navigation bar
 
             # Special offer section
             Carousel:
-                id: special_offers
-
-                direction: 'right'
-                size_hint_y: None
-                height: dp(150)
-                padding: dp(10)
-                loop: True
+                id: special_offers  # ID for referencing in Python code
+                direction: 'right'  # Direction of slide
+                size_hint_y: None  # Fixed height
+                height: dp(150)  # Set the height of the carousel
+                padding: dp(10)  # Padding around the carousel
+                loop: True  # Enable looping of items
 
             # Category buttons (Drinks, Pizza, Desserts)
             BoxLayout:
-                size_hint_y: None
-                height: dp(50)
-                spacing: dp(10)
-                padding: [dp(10), dp(0)]
+                size_hint_y: None  # Fixed height
+                height: dp(50)  # Height of the category buttons
+                spacing: dp(10)  # Spacing between buttons
+                padding: [dp(10), dp(0)]  # Padding around the buttons
 
+                # Button for Drinks category
                 Button:
                     text: 'Drinks'
-                    background_color: 0, 0, 0, 0
-                    color: 1, 1, 1, 1
-                    bold: root.current_category == 'Drinks'
+                    background_color: 0, 0, 0, 0  # Transparent background
+                    color: 1, 1, 1, 1  # White text color
+                    bold: root.current_category == 'Drinks'  # Bold if this category is active
                     on_release:
-                        root.current_category = 'Drinks'
-                        root.ids.paginated_grid.product_carousel.load_slide(root.ids.paginated_grid.drinks_slide)
+                        root.current_category = 'Drinks'  # Set current category to Drinks
+                        root.ids.paginated_grid.product_carousel.load_slide(root.ids.paginated_grid.drinks_slide)  # Load drinks slide
 
+                # Button for Pizza category
                 Button:
                     text: 'Pizza'
                     background_color: 0, 0, 0, 0
@@ -104,8 +108,9 @@
                     bold: root.current_category == 'Pizza'
                     on_release:
                         root.current_category = 'Pizza'
-                        root.ids.paginated_grid.product_carousel.load_slide(root.ids.paginated_grid.pizza_slide)
+                        root.ids.paginated_grid.product_carousel.load_slide(root.ids.paginated_grid.pizza_slide)  # Load pizza slide
 
+                # Button for Desserts category
                 Button:
                     text: 'Desserts'
                     background_color: 0, 0, 0, 0
@@ -113,113 +118,110 @@
                     bold: root.current_category == 'Desserts'
                     on_release:
                         root.current_category = 'Desserts'
-                        root.ids.paginated_grid.product_carousel.load_slide(root.ids.paginated_grid.desserts_slide)
+                        root.ids.paginated_grid.product_carousel.load_slide(root.ids.paginated_grid.desserts_slide)  # Load desserts slide
 
             # PaginatedGrid for products with Carousel
             PaginatedGrid:
-                id: paginated_grid
+                id: paginated_grid  # ID for referencing in Python code
 
-    Widget:
-        id: darken_widget
-        size_hint: 1, 1
-        on_touch_down: if root.menu_opened: True
-        canvas.before:
-            Color:
-                rgba: 0, 0, 0, 0  # Initial transparency (no darkening)
-                group: 'darken_group'  # Assign a group name
-            Rectangle:
-                pos: self.pos
-                size: self.size
-                group: 'darken_group'  # Assign the same group name
-    
-    BoxLayout:
-        id: side_menu
-        size_hint_x: 0.6
-        pos_hint: {'x': -1}  # По умолчанию меню скрыто
-        orientation: 'vertical'
-        padding: [dp(10), dp(10)]
-        spacing: dp(10)
-        canvas.before:
-            Color:
-                rgba: root.background_color
-            Rectangle:
-                pos: self.pos
-                size: self.size
+        # Widget for darkening effect (when the side menu is open)
+        Widget:
+            id: darken_widget
+            size_hint: 1, 1  # Fill the entire screen
+            on_touch_down: if root.menu_opened: True  # Detect touch events
+            canvas.before:
+                Color:
+                    rgba: 0, 0, 0, 0  # Initial transparency (no darkening)
+                    group: 'darken_group'  # Assign a group name
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+                    group: 'darken_group'  # Assign the same group name
 
-        # Бургер-меню для закрытия
+        # Side menu BoxLayout
         BoxLayout:
-            size_hint_y: None
+            id: side_menu
+            size_hint_x: 0.6  # 60% of the screen width
+            pos_hint: {'x': -1}  # Initially hidden (positioned off-screen)
             orientation: 'vertical'
-            height: dp(30)
-            Button:
-                size_hint: None, None
-                size: dp(30), dp(30)
-                background_color: 0, 0, 0, 0
-                on_release: root.toggle_menu()  # Закрываем меню при нажатии
-                Image:
-                    source: 'assets/images/burger_menu.png'
-                    fit_mode: 'contain'
-                    size_hint: None, None
-                    size: dp(30), dp(30)
-                    center_x: self.parent.center_x
-                    center_y: self.parent.center_y
+            padding: [dp(10), dp(10)]  # Padding around the side menu
+            spacing: dp(10)  # Spacing between elements
+            canvas.before:
+                Color:
+                    rgba: root.background_color  # Use the background color for the side menu
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
 
-        # Основные кнопки ("Home", "Profile", "Settings") по центру по вертикали
-        BoxLayout:
-            orientation: 'vertical'
-            size_hint_y: 1
-            pos_hint: {'top': 1}
-            spacing: dp(30)  # Расстояние между кнопками
+            # AnchorLayout to ensure top alignment
+            AnchorLayout:
+                anchor_y: 'top'
+                anchor_x: 'left'
+                BoxLayout:
+                    orientation: 'vertical'
+                    size_hint_y: None
+                    height: self.minimum_height  # Set height based on content
+                    spacing: dp(10)
 
-            
+                    # Hamburger menu button for closing
+                    BoxLayout:
+                        size_hint_y: None
+                        height: dp(30)
+                        orientation: 'horizontal'
+                        Button:
+                            size_hint: None, None
+                            size: dp(30), dp(30)  # Size of the button
+                            background_color: 0, 0, 0, 0  # Transparent background
+                            on_release: root.toggle_menu()  # Close menu on press
+                            Image:
+                                source: 'assets/images/burger_menu.png'  # Hamburger icon
+                                fit_mode: 'contain'
+                                size_hint: None, None
+                                size: dp(30), dp(30)  # Size of the image
+                                center_x: self.parent.center_x
+                                center_y: self.parent.center_y
 
-            Button:
-                text: "Profile"
-                size_hint_x: 0.8
-                height: dp(30)
-                pos_hint: {'center_x': 0.5}
-                background_normal: ''  # Убираем стандартный фон
-                background_color: 0, 0, 0, 0  # Прозрачный фон кнопки
-                color: 1, 1, 1, 1  # Белый текст
-                canvas.before:
-                    Color:
-                        rgba: 1, 1, 1, 1  # Цвет обводки (белый)
-                    Line:
-                        width: 1.2  # Толщина линии
-                        rounded_rectangle: (self.x, self.y, self.width, self.height, dp(15))  # Закругленные углы
+                    # Main buttons at the top of the side menu
+                    BoxLayout:
+                        orientation: 'vertical'
+                        size_hint_y: None
+                        height: dp(90)  # 2 buttons * dp(40) + spacing
+                        spacing: dp(10)
 
-            Button:
-                text: "My Orders"
-                size_hint_x: 0.8
-                height: dp(30)
-                pos_hint: {'center_x': 0.5}
-                on_release:
-                    root.toggle_menu()
-                    app.root.current = 'order_history_screen'
-                background_normal: ''  # Убираем стандартный фон
-                background_color: 0, 0, 0, 0  # Прозрачный фон кнопки
-                color: 1, 1, 1, 1  # Белый текст
-                canvas.before:
-                    Color:
-                        rgba: 1, 1, 1, 1  # Цвет обводки (белый)
-                    Line:
-                        width: 1.2  # Толщина линии
-                        rounded_rectangle: (self.x, self.y, self.width, self.height, dp(15))  # Закругленные углы
+                        # My Orders button
+                        Button:
+                            text: "My Orders"
+                            size_hint_x: 0.8
+                            height: dp(40)  # Set height for the button
+                            pos_hint: {'center_x': 0.5}  # Center horizontally
+                            on_release:
+                                root.toggle_menu()  # Close the side menu
+                                app.root.current = 'order_history_screen'  # Navigate to the order history screen
+                            background_normal: ''  # Remove default background
+                            background_color: 0, 0, 0, 0  # Transparent button background
+                            color: 1, 1, 1, 1  # White text color
+                            canvas.before:
+                                Color:
+                                    rgba: 1, 1, 1, 1  # Border color (white)
+                                Line:
+                                    width: 1.2  # Line thickness
+                                    rounded_rectangle: (self.x, self.y, self.width, self.height, dp(15))  # Rounded corners
 
-            Button:
-                text: "Log Out"
-                size_hint_x: 0.8
-                height: dp(30)
-                pos_hint: {'center_x': 0.5}
-                on_release: 
-                    root.toggle_menu()
-                    app.root.current = 'login_screen'
-                background_normal: ''  # Убираем стандартный фон
-                background_color: 0, 0, 0, 0  # Прозрачный фон кнопки
-                color: 1, 1, 1, 1  # Белый текст
-                canvas.before:
-                    Color:
-                        rgba: 1, 1, 1, 1  # Цвет обводки (белый)
-                    Line:
-                        width: 1.2  # Толщина линии
-                        rounded_rectangle: (self.x, self.y, self.width, self.height, dp(15))  # Закругленные углы
+                        # Log Out button
+                        Button:
+                            text: "Log Out"
+                            size_hint_x: 0.8
+                            height: dp(40)
+                            pos_hint: {'center_x': 0.5}
+                            on_release:
+                                root.toggle_menu()  # Close the side menu
+                                app.root.current = 'login_screen'  # Navigate to the login screen
+                            background_normal: ''  # Remove default background
+                            background_color: 0, 0, 0, 0  # Transparent button background
+                            color: 1, 1, 1, 1  # White text color
+                            canvas.before:
+                                Color:
+                                    rgba: 1, 1, 1, 1  # Border color (white)
+                                Line:
+                                    width: 1.2  # Line thickness
+                                    rounded_rectangle: (self.x, self.y, self.width, self.height, dp(15))  # Rounded corners

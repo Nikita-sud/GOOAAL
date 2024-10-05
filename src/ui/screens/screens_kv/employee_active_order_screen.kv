@@ -3,6 +3,8 @@
 
 <Employee_Active_order_Screen>:
     name: 'employee_active_order_screen'
+    
+    # Set the background color and draw a rectangle before other elements are rendered
     canvas.before:
         Color:
             rgba: self.background_color
@@ -12,32 +14,37 @@
 
     BoxLayout:
         orientation: 'vertical'
-        padding: dp(10)
-        spacing: dp(10)
+        padding: dp(10)  # Padding inside the main container
+        spacing: dp(10)  # Spacing between child elements
 
-        # Верхняя панель с кнопкой "Назад" и заголовком
+        # Top panel with a back button and title
         BoxLayout:
-            size_hint_y: None
-            height: dp(50)
+            size_hint_y: None  # Fixed height for the top panel
+            height: dp(50)  # Height of the top panel
+            
+            # Back button
             Button:
                 text: '< Back'
-                size_hint_x: None
-                width: dp(80)
-                on_release: app.root.current = 'login_screen'
+                size_hint_x: None  # Fixed width for the button
+                width: dp(80)  # Width of the button
+                on_release: app.root.current = 'login_screen'  # Go back to the login screen when pressed
+            
+            # Title label
             Label:
                 text: 'All Orders'
-                font_size: dp(20)
-                halign: 'center'
-                valign: 'middle'
+                font_size: dp(20)  # Font size for the title
+                halign: 'center'  # Center the text horizontally
+                valign: 'middle'  # Center the text vertically
 
-        # Список заказов
+        # Orders list
         ScrollView:
-            do_scroll_x: False
-            do_scroll_y: True
+            do_scroll_x: False  # Disable horizontal scrolling
+            do_scroll_y: True  # Enable vertical scrolling
+            
             GridLayout:
-                id: orders_grid_employee
-                cols: 1
-                size_hint_y: None
-                height: self.minimum_height
-                spacing: dp(10)
-                padding: [dp(10), dp(10)]
+                id: orders_grid_employee  # Container for employee orders
+                cols: 1  # One column layout
+                size_hint_y: None  # Height is determined by its children
+                height: self.minimum_height  # Set height to fit all children
+                spacing: dp(10)  # Spacing between rows
+                padding: [dp(10), dp(10)]  # Padding inside the grid

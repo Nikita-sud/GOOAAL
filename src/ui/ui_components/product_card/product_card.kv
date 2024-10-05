@@ -2,74 +2,81 @@
 # product_card.kv
 
 <ProductCard>:
+    # Set the layout orientation to vertical and add padding
     orientation: 'vertical'
     padding: dp(10)
+    
+    # Define the background with a white rounded rectangle
     canvas.before:
         Color:
-            rgba: 1, 1, 1, 1
+            rgba: 1, 1, 1, 1  # White color
         RoundedRectangle:
             pos: self.pos
             size: self.size
-            radius: [dp(10)]
+            radius: [dp(10)]  # Rounded corners with a radius of 10 dp
 
+    # Container for the product image and info button
     RelativeLayout:
         size_hint_y: None
         height: dp(100)
 
+        # Display the product image
         Image:
             source: root.image_source
             size_hint_y: None
             size_hint_x: 1
             height: dp(100)
             width: dp(200)
-            allow_stretch: True
-            keep_ratio: True
             fit_mode: 'contain'
 
+        # Information button to show product details
         Button:
             text: 'i'
             size_hint_x: None
             size_hint_y: None
             width: dp(34)
             height: dp(34)
-            background_color: 0, 0, 0, 0
+            background_color: 0, 0, 0, 0  # Transparent background
             background_normal: ''
-            color: 0.8, 0.4, 0.1, 1  # Цвет текста
+            color: 0.8, 0.4, 0.1, 1  # Text color (Orange)
             font_size: sp(16)
-            bold: True  # Делаем шрифт жирным
+            bold: True  # Make the font bold
             pos_hint: {'right': 1, 'top': 1}
+            on_release: root.show_info()  # Bind the show_info method to the button's release event
 
-            on_release: root.show_info()
-
+            # Define the border with a rounded rectangle
             canvas.before:
                 Color:
-                    rgba: 0.8, 0.4, 0.1, 1  # Цвет контура
+                    rgba: 0.8, 0.4, 0.1, 1  # Border color (Orange)
                 Line:
                     width: 1.2
-                    rounded_rectangle: (self.x, self.y, self.width, self.height, dp(23))  # Добавляем закруглённый контур
+                    rounded_rectangle: (self.x, self.y, self.width, self.height, dp(23))  # Rounded border
 
+    # Label to display the product name and price
     Label:
         text: root.product_name + "\n" + root.price
-        color: 0, 0, 0, 1
+        color: 0, 0, 0, 1  # Black color
         halign: 'center'
         valign: 'middle'
         font_size: sp(15)
 
+    # Button to add the product to the basket
     Button:
         text: 'Add to basket'
         size_hint_x: 0.80
         size_hint_y: None
-        background_color: 0, 0, 0, 0  
+        background_color: 0, 0, 0, 0  # Transparent background
         background_normal: ''
         font_size: sp(16)
         height: dp(34)
-        color: 0.8, 0.4, 0.1, 1
+        color: 0.8, 0.4, 0.1, 1  # Text color (Orange)
         pos_hint: {'center_x': 0.5}
-        on_release: root.add_to_basket()
+        on_release: root.add_to_basket()  # Bind the add_to_basket method to the button's release event
 
+        # Define the border with a rounded rectangle
         canvas.before:
             Color:
-                rgba: 0.8, 0.4, 0.1, 1
+                rgba: 0.8, 0.4, 0.1, 1  # Border color (Orange)
             Line:
                 width: 1.1
-                rounded_rectangle: (self.x, self.y, self.width, self.height, dp(23))
+                rounded_rectangle: (self.x, self.y, self.width, self.height, dp(23))  # Rounded border

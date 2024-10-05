@@ -3,228 +3,243 @@
 
 <OrderDetailsScreen>:
     name: 'order_details_screen'
+    # Background color and rectangle to fill the entire screen
     canvas.before:
         Color:
-            rgba: self.background_color
+            rgba: self.background_color  # Use the background color of the screen
         Rectangle:
-            pos: self.pos
-            size: self.size
+            pos: self.pos  # Set the position to match the screen position
+            size: self.size  # Set the size to match the screen size
 
+    # Main container layout for the order details screen
     BoxLayout:
-        orientation: 'vertical'
-        padding: dp(10)
-        spacing: dp(10)
-        size_hint_y: 1
+        orientation: 'vertical'  # Arrange children vertically
+        padding: dp(10)  # Padding around the layout
+        spacing: dp(10)  # Spacing between elements
+        size_hint_y: 1  # Fill the entire available vertical space
 
-        # Заголовок "Order Details" посередине (белый текст)
+        # Header label "Order Details" centered at the top
         Label:
             text: 'Order Details'
-            font_size: dp(20)
-            halign: 'center'
-            valign: 'middle'
-            size_hint_y: None
-            height: dp(50)
-            text_size: self.size
-            bold: True
+            font_size: dp(20)  # Set font size
+            halign: 'center'  # Horizontal alignment
+            valign: 'middle'  # Vertical alignment
+            size_hint_y: None  # Fixed height
+            height: dp(50)  # Set height of the label
+            text_size: self.size  # Make text size match the size of the label
+            bold: True  # Make the text bold
 
+        # Grid layout for displaying order details like ID, customer name, etc.
         GridLayout:
-            cols: 2
-            size_hint_y: None
-            size_hint_x: 1  # Разрешаем GridLayout занимать всю ширину
-            height: self.minimum_height
-            row_default_height: dp(40)
-            spacing: dp(20)
-            padding: [dp(10), 0]
+            cols: 2  # Two columns for labels and their values
+            size_hint_y: None  # Set height based on content
+            size_hint_x: 1  # Allow GridLayout to take up the full width
+            height: self.minimum_height  # Set height to the minimum needed to fit all children
+            row_default_height: dp(40)  # Default height for each row
+            spacing: dp(20)  # Spacing between rows
+            padding: [dp(10), 0]  # Padding on the left and right
 
+            # Label for "Order ID"
             Label:
                 text: 'Order ID:'
-                font_size: dp(16)
-                halign: 'left'  # Выравниваем текст влево
-                valign: 'middle'
-                size_hint_x: 0.5  # Занимаем 50% ширины
-                color: 0, 0, 0, 1
+                font_size: dp(16)  # Set font size
+                halign: 'left'  # Align text to the left
+                valign: 'middle'  # Align text to the middle vertically
+                size_hint_x: 0.5  # Take up 50% of the width
+                color: 0, 0, 0, 1  # Black text color
 
+            # Value for "Order ID", initially empty
             Label:
-                id: order_id_label
+                id: order_id_label  # ID to reference this label in the Python code
                 text: ''
-                font_size: dp(16)
-                halign: 'right'  # Выравниваем текст вправо
-                valign: 'middle'
-                size_hint_x: 0.5  # Занимаем 50% ширины
-                color: 0, 0, 0, 1
+                font_size: dp(16)  # Set font size
+                halign: 'right'  # Align text to the right
+                valign: 'middle'  # Align text to the middle vertically
+                size_hint_x: 0.5  # Take up 50% of the width
+                color: 0, 0, 0, 1  # Black text color
 
+            # Label for "Customer Name"
             Label:
                 text: 'Customer Name:'
                 font_size: dp(16)
-                halign: 'left'  # Выравниваем текст влево
+                halign: 'left'
                 valign: 'middle'
-                size_hint_x: 0.5  # Занимаем 50% ширины
+                size_hint_x: 0.5
                 color: 0, 0, 0, 1
 
+            # Value for "Customer Name", initially empty
             Label:
                 id: customer_name_label
                 text: ''
                 font_size: dp(16)
-                halign: 'right'  # Выравниваем текст вправо
+                halign: 'right'
                 valign: 'middle'
-                size_hint_x: 0.5  # Занимаем 50% ширины
+                size_hint_x: 0.5
                 color: 0, 0, 0, 1
 
+            # Label for "Customer Address"
             Label:
                 text: 'Customer Address:'
                 font_size: dp(16)
-                halign: 'left'  # Выравниваем текст влево
+                halign: 'left'
                 valign: 'middle'
-                size_hint_x: 0.5  # Занимаем 50% ширины
+                size_hint_x: 0.5
                 color: 0, 0, 0, 1
-                
 
+            # Value for "Customer Address", initially empty
             Label:
                 id: customer_address_label
                 text: ''
                 font_size: dp(16)
-                halign: 'right'  # Выравниваем текст вправо
+                halign: 'right'
                 valign: 'middle'
-                size_hint_x: 0.5  # Занимаем 50% ширины
+                size_hint_x: 0.5
                 color: 0, 0, 0, 1
 
+            # Label for "Order Date"
             Label:
                 text: 'Order Date:'
                 font_size: dp(16)
-                halign: 'left'  # Выравниваем текст влево
+                halign: 'left'
                 valign: 'middle'
-                size_hint_x: 0.5  # Занимаем 50% ширины
+                size_hint_x: 0.5
                 color: 0, 0, 0, 1
-                
 
+            # Value for "Order Date", initially empty
             Label:
                 id: order_date_label
                 text: ''
                 font_size: dp(16)
-                halign: 'right'  # Выравниваем текст вправо
+                halign: 'right'
                 valign: 'middle'
-                size_hint_x: 0.5  # Занимаем 50% ширины
+                size_hint_x: 0.5
                 color: 0, 0, 0, 1
 
+            # Label for "Status"
             Label:
                 text: 'Status:'
                 font_size: dp(16)
-                halign: 'left'  # Выравниваем текст влево
+                halign: 'left'
                 valign: 'middle'
-                size_hint_x: 0.5  # Занимаем 50% ширины
+                size_hint_x: 0.5
                 color: 0, 0, 0, 1
-                
 
+            # Value for "Status", initially empty
             Label:
                 id: order_status_label
                 text: ''
                 font_size: dp(16)
-                halign: 'right'  # Выравниваем текст вправо
+                halign: 'right'
                 valign: 'middle'
-                size_hint_x: 0.5  # Занимаем 50% ширины
+                size_hint_x: 0.5
                 color: 0, 0, 0, 1
 
+            # Label for "Total Price"
             Label:
                 text: 'Total Price:'
                 font_size: dp(16)
-                halign: 'left'  # Выравниваем текст влево
+                halign: 'left'
                 valign: 'middle'
-                size_hint_x: 0.5  # Занимаем 50% ширины
+                size_hint_x: 0.5
                 color: 0, 0, 0, 1
-                
 
+            # Value for "Total Price", initially empty
             Label:
                 id: total_price_label
                 text: ''
                 font_size: dp(16)
-                halign: 'right'  # Выравниваем текст вправо
+                halign: 'right'
                 valign: 'middle'
-                size_hint_x: 0.5  # Занимаем 50% ширины
+                size_hint_x: 0.5
                 color: 0, 0, 0, 1
-                
-        # Закругленный прямоугольник на заднем плане для секции "Items"
+
+        # BoxLayout for the "Items" section with rounded background
         BoxLayout:
             orientation: 'vertical'
             padding: dp(10)
             spacing: dp(10)
-            size_hint_y: 1  # Заполняем все доступное пространство
+            size_hint_y: 1  # Fill all available vertical space
             canvas.before:
                 Color:
-                    rgba: 1, 1, 1, 1  # Светло-серый фон
+                    rgba: 1, 1, 1, 1  # Light gray background
                 RoundedRectangle:
-                    pos: self.pos
-                    size: self.size
-                    radius: [dp(10)]
+                    pos: self.pos  # Position matches the BoxLayout
+                    size: self.size  # Size matches the BoxLayout
+                    radius: [dp(10)]  # Rounded corners with a radius of 10dp
 
+            # Header for the items list
             Label:
                 text: 'Items:'
                 font_size: dp(18)
                 halign: 'center'
                 valign: 'middle'
-                size_hint_y: None
-                height: dp(30)
-                color: 0, 0, 0, 1  # Черный цвет текста
+                size_hint_y: None  # Fixed height
+                height: dp(30)  # Set height of the label
+                color: 0, 0, 0, 1  # Black text color
 
-            # Список элементов заказа с ScrollView
+            # Scrollable list of items in the order
             ScrollView:
-                do_scroll_x: False
-                do_scroll_y: True
+                do_scroll_x: False  # Disable horizontal scrolling
+                do_scroll_y: True  # Enable vertical scrolling
 
                 BoxLayout:
                     orientation: 'vertical'
-                    size_hint_y: None
-                    height: self.minimum_height
-                    # Этот BoxLayout выравнивает элементы по центру
+                    size_hint_y: None  # Height is determined by content
+                    height: self.minimum_height  # Set height to fit all children
+                    # GridLayout to align items in the center
                     GridLayout:
-                        id: items_grid
-                        cols: 1
-                        size_hint: None, None
-                        width: root.width * 0.8  # Устанавливаем ширину для центрирования
-                        height: self.minimum_height
-                        row_default_height: dp(40)
-                        spacing: dp(5)
-                        padding: [dp(5), dp(5)]
+                        id: items_grid  # ID to reference the grid in Python code
+                        cols: 1  # Single column for items
+                        size_hint: None, None  # No scaling
+                        width: root.width * 0.8  # Set width to 80% of the root width for centering
+                        height: self.minimum_height  # Set height to fit all items
+                        row_default_height: dp(40)  # Default height for each row
+                        spacing: dp(5)  # Spacing between rows
+                        padding: [dp(5), dp(5)]  # Padding on all sides
 
-        # Кнопка назад с иконкой стрелки внизу
+        # BoxLayout at the bottom for navigation buttons
         BoxLayout:
-            size_hint_y: None
-            height: dp(60)
-            padding: [dp(10), dp(0)]
-            spacing: dp(10)
+            size_hint_y: None  # Fixed height
+            height: dp(60)  # Set height for the box
+            padding: [dp(10), dp(0)]  # Padding on left and right
+            spacing: dp(10)  # Spacing between buttons
 
+            # Back button with an arrow icon
             Button:
-                size_hint_x: 0.5
-                background_normal: ''
-                background_color: 0, 0, 0, 0  # Прозрачный фон
-                on_release: root.back_to_history()
+                size_hint_x: 0.5  # Take up 50% of the width
+                background_normal: ''  # No default background image
+                background_color: 0, 0, 0, 0  # Transparent background
+                on_release: root.back_to_history()  # Action to perform when pressed
                 canvas.before:
                     Color:
-                        rgba: 1, 1, 1, 1  # Белый цвет
+                        rgba: 1, 1, 1, 1  # White color for button background
                     RoundedRectangle:
-                        pos: self.pos
-                        size: self.size
-                        radius: [dp(10)]
+                        pos: self.pos  # Position matches the button
+                        size: self.size  # Size matches the button
+                        radius: [dp(10)]  # Rounded corners with a radius of 10dp
+                # Arrow icon image in the center of the button
                 Image:
-                    source: 'assets/images/back_arrow.png'
-                    center_x: self.parent.center_x
-                    center_y: self.parent.center_y
-                    size_hint: None, None
-                    size: dp(24), dp(24)
-                    allow_stretch: True
-                    keep_ratio: True
+                    source: 'assets/images/back_arrow.png'  # Path to the arrow icon
+                    center_x: self.parent.center_x  # Center horizontally
+                    center_y: self.parent.center_y  # Center vertically
+                    size_hint: None, None  # No scaling
+                    size: dp(24), dp(24)  # Set size of the image
+                    fit_mode: 'contain'
 
-            # Добавляем кнопку отмены
+            # "Cancel Order" Button
             Button:
-                id: cancel_button
+                id: cancel_button  # ID to reference the button in Python code
                 text: "Cancel Order"
-                size_hint_x: 0.5
-                background_normal: ''
-                background_color: 1, 0, 0, 1  # Красная кнопка
-                on_release: root.cancel_order()
+                size_hint_x: 0.5  # Take up 50% of the width
+                background_normal: ''  # Remove default background image
+                background_color: 0, 0, 0, 0  # Transparent background to avoid color conflict
+                color: 1, 1, 1, 1  # White text color for visibility
+                on_release: root.cancel_order()  # Action to perform when pressed
+
                 canvas.before:
                     Color:
-                        rgba: 1, 1, 1, 1  # Белый цвет для текста
+                        rgba: 1, 0, 0, 1  # Red color for button background
                     RoundedRectangle:
-                        pos: self.pos
-                        size: self.size
-                        radius: [dp(10)]
+                        pos: self.pos  # Position matches the button
+                        size: self.size  # Size matches the button
+                        radius: [dp(10)]  # Rounded corners with a radius of 10dp

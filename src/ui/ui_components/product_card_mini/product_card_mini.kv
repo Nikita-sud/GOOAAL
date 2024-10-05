@@ -2,62 +2,64 @@
 # product_card_mini.kv
 
 <ProductCardMini>:
+    # Set the layout orientation and size of the ProductCardMini widget
     orientation: 'horizontal'
     padding: dp(10)
     height: dp(50)
-
+    
+    # Define the background of the ProductCardMini with a white rounded rectangle
     canvas.before:
         Color:
-            rgba: 1, 1, 1, 1
+            rgba: 1, 1, 1, 1  # White color
         RoundedRectangle:
             pos: self.pos
             size: self.size
-            radius: [dp(10)]
+            radius: [dp(10)]  # Rounded corners with a radius of 10 dp
 
-    # Название товара
+    # Label to display the product name
     Label:
         text: root.product_name
-        size_hint_x: 0.4
-        color: 0, 0, 0, 1
+        size_hint_x: 0.4  # Occupies 40% of the horizontal space
+        color: 0, 0, 0, 1  # Black color
 
-    # Кнопка уменьшения количества
+    # Button to decrease the quantity of the product
     Button:
         text: "-"
         size_hint: None, None
         size: dp(30), dp(30)
-        on_release: root.decrease_quantity()
-        background_normal: ''
-        background_color: 0, 0, 0, 0
+        on_release: root.decrease_quantity()  # Bind the decrease_quantity method to the button's release event
+        background_normal: ''  # Remove default background
+        background_color: 0, 0, 0, 0  # Transparent background
         canvas.before:
             Color:
-                rgba: 1, 0.5, 0, 1  # Оранжевый цвет
+                rgba: 1, 0.5, 0, 1  # Orange color
             Ellipse:
                 pos: self.pos
-                size: self.size
+                size: self.size  # Make the button circular by drawing an ellipse
 
-    # Отображение количества
+    # Label to display the current quantity of the product
     Label:
         text: str(root.quantity)
-        size_hint_x: 0.1
-        color: 0, 0, 0, 1
+        size_hint_x: 0.1  # Occupies 10% of the horizontal space
+        color: 0, 0, 0, 1  # Black color
 
-    # Кнопка увеличения количества
+    # Button to increase the quantity of the product
     Button:
         text: "+"
         size_hint: None, None
         size: dp(30), dp(30)
-        on_release: root.increase_quantity()
-        background_normal: ''
-        background_color: 0, 0, 0, 0
+        on_release: root.increase_quantity()  # Bind the increase_quantity method to the button's release event
+        background_normal: ''  # Remove default background
+        background_color: 0, 0, 0, 0  # Transparent background
         canvas.before:
             Color:
-                rgba: 1, 0.5, 0, 1  # Оранжевый цвет
+                rgba: 1, 0.5, 0, 1  # Orange color
             Ellipse:
                 pos: self.pos
-                size: self.size
+                size: self.size  # Make the button circular by drawing an ellipse
 
-    # Цена за количество
+    # Label to display the total price for the quantity of the product
     Label:
         text: f"{root.price * root.quantity:.2f}$"
-        size_hint_x: 0.2
-        color: 0, 0, 0, 1
+        size_hint_x: 0.2  # Occupies 20% of the horizontal space
+        color: 0, 0, 0, 1  # Black color

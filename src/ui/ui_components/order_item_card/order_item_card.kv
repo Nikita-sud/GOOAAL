@@ -2,25 +2,29 @@
 # order_item_card.kv
 
 <OrderItemCard>:
+    # Define the layout orientation and size of the OrderItemCard widget
     orientation: 'horizontal'
     size_hint_y: None
     height: dp(50)
     padding: dp(10)
     spacing: dp(10)
-
+    
+    # Label to display the name of the item
     Label:
         text: root.item_name
         font_size: dp(16)
-        color: 0, 0, 0, 1
-
+        color: 0, 0, 0, 1  # Black color
+    
+    # Label to display the quantity of the item
     Label:
         text: "x{}".format(root.quantity)
         font_size: dp(16)
-        color: 0, 0, 0, 1
-        size_hint_x: 0.2
-
+        color: 0, 0, 0, 1  # Black color
+        size_hint_x: 0.2  # Occupies 20% of the horizontal space
+    
+    # Label to display the total price for this item (price * quantity)
     Label:
-        text: "{:.2f}".format(root.price * root.quantity)+"$"
+        text: "{:.2f}".format(root.price * root.quantity) + "$"
         font_size: dp(16)
-        color: 0, 0, 0, 1
-        size_hint_x: 0.2
+        color: 0, 0, 0, 1  # Black color
+        size_hint_x: 0.2  # Occupies 20% of the horizontal space

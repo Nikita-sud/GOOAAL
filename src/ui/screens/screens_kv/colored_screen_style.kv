@@ -2,9 +2,10 @@
 # colored_screen_style.kv
 
 <ColoredScreen>:
+    # Set the background color and draw a rectangle before other elements are rendered
     canvas.before:
         Color:
-            rgba: self.background_color
+            rgba: self.background_color  # Use the screen's background color property
         Rectangle:
-            pos: self.pos
-            size: self.size
+            pos: self.pos  # Position the rectangle to match the screen's position
+            size: self.size  # Set the rectangle size to match the screen's size

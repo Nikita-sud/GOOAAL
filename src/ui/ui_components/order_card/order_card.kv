@@ -2,53 +2,64 @@
 # order_card.kv
 
 <OrderCard>:
+    # Define the layout orientation and size of the OrderCard widget
     orientation: 'vertical'
     size_hint_y: None
     height: dp(120)
     padding: dp(10)
     spacing: dp(5)
+    
+    # Define the background of the OrderCard with a white rounded rectangle
     canvas.before:
         Color:
-            rgba: 1, 1, 1, 1
+            rgba: 1, 1, 1, 1  # White color
         RoundedRectangle:
             pos: self.pos
             size: self.size
-            radius: [dp(10)]
-
+            radius: [dp(10)]  # Rounded corners with a radius of 10 dp
+    
+    # First horizontal BoxLayout containing Order ID and Total Price
     BoxLayout:
         orientation: 'horizontal'
         spacing: dp(10)
-
+    
+        # Label displaying the Order ID
         Label:
             text: "Order ID: {}".format(root.order.get('order_id', 'N/A'))
             font_size: dp(16)
-            color: 0, 0, 0, 1
-
+            color: 0, 0, 0, 1  # Black color
+    
+        # Label displaying the Total Price of the order
         Label:
             text: "Total Price: {:.2f}$".format(root.order.get('total_price', 0.0))
             font_size: dp(16)
-            color: 0, 0, 0, 1
-
+            color: 0, 0, 0, 1  # Black color
+    
+    # Label displaying the Status of the order
     Label:
         text: "Status: {}".format(root.order.get('status_name', 'Unknown'))
         font_size: dp(16)
-        color: 0, 0, 0, 1
-
+        color: 0, 0, 0, 1  # Black color
+    
+    # Button to view the details of the order
     Button:
         text: 'View Details'
         size_hint_x: 0.80
         size_hint_y: None
-        background_color: 0, 0, 0, 0
+        background_color: 0, 0, 0, 0  # Transparent background
         background_normal: ''
         font_size: sp(16)
         height: dp(34)
-        color: 0.8, 0.4, 0.1, 1
+        color: 0.8, 0.4, 0.1, 1  # Orange text color
         pos_hint: {'center_x': 0.5}
+        
+        # Define the action to perform when the button is released
         on_release: root.order_history_screen.view_order_details(root.order.get('order_id'))
-
+    
+        # Define the border of the button with a rounded rectangle
         canvas.before:
             Color:
-                rgba: 0.8, 0.4, 0.1, 1
+                rgba: 0.8, 0.4, 0.1, 1  # Orange color matching the text
             Line:
                 width: 1.1
                 rounded_rectangle: (self.x, self.y, self.width, self.height, dp(23))

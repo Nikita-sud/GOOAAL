@@ -3,66 +3,68 @@
 
 <OrderHistoryScreen>:
     name: 'order_history_screen'
+    # Background color and rectangle to fill the entire screen
     canvas.before:
         Color:
-            rgba: self.background_color
+            rgba: self.background_color  # Use the background color of the screen
         Rectangle:
-            pos: self.pos
-            size: self.size
+            pos: self.pos  # Set the position to match the screen position
+            size: self.size  # Set the size to match the screen size
 
+    # Main container layout for the order history screen
     BoxLayout:
-        orientation: 'vertical'
-        padding: dp(10)
-        spacing: dp(10)
+        orientation: 'vertical'  # Arrange children vertically
+        padding: dp(10)  # Padding around the layout
+        spacing: dp(10)  # Spacing between elements
 
-        # Заголовок посередине
+        # Header label "My Orders" centered at the top
         Label:
             text: 'My Orders'
-            font_size: dp(20)
-            halign: 'center'
-            valign: 'middle'
-            size_hint_y: None
-            height: dp(50)
-            text_size: self.size
-            bold: True
+            font_size: dp(20)  # Set font size
+            halign: 'center'  # Horizontal alignment
+            valign: 'middle'  # Vertical alignment
+            size_hint_y: None  # Fixed height
+            height: dp(50)  # Set height of the label
+            text_size: self.size  # Make text size match the size of the label
+            bold: True  # Make the text bold
 
-        # Список заказов
+        # Scrollable list of orders
         ScrollView:
-            do_scroll_x: False
-            do_scroll_y: True
+            do_scroll_x: False  # Disable horizontal scrolling
+            do_scroll_y: True  # Enable vertical scrolling
             GridLayout:
-                id: orders_grid
-                cols: 1
-                size_hint_y: None
-                height: self.minimum_height
-                spacing: dp(10)
-                padding: [dp(10), dp(10)]
+                id: orders_grid  # ID to reference the grid in Python code
+                cols: 1  # Single column for orders
+                size_hint_y: None  # Height is determined by content
+                height: self.minimum_height  # Set height to fit all children
+                spacing: dp(10)  # Spacing between rows
+                padding: [dp(10), dp(10)]  # Padding on all sides
 
-        # Кнопка назад с иконкой стрелки внизу
+        # BoxLayout at the bottom for navigation button
         BoxLayout:
-            size_hint_y: None
-            height: dp(60)
-            padding: [dp(10), dp(0)]
-            spacing: dp(10)
+            size_hint_y: None  # Fixed height
+            height: dp(60)  # Set height for the box
+            padding: [dp(10), dp(0)]  # Padding on left and right
+            spacing: dp(10)  # Spacing between buttons
 
+            # Back button with an arrow icon
             Button:
-                size_hint_x: 0.5
-                background_normal: ''
+                size_hint_x: 0.5  # Take up 50% of the width
+                background_normal: ''  # No default background image
                 background_color: 0, 0, 0, 0  # Make background transparent
-                on_release: app.root.current = 'menu_screen'
+                on_release: app.root.current = 'menu_screen'  # Navigate to the menu screen
                 canvas.before:
                     Color:
-                        rgba: 1, 1, 1, 1  # Белый цвет
+                        rgba: 1, 1, 1, 1  # White color for button background
                     RoundedRectangle:
-                        pos: self.pos
-                        size: self.size
-                        radius: [dp(10)]
-                # Вставка изображения стрелки внутрь кнопки
+                        pos: self.pos  # Position matches the button
+                        size: self.size  # Size matches the button
+                        radius: [dp(10)]  # Rounded corners with a radius of 10dp
+                # Arrow icon image in the center of the button
                 Image:
-                    source: 'assets/images/back_arrow.png'
-                    center_x: self.parent.center_x
-                    center_y: self.parent.center_y
-                    size_hint: None, None
-                    size: dp(24), dp(24)
-                    allow_stretch: True
-                    keep_ratio: True
+                    source: 'assets/images/back_arrow.png'  # Path to the arrow icon
+                    center_x: self.parent.center_x  # Center horizontally
+                    center_y: self.parent.center_y  # Center vertically
+                    size_hint: None, None  # No scaling
+                    size: dp(24), dp(24)  # Set size of the image
+                    fit_mode: 'contain'

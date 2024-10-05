@@ -1,10 +1,12 @@
 #:kivy 2.0.0
 # register_view.kv
 
+
 <AccountCreationScreen>:
     name: 'account_creation_screen'
     id: account_creation_screen
     
+    # Set the background color and draw a rectangle before other elements are rendered
     canvas.before:
         Color:
             rgba: self.background_color
@@ -13,81 +15,89 @@
             size: self.size
 
     BoxLayout:
+        # Main container for the account creation screen
         BoxLayout:
             orientation: 'vertical'
-            padding: [dp(20), dp(20)]
-            spacing: dp(20)
+            padding: [dp(20), dp(20)]  # Padding around the entire layout
+            spacing: dp(20)  # Spacing between elements
 
             BoxLayout:
-                size_hint_y: 0.9
+                size_hint_y: 0.9  # Sets the vertical space this BoxLayout takes up
+                # Draw a circular logo at the top of the screen
                 canvas:
                     Color:
-                        rgb: 1, 1, 1
+                        rgb: 1, 1, 1  # Set color to white
                     Ellipse:
-                        pos: (self.center_x - dp(100), self.top - dp(250))
-                        size: dp(200), dp(200)
-                        source: 'assets/images/la_logo.webp'
-                        angle_start: 0
-                        angle_end: 360
+                        pos: (self.center_x - dp(100), self.top - dp(250))  # Position the ellipse
+                        size: dp(200), dp(200)  # Set size of the ellipse
+                        source: 'assets/images/la_logo.webp'  # Path to the logo image
+                        angle_start: 0  # Start angle of the ellipse
+                        angle_end: 360  # End angle to make it a full circle
             Widget:
-                size_hint_y: 0.1
+                size_hint_y: 0.1  # Empty space to separate elements
 
             BoxLayout:
                 orientation: 'vertical'
-                size_hint_y: 0.7
-                padding: [dp(10), dp(10)]
-                spacing: dp(20)
+                size_hint_y: 0.7  # Sets the vertical space this BoxLayout takes up
+                padding: [dp(10), dp(10)]  # Padding inside the BoxLayout
+                spacing: dp(20)  # Spacing between child elements
 
+                # Username input field container
                 BoxLayout:
                     orientation: 'vertical'
-                    size_hint_x: 0.8
-                    pos_hint: {'center_x': 0.5}
+                    size_hint_x: 0.8  # Horizontal size of the input container
+                    pos_hint: {'center_x': 0.5}  # Center the container horizontally
                     size_hint_y: None
-                    height: dp(50)  
-                    spacing: dp(10)
+                    height: dp(50)  # Fixed height for the input container
+                    spacing: dp(10)  # Spacing between child elements
 
+                    # Background styling for the input box
                     canvas.before:
                         Color:
-                            rgba: 1, 1, 1, 1  
+                            rgba: 1, 1, 1, 1  # Set color to white
                         RoundedRectangle:
-                            pos: self.pos
-                            size: self.size
-                            radius: [dp(23)]  
+                            pos: self.pos  # Position of the rectangle
+                            size: self.size  # Size of the rectangle
+                            radius: [dp(23)]  # Rounded corners with radius 23dp
 
+                    # Username input field
                     TextInput:
                         id: new_username_input
-                        hint_text: 'Username *'
-                        multiline: False
-                        font_size: sp(19)
+                        hint_text: 'Username *'  # Placeholder text
+                        multiline: False  # Single line input
+                        font_size: sp(19)  # Font size for the input text
                         size_hint_y: None
-                        background_normal: ''
-                        background_active: ''
-                        background_color: (0, 0, 0, 0)
-                        padding: [dp(20), dp(12)]
-                        height: dp(45)  
-                        cursor_color: 0.87, 0.42, 0.16, 1
-                        selection_color: 0.87, 0.42, 0.16, 0.5
+                        background_normal: ''  # Remove default background
+                        background_active: ''  # Remove default active background
+                        background_color: (0, 0, 0, 0)  # Transparent background
+                        padding: [dp(20), dp(12)]  # Padding inside the input box
+                        height: dp(45)  # Fixed height for the input field
+                        cursor_color: 0.87, 0.42, 0.16, 1  # Color of the cursor
+                        selection_color: 0.87, 0.42, 0.16, 0.5  # Color of the selection highlight
 
+                # Password input field container
                 BoxLayout:
                     orientation: 'vertical'
                     size_hint_x: 0.8
                     pos_hint: {'center_x': 0.5}
                     size_hint_y: None
-                    height: dp(50)  # Задаем фиксированную высоту
+                    height: dp(50)  # Fixed height for the input container
                     spacing: dp(10)
 
+                    # Background styling for the input box
                     canvas.before:
                         Color:
-                            rgba: 1, 1, 1, 1  
+                            rgba: 1, 1, 1, 1
                         RoundedRectangle:
                             pos: self.pos
                             size: self.size
-                            radius: [dp(23)]  
+                            radius: [dp(23)]
 
+                    # Password input field
                     TextInput:
                         id: new_password_input
-                        hint_text: 'Password *'
-                        password: True
+                        hint_text: 'Password *'  # Placeholder text
+                        password: True  # Hide input for passwords
                         multiline: False
                         font_size: sp(19)
                         size_hint_y: None
@@ -95,28 +105,33 @@
                         background_active: ''
                         background_color: (0, 0, 0, 0)
                         padding: [dp(20), dp(12)]
-                        height: dp(45)  
+                        height: dp(45)
                         cursor_color: 0.87, 0.42, 0.16, 1
                         selection_color: 0.87, 0.42, 0.16, 0.5
+
+                # Confirm password input field container
                 BoxLayout:
                     orientation: 'vertical'
                     size_hint_x: 0.8
                     pos_hint: {'center_x': 0.5}
                     size_hint_y: None
-                    height: dp(50)  
+                    height: dp(50)  # Fixed height for the input container
                     spacing: dp(10)
 
+                    # Background styling for the input box
                     canvas.before:
                         Color:
-                            rgba: 1, 1, 1, 1  
+                            rgba: 1, 1, 1, 1
                         RoundedRectangle:
                             pos: self.pos
                             size: self.size
-                            radius: [dp(23)]  
+                            radius: [dp(23)]
+                    
+                    # Confirm password input field
                     TextInput:
                         id: confirm_password_input
-                        hint_text: 'Confirm Password *'
-                        password: True
+                        hint_text: 'Confirm Password *'  # Placeholder text
+                        password: True  # Hide input for passwords
                         multiline: False
                         font_size: sp(19)
                         size_hint_y: None
@@ -124,67 +139,70 @@
                         background_active: ''
                         background_color: (0, 0, 0, 0)
                         padding: [dp(20), dp(12)]
-                        height: dp(45)  
+                        height: dp(45)
                         cursor_color: 0.87, 0.42, 0.16, 1
                         selection_color: 0.87, 0.42, 0.16, 0.5
 
-
             Widget:
-                size_hint_y: 0.15
+                size_hint_y: 0.15  # Empty space to separate elements
 
             BoxLayout:
                 orientation: 'vertical'
-                size_hint_y: 0.5  
-                spacing: dp(20)
+                size_hint_y: 0.5  # Sets the vertical space for the buttons
+                spacing: dp(20)  # Spacing between child elements
+
+                # Label for displaying error messages
                 Label:
                     id: error_label
-                    text: ""
-                    color: 1, 1, 1, 1
-                    font_size: sp(15)
+                    text: ""  # Initially empty
+                    color: 1, 1, 1, 1  # White text color
+                    font_size: sp(15)  # Font size for the label
                     size_hint_y: None
-                    height: dp(30)
-                    pos_hint: {'center_x': 0.5}
+                    height: dp(30)  # Fixed height for the label
+                    pos_hint: {'center_x': 0.5}  # Center the label horizontally
 
-
+                # Register button
                 Button:
                     text: 'Register'
                     size_hint_y: None
-                    height: dp(50)
-                    font_size: sp(20)
-                    pos_hint: {'center_x': 0.5}
-                    size_hint_x: 0.77
-                    background_normal: ''
-                    background_color: 0, 0, 0, 0  
-                    color: 0.8, 0.4, 0.1, 1
-                    on_release: root.register()
+                    height: dp(50)  # Fixed height for the button
+                    font_size: sp(20)  # Font size for the button text
+                    pos_hint: {'center_x': 0.5}  # Center the button horizontally
+                    size_hint_x: 0.77  # Width of the button
+                    background_normal: ''  # Remove default button background
+                    background_color: 0, 0, 0, 0  # Transparent background
+                    color: 0.8, 0.4, 0.1, 1  # Button text color
+                    on_release: root.register()  # Call the register method when pressed
 
+                    # Background styling for the button
                     canvas.before:
                         Color:
-                            rgba: 1, 1, 1, 1  
+                            rgba: 1, 1, 1, 1  # Set color to white
                         RoundedRectangle:
                             pos: self.pos
                             size: self.size
-                            radius: [dp(23)]  
+                            radius: [dp(23)]
 
+                # Back button
                 Button:
                     text: 'Back'
                     size_hint_x: 0.77
                     size_hint_y: None
-                    height: dp(50)  
+                    height: dp(50)  # Fixed height for the button
                     font_size: sp(20)
                     background_normal: ''
-                    background_color: 0, 0, 0, 0  
-                    color: 1, 1, 1, 1  
-                    pos_hint: {'center_x': 0.5}
-                    on_release: app.root.current = root.back_button()
+                    background_color: 0, 0, 0, 0  # Transparent background
+                    color: 1, 1, 1, 1  # White button text color
+                    pos_hint: {'center_x': 0.5}  # Center the button horizontally
+                    on_release: app.root.current = root.back_button()  # Call back_button method when pressed
 
-
+                    # Border styling for the button
                     canvas.before:
                         Color:
-                            rgba: 1, 1, 1, 1  
+                            rgba: 1, 1, 1, 1  # Set color to white
                         Line:
-                            width: 1.2  
-                            rounded_rectangle: (self.x, self.y, self.width, self.height, dp(23)) 
+                            width: 1.2  # Width of the border line
+                            rounded_rectangle: (self.x, self.y, self.width, self.height, dp(23))
 
                 Widget:
-                    size_hint_y: 0.1
+                    size_hint_y: 0.1  # Empty space to separate elements

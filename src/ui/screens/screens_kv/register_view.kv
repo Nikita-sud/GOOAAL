@@ -7,88 +7,87 @@
 
     canvas.before:
         Color:
-            rgba: self.background_color
+            rgba: self.background_color  # Use the background color of the screen
         Rectangle:
-            pos: self.pos
-            size: self.size
+            pos: self.pos  # Set the position to match the screen position
+            size: self.size  # Set the size to match the screen size
 
+    # Main container layout for the account creation screen
     BoxLayout:
-              
+        orientation: 'vertical'
 
         BoxLayout:
             orientation: 'vertical'
-            padding: [dp(20), dp(20)]
-            spacing: dp(20)
+            padding: [dp(20), dp(20)]  # Padding around the layout
+            spacing: dp(20)  # Spacing between elements
 
-
+            # Logo section with an ellipse shape
             BoxLayout:
-                size_hint_y: 0.9
+                size_hint_y: 0.9  # Set the height of this BoxLayout
                 canvas:
                     Color:
-                        rgb: 1, 1, 1
+                        rgb: 1, 1, 1  # White color for the ellipse
                     Ellipse:
-                        pos: (self.center_x - dp(75), self.top - dp(160))
-                        size: dp(150), dp(150)
-                        source: 'assets/images/la_logo.webp'
+                        pos: (self.center_x - dp(75), self.top - dp(160))  # Position to center the ellipse
+                        size: dp(150), dp(150)  # Size of the ellipse
+                        source: 'assets/images/la_logo.webp'  # Logo image source
                         angle_start: 0
                         angle_end: 360
 
- 
-
+            # Input fields for registration
             BoxLayout:
                 orientation: 'vertical'
                 size_hint_y: 0.7
-                padding: [dp(10), dp(10)]
-                spacing: dp(10)
+                padding: [dp(10), dp(10)]  # Padding around input fields
+                spacing: dp(10)  # Spacing between elements
 
-
+                # Input field for Name
                 BoxLayout:
                     orientation: 'vertical'
                     size_hint_x: 0.8
-                    pos_hint: {'center_x': 0.5}
+                    pos_hint: {'center_x': 0.5}  # Center horizontally
                     size_hint_y: None
-                    height: dp(50)  
+                    height: dp(50)  # Set the height of the input box
                     spacing: dp(10)
 
                     canvas.before:
                         Color:
-                            rgba: 1, 1, 1, 1  
+                            rgba: 1, 1, 1, 1  # White background color for input field
                         RoundedRectangle:
                             pos: self.pos
                             size: self.size
-                            radius: [dp(23)]  
+                            radius: [dp(23)]  # Rounded corners for the input box
 
                     TextInput:
                         id: name_input
-                        hint_text: 'Name *'
-                        multiline: False
-                        font_size: sp(19)
+                        hint_text: 'Name *'  # Placeholder text
+                        multiline: False  # Single-line input
+                        font_size: sp(19)  # Font size of the input text
                         size_hint_y: None
-                        height: dp(45)
+                        height: dp(45)  # Set height of the TextInput
                         background_normal: ''
                         background_active: ''
-                        background_color: 1, 1, 1, 1
-                        background_color: (0, 0, 0, 0)
-                        padding: [dp(20), dp(12)]
-                        cursor_color: 0.87, 0.42, 0.16, 1
-                        selection_color: 0.87, 0.42, 0.16, 0.5
+                        background_color: (0, 0, 0, 0)  # Transparent background
+                        padding: [dp(20), dp(12)]  # Padding inside the input field
+                        cursor_color: 0.87, 0.42, 0.16, 1  # Color of the cursor
+                        selection_color: 0.87, 0.42, 0.16, 0.5  # Color of the selection
 
-
+                # Input field for Last Name
                 BoxLayout:
                     orientation: 'vertical'
                     size_hint_x: 0.8
                     pos_hint: {'center_x': 0.5}
                     size_hint_y: None
-                    height: dp(50)  
+                    height: dp(50)
                     spacing: dp(10)
 
                     canvas.before:
                         Color:
-                            rgba: 1, 1, 1, 1  
+                            rgba: 1, 1, 1, 1
                         RoundedRectangle:
                             pos: self.pos
                             size: self.size
-                            radius: [dp(23)]  
+                            radius: [dp(23)]
 
                     TextInput:
                         id: lastname_input
@@ -99,26 +98,27 @@
                         height: dp(45)
                         background_normal: ''
                         background_active: ''
-                        background_color: 1, 1, 1, 1
                         background_color: (0, 0, 0, 0)
                         padding: [dp(20), dp(12)]
                         cursor_color: 0.87, 0.42, 0.16, 1
                         selection_color: 0.87, 0.42, 0.16, 0.5
+
+                # Input field for Birthdate
                 BoxLayout:
                     orientation: 'vertical'
                     size_hint_x: 0.8
                     pos_hint: {'center_x': 0.5}
                     size_hint_y: None
-                    height: dp(50)  
+                    height: dp(50)
                     spacing: dp(10)
 
                     canvas.before:
                         Color:
-                            rgba: 1, 1, 1, 1  
+                            rgba: 1, 1, 1, 1
                         RoundedRectangle:
                             pos: self.pos
                             size: self.size
-                            radius: [dp(23)]  
+                            radius: [dp(23)]
 
                     TextInput:
                         id: birthdate_input
@@ -129,68 +129,69 @@
                         height: dp(45)
                         background_normal: ''
                         background_active: ''
-                        background_color: 1, 1, 1, 1
                         background_color: (0, 0, 0, 0)
                         padding: [dp(20), dp(12)]
                         cursor_color: 0.87, 0.42, 0.16, 1
                         selection_color: 0.87, 0.42, 0.16, 0.5
 
-
+                # Gender selection using ToggleButtons
                 BoxLayout:
                     orientation: 'horizontal'
                     size_hint_x: 0.8
                     pos_hint: {'center_x': 0.5}
                     size_hint_y: None
-                    height: dp(50)  
+                    height: dp(50)
                     spacing: dp(10)
 
+                    # Male gender selection button
                     BoxLayout:
                         orientation: 'horizontal'
                         size_hint_x: 0.8
                         pos_hint: {'center_x': 0.5}
                         size_hint_y: None
-                        height: dp(50)  
+                        height: dp(50)
                         spacing: dp(10)
 
                         canvas.before:
                             Color:
-                                rgba: 1, 1, 1, 1  
+                                rgba: 1, 1, 1, 1
                             RoundedRectangle:
                                 pos: self.pos
                                 size: self.size
-                                radius: [dp(23)]  
-                   
+                                radius: [dp(23)]
+
                         ToggleButton:
                             id: gender_m
                             text: 'Male'
-                            group: 'gender'
+                            group: 'gender'  # Group for toggle behavior
                             font_size: sp(20)
                             size_hint_x: 0.3
                             background_normal: ''
                             background_down: ''
-                            background_color: 1, 1, 1, 1  
-                            color: 0.8, 0.4, 0.1, 1  
-                            background_down: ''  
+                            background_color: 1, 1, 1, 1
+                            color: 0.8, 0.4, 0.1, 1
                             on_state: 
                                 self.background_color = (0.8, 0.4, 0.1, 1) if self.state == 'down' else (1, 1, 1, 1)
-                                self.color = (1, 1, 1, 1) if self.state == 'down' else (0.8, 0.4, 0.1, 1)   
-                                root.set_gender('M')
+                                self.color = (1, 1, 1, 1) if self.state == 'down' else (0.8, 0.4, 0.1, 1)
+                                root.set_gender('M')  # Set gender to 'M' when selected
+
+                    # Female gender selection button
                     BoxLayout:
                         orientation: 'horizontal'
                         size_hint_x: 0.8
                         pos_hint: {'center_x': 0.5}
                         size_hint_y: None
-                        height: dp(50)  
+                        height: dp(50)
                         spacing: dp(10)
 
                         canvas.before:
                             Color:
-                                rgba: 1, 1, 1, 1  
+                                rgba: 1, 1, 1, 1
                             RoundedRectangle:
                                 pos: self.pos
                                 size: self.size
-                                radius: [dp(23)]  
-                   
+                                radius: [dp(23)]
+
                         ToggleButton:
                             id: gender_f
                             text: 'Female'
@@ -199,37 +200,38 @@
                             size_hint_x: 0.3
                             background_normal: ''
                             background_down: ''
-                            background_color: 1, 1, 1, 1 
-                            color: 0.8, 0.4, 0.1, 1  
-                            background_down: ''  
+                            background_color: 1, 1, 1, 1
+                            color: 0.8, 0.4, 0.1, 1
                             on_state: 
                                 self.background_color = (0.8, 0.4, 0.1, 1) if self.state == 'down' else (1, 1, 1, 1)
-                                self.color = (1, 1, 1, 1) if self.state == 'down' else (0.8, 0.4, 0.1, 1)  
-                                root.set_gender('F')
-                    
+                                self.color = (1, 1, 1, 1) if self.state == 'down' else (0.8, 0.4, 0.1, 1)
+                                root.set_gender('F')  # Set gender to 'F' when selected
+
+                # Input field for Street Number and Apartment
                 BoxLayout:
                     orientation: 'horizontal'
                     size_hint_x: 0.8
                     pos_hint: {'center_x': 0.5}
                     size_hint_y: None
-                    height: dp(50)  
+                    height: dp(50)
                     spacing: dp(10)
 
+                    # Input field for House number
                     BoxLayout:
                         orientation: 'horizontal'
                         size_hint_x: 0.8
                         pos_hint: {'center_x': 0.5}
                         size_hint_y: None
-                        height: dp(50)  
+                        height: dp(50)
                         spacing: dp(10)
 
                         canvas.before:
                             Color:
-                                rgba: 1, 1, 1, 1  
+                                rgba: 1, 1, 1, 1
                             RoundedRectangle:
                                 pos: self.pos
                                 size: self.size
-                                radius: [dp(23)]  
+                                radius: [dp(23)]
 
                         TextInput:
                             id: street_number_inp
@@ -240,27 +242,27 @@
                             height: dp(45)
                             background_normal: ''
                             background_active: ''
-                            background_color: 1, 1, 1, 1
                             background_color: (0, 0, 0, 0)
                             padding: [dp(20), dp(12)]
                             cursor_color: 0.87, 0.42, 0.16, 1
                             selection_color: 0.87, 0.42, 0.16, 0.5
                             size_hint_x: 0.5
 
+                    # Input field for Apartment
                     BoxLayout:
                         orientation: 'horizontal'
                         size_hint_x: 0.8
                         pos_hint: {'center_x': 0.5}
                         size_hint_y: None
-                        height: dp(50)  
+                        height: dp(50)
                         spacing: dp(10)
                         canvas.before:
                             Color:
-                                rgba: 1, 1, 1, 1  
+                                rgba: 1, 1, 1, 1
                             RoundedRectangle:
                                 pos: self.pos
                                 size: self.size
-                                radius: [dp(23)] 
+                                radius: [dp(23)]
                         TextInput:
                             id: apart_number_input
                             hint_text: 'Apart *'
@@ -270,36 +272,37 @@
                             height: dp(45)
                             background_normal: ''
                             background_active: ''
-                            background_color: 1, 1, 1, 1
                             background_color: (0, 0, 0, 0)
                             padding: [dp(20), dp(12)]
                             cursor_color: 0.87, 0.42, 0.16, 1
                             selection_color: 0.87, 0.42, 0.16, 0.5
                             size_hint_x: 0.5
 
+                # Input fields for Postal Code and Street Name
                 BoxLayout:
                     orientation: 'horizontal'
                     size_hint_x: 0.8
                     pos_hint: {'center_x': 0.5}
                     size_hint_y: None
-                    height: dp(50)  
+                    height: dp(50)
                     spacing: dp(10)
 
+                    # Input field for Postal Code
                     BoxLayout:
                         orientation: 'horizontal'
                         size_hint_x: 0.8
                         pos_hint: {'center_x': 0.5}
                         size_hint_y: None
-                        height: dp(50)  
+                        height: dp(50)
                         spacing: dp(10)
 
                         canvas.before:
                             Color:
-                                rgba: 1, 1, 1, 1  
+                                rgba: 1, 1, 1, 1
                             RoundedRectangle:
                                 pos: self.pos
                                 size: self.size
-                                radius: [dp(23)]  
+                                radius: [dp(23)]
 
                         TextInput:
                             id: postal_code_input
@@ -310,47 +313,48 @@
                             height: dp(45)
                             background_normal: ''
                             background_active: ''
-                            background_color: 1, 1, 1, 1
                             background_color: (0, 0, 0, 0)
                             padding: [dp(20), dp(12)]
                             cursor_color: 0.87, 0.42, 0.16, 1
                             selection_color: 0.87, 0.42, 0.16, 0.5
                             size_hint_x: 0.5
-                            on_text: root.check_postal_code(self.text)
+                            on_text: root.check_postal_code(self.text)  # Check postal code validity
 
+                    # Label for displaying Street Name
                     BoxLayout:
                         orientation: 'horizontal'
                         size_hint_x: 0.8
                         pos_hint: {'center_x': 0.5}
                         size_hint_y: None
-                        height: dp(50)  
+                        height: dp(50)
                         spacing: dp(10)
 
                         Label:
                             id: street_label
-                            text: "Your street name will be here"
-                            color: 1, 1, 1, 1  
+                            text: "Your street name will be here"  # Placeholder for street name
+                            color: 1, 1, 1, 1
                             font_size: sp(16)
                             size_hint_y: None
                             height: dp(40)
                             valign: 'middle'
                             text_size: self.size
 
+                # Input field for Phone Number
                 BoxLayout:
                     orientation: 'vertical'
                     size_hint_x: 0.8
                     pos_hint: {'center_x': 0.5}
                     size_hint_y: None
-                    height: dp(50)  
+                    height: dp(50)
                     spacing: dp(10)
 
                     canvas.before:
                         Color:
-                            rgba: 1, 1, 1, 1  
+                            rgba: 1, 1, 1, 1
                         RoundedRectangle:
                             pos: self.pos
                             size: self.size
-                            radius: [dp(23)]  
+                            radius: [dp(23)]
 
                     TextInput:
                         id: phone_number_input
@@ -361,23 +365,28 @@
                         height: dp(45)
                         background_normal: ''
                         background_active: ''
-                        background_color: 1, 1, 1, 1
                         background_color: (0, 0, 0, 0)
                         padding: [dp(20), dp(12)]
                         cursor_color: 0.87, 0.42, 0.16, 1
                         selection_color: 0.87, 0.42, 0.16, 0.5
+
+            # Bottom section with action buttons
             BoxLayout:
                 orientation: 'vertical'
-                size_hint_y: 0.35
+                size_hint_y: 0.35  # Set height of the BoxLayout
                 spacing: dp(15)
+
+                # Error message label
                 Label:
                     id: error_label
-                    text: ""
+                    text: ""  # Placeholder for error messages
                     color: 1, 1, 1, 1
                     font_size: sp(15)
                     size_hint_y: None
                     height: dp(30)
                     pos_hint: {'center_x': 0.5}
+
+                # Continue button
                 Button:
                     text: 'Continue'
                     size_hint_x: 0.77
@@ -385,37 +394,35 @@
                     height: dp(50)
                     font_size: sp(20)
                     background_normal: ''
-                    background_color: 0, 0, 0, 0  
+                    background_color: 0, 0, 0, 0
                     color: 0.8, 0.4, 0.1, 1
                     pos_hint: {'center_x': 0.5}
-                    on_release: root.continue_to_account_creation()
-                        
+                    on_release: root.continue_to_account_creation()  # Trigger account creation
 
                     canvas.before:
                         Color:
-                            rgba: 1, 1, 1, 1  
+                            rgba: 1, 1, 1, 1
                         RoundedRectangle:
                             pos: self.pos
                             size: self.size
-                            radius: [dp(23)]  
+                            radius: [dp(23)]
+
+                # Back button
                 Button:
                     text: 'Back'
                     size_hint_x: 0.77
                     size_hint_y: None
-                    height: dp(50)  
+                    height: dp(50)
                     font_size: sp(20)
                     background_normal: ''
-                    background_color: 0, 0, 0, 0  
-                    color: 1, 1, 1, 1  
+                    background_color: 0, 0, 0, 0
+                    color: 1, 1, 1, 1
                     pos_hint: {'center_x': 0.5}
-                    on_release: app.root.current = 'login_screen'
-
+                    on_release: app.root.current = 'login_screen'  # Navigate back to login screen
 
                     canvas.before:
                         Color:
-                            rgba: 1, 1, 1, 1  
+                            rgba: 1, 1, 1, 1
                         Line:
-                            width: 1.2  
-                            rounded_rectangle: (self.x, self.y, self.width, self.height, dp(23)) 
-
-            
+                            width: 1.2  # Line width for border
+                            rounded_rectangle: (self.x, self.y, self.width, self.height, dp(23))  # Rounded border

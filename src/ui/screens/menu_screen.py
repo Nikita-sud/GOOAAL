@@ -40,7 +40,7 @@ class Menu(ColoredScreen):
 
         for img_path in ['code_goal10.png', 'pizza_and_desert.png', 'pizza_and_drink.png']:
             box = BoxLayout(orientation='vertical')  # Create a vertical BoxLayout for each offer
-            img = Image(source="assets/images/offers/" + img_path, fit_mode='contain')  # Create an Image widget
+            img = Image(source="assets/images/offers/" + img_path, fit_mode="fill")  # Create an Image widget
             box.add_widget(img)  # Add the image to the box
             special_offer_window.add_widget(box)  # Add the box to the special offer window
 

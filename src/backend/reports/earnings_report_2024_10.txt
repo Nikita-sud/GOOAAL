@@ -1,0 +1,12 @@
+Monthly Earnings Report
+---------------------------
+Month: 10
+Year: 2024
+Total Earnings: €0.00
+Total Orders: 0
+
+Filters Applied:
+- Postal Code: 6211CL
+- City: Maastricht
+- Gender: M
+- Age Between: 0 and 200

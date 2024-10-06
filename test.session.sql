@@ -1,0 +1,1 @@
+-- DELETE FROM menu_pizza;

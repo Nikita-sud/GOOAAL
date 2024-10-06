@@ -69,6 +69,20 @@ class PaginatedGrid(BoxLayout):
                 "image_source": "assets/images/fanta_image.webp",
                 "category": "Drink",
                 "item_id": 2
+            },
+            {
+                "product_name": "Sprite",
+                "price": "3$",
+                "image_source": "assets/images/sprite.webp",
+                "category": "Drink",
+                "item_id": 3
+            },
+            {
+                "product_name": "Ice Tea",
+                "price": "3$",
+                "image_source": "assets/images/ice_tea.jfif",
+                "category": "Drink",
+                "item_id": 3
             }
         ])
 

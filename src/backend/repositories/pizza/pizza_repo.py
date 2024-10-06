@@ -34,6 +34,7 @@ class PizzaRepo(PizzaInterface):
         query = "SELECT discount FROM menu_pizza WHERE pizza_id = %s"
         cursor.execute(query, (pizza_id,))  # Execute query to get discount for the pizza
         result = cursor.fetchone()  # Fetch the discount value
+
         if result and result[0]:
             return Decimal(result[0])  # Return the discount as a Decimal value
         else:
@@ -71,12 +72,15 @@ class PizzaRepo(PizzaInterface):
     
             # Round to two decimal places
             price = final_price.quantize(Decimal('0.01'))
+
     
             # Save the calculated price in menu_pizza
             insert_query = """
             INSERT INTO menu_pizza (pizza_id, discount, price)
             VALUES (%s, %s, %s)
-            ON DUPLICATE KEY UPDATE discount = VALUES(discount), price = VALUES(price)
+            ON DUPLICATE KEY UPDATE
+            discount = VALUES(discount),
+            price = VALUES(price)
             """
             cursor.execute(insert_query, (pizza_id, float(discount), float(price)))  # Insert or update the price in menu_pizza
             self.db_connection.commit()  # Commit the changes to the database

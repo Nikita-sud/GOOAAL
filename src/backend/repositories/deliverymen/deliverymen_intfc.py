@@ -25,11 +25,6 @@ class DeliverymenInterface(ABC):
     def get_delivery_person_by_id(self, employee_id):
         pass  # Placeholder indicating this method must be implemented in derived classes
 
-    # Abstract method to get available delivery persons by region (postal code ID)
-    @abstractmethod
-    def get_available_deliverymen_by_region(self, postal_code_id):
-        pass  # Placeholder indicating this method must be implemented in derived classes
-
     # Abstract method to assign an order to a delivery person
     @abstractmethod
     def assign_order_to_delivery_person(self, order_id, employee_id):

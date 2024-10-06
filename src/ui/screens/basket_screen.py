@@ -273,21 +273,6 @@ class BasketScreen(ColoredScreen):
             self.ids.offer_message.text = "Address not found for customer!"
             return
 
-        # Fetch the customer's postal code ID from the database
-        connection = connect_to_db()
-        cursor = connection.cursor()
-        query = """
-        SELECT postal_code_id FROM customer_address WHERE customer_address_id = %s
-        """
-        cursor.execute(query, (customer_address_id,))
-        postal_code_result = cursor.fetchone()
-        postal_code_id = postal_code_result[0] if postal_code_result else None
-        connection.close()
-
-        if postal_code_id is None:
-            self.ids.offer_message.text = "Postal code not found for customer!"
-            return
-
         # Prepare order items for the order model
         order_items = []
         num_of_pizza = 0
@@ -314,14 +299,7 @@ class BasketScreen(ColoredScreen):
         # Save the order to the repository
         self.order_repo.save_order(order)
 
-        try:
-            # Assign the order to an available delivery person based on postal code
-            delivery_person = self.order_repo.deliverymen_repo.find_available_delivery_person(postal_code_id)
-            if delivery_person:
-                self.order_repo.assign_order_to_delivery_person(order.order_id, delivery_person['employee_id'])
-        except Exception as ex:
-            print(f"Error while assigning delivery person: {ex}")
-            # Optionally, handle the exception further or notify the user
+        # No need to assign delivery person here; OrderRepo handles it asynchronously
 
         # Update restaurant earnings and customer order count
         restaurant_repo: RestaurantsInterface = RestaurantsRepo(connect_to_db())

@@ -16,6 +16,7 @@ class OrderRepo(OrderInterface):
     Handles operations such as saving orders, updating order statuses,
     cancelling orders, and assigning delivery personnel.
     """
+
     def __init__(self, db_connection, deliverymen_repo):
         """
         Initializes the OrderRepo with a database connection and a deliverymen repository.
@@ -74,42 +75,73 @@ class OrderRepo(OrderInterface):
         threading.Thread(target=self.update_order_status_after_delay, args=(order.order_id, 2, 5)).start()
 
     def update_order_status_after_delay(self, order_id, new_status, delay_seconds):
-        """
-        Updates the status of an order after a specified delay. If the new status is 'Out for Delivery',
-        it also attempts to assign a delivery person and schedules another status update to 'Delivered'.
-        
-        Args:
-            order_id (int): The ID of the order to update.
-            new_status (int): The new status ID to set.
-            delay_seconds (int): The delay in seconds before updating the status.
-        """
-        time.sleep(delay_seconds)  # Wait for the specified delay
+        time.sleep(delay_seconds)
         print(f"Updating order {order_id} to status {new_status} after {delay_seconds} seconds")
 
-        # Connect to the database in the new thread
         db_conn = connect_to_db()
-        cursor = db_conn.cursor()
 
-        # Check the current status of the order before updating
-        query_check = "SELECT status_id FROM orders WHERE order_id = %s"
-        cursor.execute(query_check, (order_id,))
-        current_status = cursor.fetchone()
-        cursor.close()  # Close the cursor
-
-        if current_status and current_status[0] != 4:  # 4 represents "Cancelled"
+        try:
             cursor = db_conn.cursor()
-            query = "UPDATE orders SET status_id = %s WHERE order_id = %s"
-            cursor.execute(query, (new_status, order_id))
-            db_conn.commit()  # Commit the changes to the database
-            cursor.close()  # Close the cursor
-            print(f"Order {order_id} status updated to {new_status}")
 
-            if new_status == 2:
-                # After updating the status to "Out for Delivery", attempt to assign a delivery person
-                self.group_and_assign_orders()
+            # Fetch current status and delivery person assignment
+            query_check = "SELECT status_id, delivery_person_id FROM orders WHERE order_id = %s"
+            cursor.execute(query_check, (order_id,))
+            result = cursor.fetchone()
+            cursor.close()
 
-                # Start a thread to update the status to "Delivered" after 5 seconds
-                threading.Thread(target=self.update_order_status_after_delay, args=(order_id, 3, 5)).start()
+            if result and result[0] != 4:  # Check if not cancelled
+                current_status_id, delivery_person_id = result
+
+                if new_status == 3:
+                    if not delivery_person_id:
+                        # Cannot update to Delivered without a delivery person
+                        print(f"Order {order_id} cannot be updated to Delivered as no delivery person is assigned.")
+                        return
+
+                    # Update order status to Delivered
+                    cursor = db_conn.cursor()
+                    query = "UPDATE orders SET status_id = %s WHERE order_id = %s"
+                    cursor.execute(query, (new_status, order_id))
+                    db_conn.commit()
+                    cursor.close()
+                    print(f"Order {order_id} status updated to {new_status}")
+
+                    # Schedule the delivery person's availability to reset after 30 seconds
+                    self.deliverymen_repo.set_available_after_delay(delivery_person_id, 30)
+                elif new_status == 2:
+                    # Update order status to Out for Delivery
+                    cursor = db_conn.cursor()
+                    query = "UPDATE orders SET status_id = %s WHERE order_id = %s"
+                    cursor.execute(query, (new_status, order_id))
+                    db_conn.commit()
+                    cursor.close()
+                    print(f"Order {order_id} status updated to {new_status}")
+
+                    # Attempt to assign a delivery person
+                    self.group_and_assign_orders(db_conn)
+
+                    # Check if a delivery person was assigned
+                    cursor = db_conn.cursor()
+                    query_check_delivery = "SELECT delivery_person_id FROM orders WHERE order_id = %s"
+                    cursor.execute(query_check_delivery, (order_id,))
+                    delivery_result = cursor.fetchone()
+                    cursor.close()
+
+                    if delivery_result and delivery_result[0]:
+                        # Schedule to update status to Delivered after delivery time
+                        threading.Thread(target=self.update_order_status_after_delay, args=(order_id, 3, 5)).start()
+                    else:
+                        print(f"No delivery person assigned to order {order_id}; cannot proceed to Delivered status.")
+                else:
+                    # For other statuses, simply update
+                    cursor = db_conn.cursor()
+                    query = "UPDATE orders SET status_id = %s WHERE order_id = %s"
+                    cursor.execute(query, (new_status, order_id))
+                    db_conn.commit()
+                    cursor.close()
+                    print(f"Order {order_id} status updated to {new_status}")
+        finally:
+            db_conn.close()
 
     def cancel_order(self, order_id):
         """
@@ -269,65 +301,66 @@ class OrderRepo(OrderInterface):
         cursor.close()  # Close the cursor
         return orders  # Return the list of all orders
 
-    def group_and_assign_orders(self):
+    def group_and_assign_orders(self, db_conn):
         """
-        Groups orders by postal codes and assigns them to available delivery personnel.
-        Each delivery person can handle up to 3 orders at a time. After assignment, the delivery
-        person is marked as unavailable for a specified duration.
+        Groups pending orders and assigns them to available delivery personnel.
+
+        Args:
+            db_conn: Database connection to use within the thread.
         """
-        cursor = self.db_connection.cursor(dictionary=True)
+        cursor = db_conn.cursor(dictionary=True)
         # Find all orders with status "Out for Delivery" (2) and without an assigned delivery person
         query = """
-        SELECT o.order_id, o.customer_id, ca.postal_code_id
+        SELECT o.order_id, o.customer_id, ca.postal_code_id, r.restaurant_id
         FROM orders o
-        JOIN customer_address ca ON o.customer_id = (SELECT customer_id FROM customer WHERE customer_id = o.customer_id)
+        JOIN customer c ON o.customer_id = c.customer_id
+        JOIN customer_address ca ON c.address = ca.customer_address_id
+        JOIN restaurants r ON ca.postal_code_id BETWEEN r.postal_code_cover_from AND r.postal_code_cover_till
         WHERE o.status_id = 2 AND o.delivery_person_id IS NULL
         ORDER BY o.created_at ASC
         """
         cursor.execute(query)
-        pending_orders = cursor.fetchall()  # Fetch all pending orders
-        cursor.close()  # Close the cursor
+        pending_orders = cursor.fetchall()
+        cursor.close()
 
-        # Group orders by postal_code_id
+        # Group orders by restaurant_id
         groups = defaultdict(list)
         for order in pending_orders:
-            groups[order['postal_code_id']].append(order['order_id'])
+            groups[order['restaurant_id']].append(order['order_id'])
 
         # Assign delivery persons to each group
-        for postal_code_id, orders in groups.items():
+        for restaurant_id, orders in groups.items():
             while len(orders) >= 1:
-                # Form a batch of up to 3 orders
                 batch = orders[:3]
                 orders = orders[3:]
 
-                # Find an available delivery person for this region
-                delivery_person = self.deliverymen_repo.find_available_delivery_person(postal_code_id)
+                delivery_person = self.deliverymen_repo.find_available_delivery_person(restaurant_id, db_conn)
                 if delivery_person:
-                    # Assign the batch of orders to this delivery person
                     for order_id in batch:
-                        self.assign_order_to_delivery_person(order_id, delivery_person['employee_id'])
+                        self.assign_order_to_delivery_person(order_id, delivery_person['employee_id'], db_conn)
 
-                    # Set the delivery person as unavailable and start a timer
-                    self.deliverymen_repo.set_unavailable(delivery_person['employee_id'], delay_seconds=30)
+                    # Set the delivery person as unavailable
+                    self.deliverymen_repo.set_unavailable(delivery_person['employee_id'], db_conn=db_conn)
                 else:
-                    print(f"No available delivery person for postal code {postal_code_id}")
-                    break  # No available delivery persons for this region
+                    print(f"No available delivery person for restaurant {restaurant_id}")
+                    break
 
-    def assign_order_to_delivery_person(self, order_id, employee_id):
+    def assign_order_to_delivery_person(self, order_id, employee_id, db_conn):
         """
         Assigns an order to a delivery person and sets the estimated delivery time.
         
         Args:
             order_id (int): The ID of the order to assign.
             employee_id (int): The ID of the delivery person.
+            db_conn: Database connection to use within the thread.
         """
-        cursor = self.db_connection.cursor()
+        cursor = db_conn.cursor()
         query = """
             UPDATE orders
             SET delivery_person_id = %s, estimated_delivery_time = NOW() + INTERVAL 30 MINUTE
             WHERE order_id = %s
         """
         cursor.execute(query, (employee_id, order_id))  # Assign the delivery person and set estimated delivery time
-        self.db_connection.commit()  # Commit the changes to the database
+        db_conn.commit()  # Commit the changes to the database
         cursor.close()  # Close the cursor
         print(f'Order {order_id} assigned to delivery person {employee_id}.')

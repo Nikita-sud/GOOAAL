@@ -169,7 +169,7 @@ class OrderRepo(OrderInterface):
         elapsed_time = (datetime.now() - created_at).total_seconds()
 
         # Check if the cancellation is within the allowed time frame (e.g., 5 seconds)
-        if elapsed_time > 5:
+        if elapsed_time > 7:
             print(f"Cannot cancel order {order_id}: cancellation time has expired.")
             return False
 

@@ -95,7 +95,7 @@ class OrderDetailsScreen(ColoredScreen):
             elapsed_time = (datetime.now() - order_created_at).total_seconds()
 
             # If less than 5 seconds have passed, show the cancel button and hide it after the remaining time
-            if elapsed_time < 5:
+            if elapsed_time < 7:
                 remaining_time = 5 - elapsed_time
                 self.ids.cancel_button.opacity = 1  # Make the cancel button visible
                 Clock.schedule_once(self.hide_cancel_button, remaining_time)

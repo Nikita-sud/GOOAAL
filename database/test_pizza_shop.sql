@@ -105,7 +105,7 @@ CREATE TABLE `customer` (
   `last_name` varchar(20) NOT NULL,
   `gender_id` int NOT NULL,
   `birthdate` date DEFAULT NULL,
-  `phone` varchar(8) DEFAULT NULL,
+  `phone` varchar(18) DEFAULT NULL,
   `address` int NOT NULL,
   `number_orders` int DEFAULT '0',
   `discount_for_next` float DEFAULT '0',
@@ -392,7 +392,7 @@ CREATE TABLE `ingredient` (
 
 LOCK TABLES `ingredient` WRITE;
 /*!40000 ALTER TABLE `ingredient` DISABLE KEYS */;
-INSERT INTO `ingredient` VALUES (1,'Tomato Sauce',0.5,1),(2,'Mozzarella',1.5,1),(3,'Pepperoni',1.5,0),(4,'Ham',1.5,0),(5,'Bacon',1.5,0),(6,'Mushrooms',0.8,1),(7,'Onions',0.5,1),(8,'Green Peppers',0.7,1),(9,'Olives',0.7,1),(10,'Pineapple',0.8,1),(11,'Chicken',1.8,0),(12,'Beef',2,0),(13,'Spinach',0.7,1),(14,'Artichoke',0.9,1),(15,'Sausage',1.5,0),(16,'Parmesan Cheese',1,1),(17,'BBQ Sauce',0.6,1),(18,'Garlic',0.3,1),(19,'Cheddar Cheese',1,1),(20,'Dough',1,1);
+INSERT INTO `ingredient` VALUES (1,'Tomato Sauce',2,1),(2,'Mozzarella',3,1),(3,'Pepperoni',3,0),(4,'Ham',3,0),(5,'Bacon',3,0),(6,'Mushrooms',1.6,1),(7,'Onions',1,1),(8,'Green Peppers',1.4,1),(9,'Olives',1.4,1),(10,'Pineapple',1.6,1),(11,'Chicken',3.6,0),(12,'Beef',4,0),(13,'Spinach',1.4,1),(14,'Artichoke',1.8,1),(15,'Sausage',3,0),(16,'Parmesan Cheese',2,1),(17,'BBQ Sauce',1.2,1),(18,'Garlic',0.6,1),(19,'Cheddar Cheese',2,1),(20,'Dough',2,1);
 /*!40000 ALTER TABLE `ingredient` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -794,4 +794,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-10-06 13:12:22
+-- Dump completed on 2024-10-06 13:15:43

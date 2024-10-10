@@ -106,11 +106,10 @@ if __name__ == "__main__":
             connection,
             month=10,
             year=2024,
-            postal_code='6211CL',
             city='Maastricht',
             gender='M',
-            age_from=0,
-            age_to=200
+            age_from=10,
+            age_to=30
         )
     finally:
         if connection.is_connected():

@@ -57,7 +57,7 @@ class OrderDetailsScreen(ColoredScreen):
         print("Entered OrderDetailsScreen")
         self.load_order_details()
         # Schedule periodic updates every 5 seconds
-        self.update_event = Clock.schedule_interval(self.load_order_details, 5)
+        self.update_event = Clock.schedule_interval(self.load_order_details, 10)
 
     def on_leave(self, *args):
         """
@@ -95,8 +95,8 @@ class OrderDetailsScreen(ColoredScreen):
             elapsed_time = (datetime.now() - order_created_at).total_seconds()
 
             # If less than 5 seconds have passed, show the cancel button and hide it after the remaining time
-            if elapsed_time < 7:
-                remaining_time = 5 - elapsed_time
+            if elapsed_time < 10:
+                remaining_time = 10 - elapsed_time
                 self.ids.cancel_button.opacity = 1  # Make the cancel button visible
                 Clock.schedule_once(self.hide_cancel_button, remaining_time)
                 print(f"Cancel button visible for {remaining_time} seconds")

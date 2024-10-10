@@ -72,7 +72,7 @@ class OrderRepo(OrderInterface):
         cursor.close()  # Close the cursor
 
         # Start a thread to update the order status after a delay
-        threading.Thread(target=self.update_order_status_after_delay, args=(order.order_id, 2, 5)).start()
+        threading.Thread(target=self.update_order_status_after_delay, args=(order.order_id, 2, 10)).start()
 
     def update_order_status_after_delay(self, order_id, new_status, delay_seconds):
         time.sleep(delay_seconds)
@@ -129,7 +129,7 @@ class OrderRepo(OrderInterface):
 
                     if delivery_result and delivery_result[0]:
                         # Schedule to update status to Delivered after delivery time
-                        threading.Thread(target=self.update_order_status_after_delay, args=(order_id, 3, 5)).start()
+                        threading.Thread(target=self.update_order_status_after_delay, args=(order_id, 3, 10)).start()
                     else:
                         print(f"No delivery person assigned to order {order_id}; cannot proceed to Delivered status.")
                 else:
@@ -168,8 +168,8 @@ class OrderRepo(OrderInterface):
         created_at, current_status = result
         elapsed_time = (datetime.now() - created_at).total_seconds()
 
-        # Check if the cancellation is within the allowed time frame (e.g., 5 seconds)
-        if elapsed_time > 7:
+        # Check if the cancellation is within the allowed time frame (e.g., 10 seconds)
+        if elapsed_time > 10:
             print(f"Cannot cancel order {order_id}: cancellation time has expired.")
             return False
 
